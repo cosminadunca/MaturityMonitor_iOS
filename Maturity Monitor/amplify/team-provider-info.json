@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-maturitymonitor-dev-140742-authRole",
+      "UnauthRoleArn": "arn:aws:iam::667945059570:role/amplify-maturitymonitor-dev-140742-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::667945059570:role/amplify-maturitymonitor-dev-140742-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-maturitymonitor-dev-140742-deployment",
+      "UnauthRoleName": "amplify-maturitymonitor-dev-140742-unauthRole",
+      "StackName": "amplify-maturitymonitor-dev-140742",
+      "StackId": "arn:aws:cloudformation:eu-west-1:667945059570:stack/amplify-maturitymonitor-dev-140742/21115da0-094e-11ef-a225-0a608da0ed31",
+      "AmplifyAppId": "d328cdfrzqmd8"
+    },
+    "categories": {
+      "auth": {
+        "maturitymonitorbdd9768d": {}
+      },
+      "api": {
+        "maturitymonitor": {}
+      }
+    }
+  }
+}

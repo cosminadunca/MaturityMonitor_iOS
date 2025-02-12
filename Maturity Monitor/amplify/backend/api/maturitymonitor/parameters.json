@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "maturitymonitor",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-05-03T13:55:55.482Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authmaturitymonitorbdd9768d",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

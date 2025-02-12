@@ -1,0 +1,70 @@
+enum ChildStatus{
+  ACTIVE
+  INACTIVE
+}
+
+type Child
+@model
+@auth(
+  rules: [
+    { allow: public, operations: [read] }, # Public read permission
+    { allow: owner, ownerField: "idUser", operations: [read, create, update, delete] } # Allow owner-based access to all operations
+  ]
+)
+{
+  id: ID!
+  idUser: ID!
+  userName: String!
+  userSurname: String!
+  name: String!
+  surname: String!
+  dateOfBirth: String!
+  gender: String!
+  motherHeight: String!
+  fatherHeight: String!
+  parentsMeasurements: String!
+  country: String!
+  ethnicity: String!
+  primarySport: String!
+  approveData: Boolean!
+  disserartionApproval: Boolean!
+  uniqueId: Int!
+  status: ChildStatus!
+  entries: [Entry]! @hasMany(indexName: "byChild", fields: ["id"])
+  linkChildToUser: [LinkChildToUser]! @hasMany(indexName: "byChildLink", fields: ["id"])
+}
+
+type Entry
+@model
+@auth(
+  rules: [
+    { allow: public, operations: [read] }, # Public read permission
+    { allow: owner, ownerField: "idUser", operations: [read, create, update, delete] } # Allow owner-based access to all operations
+  ]
+)
+{
+  id: ID!
+  idUser: ID!
+  userName: String!
+  userSurname: String!
+  weight: String!
+  height: String!
+  sittingHeigh: String!
+  dateOfEntry: String!
+  childId:ID! @index(name: "byChild")
+  child: Child! @belongsTo(fields: ["childId"])
+}
+
+type LinkChildToUser
+@model
+@auth(
+  rules: [
+    { allow: public, operations: [read] }, # Public read permission
+    { allow: owner, ownerField: "idUser", operations: [read, create, update, delete] } # Allow owner-based access to all operations
+  ]
+)
+{
+  idChild: ID! @index(name: "byChildLink")
+  idUser: ID!
+  child: Child! @belongsTo(fields: ["idChild"])
+}

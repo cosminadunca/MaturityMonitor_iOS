@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "maturitymonitor",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authmaturitymonitorbdd9768d"
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2025-05-03T13:56:40.633Z",
+        "keyDescription": ""
+      }
+    ]
+  }
+}
