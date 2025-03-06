@@ -96,12 +96,6 @@
 		A0F86A2A2C69F3DB00954121 /* Maturity_MonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F86A292C69F3DB00954121 /* Maturity_MonitorTests.swift */; };
 		A0F86A342C69F3DB00954121 /* Maturity_MonitorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F86A332C69F3DB00954121 /* Maturity_MonitorUITests.swift */; };
 		A0F86A362C69F3DB00954121 /* Maturity_MonitorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F86A352C69F3DB00954121 /* Maturity_MonitorUITestsLaunchTests.swift */; };
-		A0F86A452C6A409900954121 /* Inter-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0F86A432C6A409900954121 /* Inter-Bold.otf */; };
-		A0F86A462C6A409900954121 /* Inter-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0F86A432C6A409900954121 /* Inter-Bold.otf */; };
-		A0F86A472C6A409900954121 /* Inter-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0F86A432C6A409900954121 /* Inter-Bold.otf */; };
-		A0F86A482C6A409900954121 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0F86A442C6A409900954121 /* Inter-Regular.otf */; };
-		A0F86A492C6A409900954121 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0F86A442C6A409900954121 /* Inter-Regular.otf */; };
-		A0F86A4A2C6A409900954121 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0F86A442C6A409900954121 /* Inter-Regular.otf */; };
 		A0F86A4D2C6A432800954121 /* FontStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F86A4C2C6A432800954121 /* FontStyles.swift */; };
 		A0F89AB72C73779100576618 /* RegistrationHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F89AB62C73779100576618 /* RegistrationHomeView.swift */; };
 		B9D05576FDCADE5E1210E253 /* Entry+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4771439515F00FABE663388 /* Entry+Schema.swift */; };
@@ -346,8 +340,6 @@
 		A0F86A2F2C69F3DB00954121 /* Maturity MonitorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maturity MonitorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0F86A332C69F3DB00954121 /* Maturity_MonitorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maturity_MonitorUITests.swift; sourceTree = "<group>"; };
 		A0F86A352C69F3DB00954121 /* Maturity_MonitorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maturity_MonitorUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		A0F86A432C6A409900954121 /* Inter-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Bold.otf"; path = "../../../maturityMonitorTools/InterFonts/extras/otf/Inter-Bold.otf"; sourceTree = "<group>"; };
-		A0F86A442C6A409900954121 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Regular.otf"; path = "../../../maturityMonitorTools/InterFonts/extras/otf/Inter-Regular.otf"; sourceTree = "<group>"; };
 		A0F86A4C2C6A432800954121 /* FontStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyles.swift; sourceTree = "<group>"; };
 		A0F89AB62C73779100576618 /* RegistrationHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationHomeView.swift; sourceTree = "<group>"; };
 		A986472D431C54CA4F5B97F5 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
@@ -699,8 +691,6 @@
 		A0F86A422C6A403600954121 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				A0F86A432C6A409900954121 /* Inter-Bold.otf */,
-				A0F86A442C6A409900954121 /* Inter-Regular.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -763,7 +753,6 @@
 			children = (
 				D51B2ECD2D7A1FE500BA46E7 /* Inter-Black.otf */,
 				D51B2ECE2D7A1FE500BA46E7 /* Inter-BlackItalic.otf */,
-				D51B2ECF2D7A1FE500BA46E7 /* Inter-Bold.otf */,
 				D51B2ED02D7A1FE500BA46E7 /* Inter-BoldItalic.otf */,
 				D51B2ED12D7A1FE500BA46E7 /* Inter-ExtraBold.otf */,
 				D51B2ED22D7A1FE500BA46E7 /* Inter-ExtraBoldItalic.otf */,
@@ -796,6 +785,7 @@
 				D51B2EED2D7A1FE500BA46E7 /* InterDisplay-SemiBold.otf */,
 				D51B2EEE2D7A1FE500BA46E7 /* InterDisplay-SemiBoldItalic.otf */,
 				D51B2EEF2D7A1FE500BA46E7 /* InterDisplay-Thin.otf */,
+				D51B2ECF2D7A1FE500BA46E7 /* Inter-Bold.otf */,
 				D51B2EF02D7A1FE500BA46E7 /* InterDisplay-ThinItalic.otf */,
 			);
 			path = otf;
@@ -1201,14 +1191,12 @@
 				D51B2FE12D7A1FE500BA46E7 /* InterDisplay-SemiBoldItalic.woff2 in Resources */,
 				D51B2FE22D7A1FE500BA46E7 /* ic-showPassword.png in Resources */,
 				D51B2FE32D7A1FE500BA46E7 /* ic-girl@3x.png in Resources */,
-				A0F86A482C6A409900954121 /* Inter-Regular.otf in Resources */,
 				A0ECBD322C8A2227005CF8FD /* Maturity-Monitor-Info.plist in Resources */,
 				A0D83E3E2D04DAC200544728 /* femaleTableCM.csv in Resources */,
 				A0F86A1D2C69F3D800954121 /* Assets.xcassets in Resources */,
 				A06B1B672D105F5900DC250E /* cmToIn 2.csv in Resources */,
 				A0895E052C828163004651C9 /* Maturity-Monitor-Info.plist in Resources */,
 				A0D83E412D04DACA00544728 /* maleTableCM.csv in Resources */,
-				A0F86A452C6A409900954121 /* Inter-Bold.otf in Resources */,
 				BD56C9B8245B55F23A778D17 /* awsconfiguration.json in Resources */,
 				A082DC842D0AF03100102C91 /* agePAHfemale.csv in Resources */,
 				80907940BC04A0245636CB73 /* amplifyconfiguration.json in Resources */,
@@ -1224,8 +1212,6 @@
 				A082DC882D0AF03C00102C91 /* agePAHmale.csv in Resources */,
 				A0D83E3F2D04DAC200544728 /* femaleTableCM.csv in Resources */,
 				A082DC832D0AF03100102C91 /* agePAHfemale.csv in Resources */,
-				A0F86A462C6A409900954121 /* Inter-Bold.otf in Resources */,
-				A0F86A492C6A409900954121 /* Inter-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1238,8 +1224,6 @@
 				A082DC892D0AF03C00102C91 /* agePAHmale.csv in Resources */,
 				A0D83E3D2D04DAC200544728 /* femaleTableCM.csv in Resources */,
 				A082DC852D0AF03100102C91 /* agePAHfemale.csv in Resources */,
-				A0F86A472C6A409900954121 /* Inter-Bold.otf in Resources */,
-				A0F86A4A2C6A409900954121 /* Inter-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
