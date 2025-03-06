@@ -289,19 +289,12 @@ class AmplifyService {
     }
     
     // Function to create a new Child entry and save it to DataStore - ASYNC
-    func createChild(childDetails: ChildDetailsModel, isChecked: Bool, uniqueId: Int) async -> Result<Void, Error> {
+    func createChild(childDetails: ChildDetailsModel, uniqueId: Int) async -> Result<Void, Error> {
         guard let userId = await fetchCurrentUserId() else {
             return .failure(AuthError.unknown("User ID not found!"))
         }
             
         let childStatus: ChildStatus = .active
-        
-        var dissertationApprovalBool: Bool
-        if let approve = childDetails.approveAIResearch {
-            dissertationApprovalBool = (approve == .yes)
-        } else {
-            dissertationApprovalBool = false
-        }
         
         guard let userAttributes = await fetchUserAttributes() else {
                 return .failure(AuthError.unknown("User attributes not found!"))
@@ -336,8 +329,7 @@ class AmplifyService {
             country: childDetails.country,
             ethnicity: childDetails.ethnicity,
             primarySport: childDetails.primarySport,
-            approveData: isChecked,
-            disserartionApproval: dissertationApprovalBool,
+            approveData: childDetails.agreeToResearch,
             uniqueId: uniqueId,
             status: childStatus,
 //            imageURL: imageURL,

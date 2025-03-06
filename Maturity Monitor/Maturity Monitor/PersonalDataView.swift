@@ -18,7 +18,7 @@ struct PersonalDataView: View {
                         .foregroundColor(.buttonPurpleLight)
                         .padding(.leading, 10)
                     
-                    Text("Privacy Notice")
+                    Text("Research Agreement")
                         .font(Font.custom("Inter", size: 20))
                         .foregroundColor(.purple)
                     

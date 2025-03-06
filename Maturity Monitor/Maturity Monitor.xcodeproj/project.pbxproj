@@ -30,6 +30,12 @@
 		A06B1B712D10629600DC250E /* handleCmCoversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06B1B6E2D10629600DC250E /* handleCmCoversion.swift */; };
 		A07A59D52CE61EA800E5983D /* ReusableUIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A59D42CE61EA800E5983D /* ReusableUIComponents.swift */; };
 		A07A59D72CE61ECF00E5983D /* AmplifyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A59D62CE61ECF00E5983D /* AmplifyServices.swift */; };
+		A08060882D74B1E400CED4DB /* GrowthGraphTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08060872D74B1E400CED4DB /* GrowthGraphTab.swift */; };
+		A080608B2D74B7EA00CED4DB /* BiologicalAgeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A080608A2D74B7EA00CED4DB /* BiologicalAgeSheet.swift */; };
+		A080608D2D74BA5600CED4DB /* ChronologicalAgeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A080608C2D74BA5600CED4DB /* ChronologicalAgeSheet.swift */; };
+		A080608F2D74BA7700CED4DB /* PercentageOfAdultHeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A080608E2D74BA7700CED4DB /* PercentageOfAdultHeightSheet.swift */; };
+		A08060912D74BB0100CED4DB /* EstimatedAdultHeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08060902D74BB0100CED4DB /* EstimatedAdultHeightSheet.swift */; };
+		A08060932D74BB1E00CED4DB /* MaturityCategorySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08060922D74BB1E00CED4DB /* MaturityCategorySheet.swift */; };
 		A082DC832D0AF03100102C91 /* agePAHfemale.csv in Resources */ = {isa = PBXBuildFile; fileRef = A082DC822D0AF03100102C91 /* agePAHfemale.csv */; };
 		A082DC842D0AF03100102C91 /* agePAHfemale.csv in Resources */ = {isa = PBXBuildFile; fileRef = A082DC822D0AF03100102C91 /* agePAHfemale.csv */; };
 		A082DC852D0AF03100102C91 /* agePAHfemale.csv in Resources */ = {isa = PBXBuildFile; fileRef = A082DC822D0AF03100102C91 /* agePAHfemale.csv */; };
@@ -139,6 +145,12 @@
 		A06B1B6E2D10629600DC250E /* handleCmCoversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = handleCmCoversion.swift; sourceTree = "<group>"; };
 		A07A59D42CE61EA800E5983D /* ReusableUIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableUIComponents.swift; sourceTree = "<group>"; };
 		A07A59D62CE61ECF00E5983D /* AmplifyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifyServices.swift; sourceTree = "<group>"; };
+		A08060872D74B1E400CED4DB /* GrowthGraphTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowthGraphTab.swift; sourceTree = "<group>"; };
+		A080608A2D74B7EA00CED4DB /* BiologicalAgeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAgeSheet.swift; sourceTree = "<group>"; };
+		A080608C2D74BA5600CED4DB /* ChronologicalAgeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronologicalAgeSheet.swift; sourceTree = "<group>"; };
+		A080608E2D74BA7700CED4DB /* PercentageOfAdultHeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageOfAdultHeightSheet.swift; sourceTree = "<group>"; };
+		A08060902D74BB0100CED4DB /* EstimatedAdultHeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimatedAdultHeightSheet.swift; sourceTree = "<group>"; };
+		A08060922D74BB1E00CED4DB /* MaturityCategorySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaturityCategorySheet.swift; sourceTree = "<group>"; };
 		A082DC822D0AF03100102C91 /* agePAHfemale.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = agePAHfemale.csv; sourceTree = "<group>"; };
 		A082DC862D0AF03C00102C91 /* agePAHmale.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = agePAHmale.csv; sourceTree = "<group>"; };
 		A082DC8E2D0AF09400102C91 /* agePAH.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = agePAH.swift; sourceTree = "<group>"; };
@@ -328,9 +340,15 @@
 				A0E2397B2C9C7C020042C2FE /* GroupListView.swift */,
 				A0CAF08C2C9C715300CDE42C /* AccountView.swift */,
 				A0CAF08E2C9C71A800CDE42C /* ResourcesView.swift */,
-				A0F121A52CA2040A00FEB3A1 /* VideosView.swift */,
-				A038DCC42D39645C00D93116 /* PredictedAdultHeightTab.swift */,
 				A038DCC22D393EA400D93116 /* Graphs.swift */,
+				A038DCC42D39645C00D93116 /* PredictedAdultHeightTab.swift */,
+				A080608C2D74BA5600CED4DB /* ChronologicalAgeSheet.swift */,
+				A080608A2D74B7EA00CED4DB /* BiologicalAgeSheet.swift */,
+				A080608E2D74BA7700CED4DB /* PercentageOfAdultHeightSheet.swift */,
+				A08060902D74BB0100CED4DB /* EstimatedAdultHeightSheet.swift */,
+				A08060922D74BB1E00CED4DB /* MaturityCategorySheet.swift */,
+				A08060872D74B1E400CED4DB /* GrowthGraphTab.swift */,
+				A0F121A52CA2040A00FEB3A1 /* VideosView.swift */,
 				A0F86A422C6A403600954121 /* Fonts */,
 				A0F86A1C2C69F3D800954121 /* Assets.xcassets */,
 				A0F86A1E2C69F3D800954121 /* Preview Content */,
@@ -555,10 +573,13 @@
 				A0F86A192C69F3D600954121 /* Maturity_MonitorApp.swift in Sources */,
 				A0E8824B2C6BA11200F649A9 /* LoginView.swift in Sources */,
 				A04804042C7768F1003428B4 /* AddChildStepTwoView.swift in Sources */,
+				A080608D2D74BA5600CED4DB /* ChronologicalAgeSheet.swift in Sources */,
 				A038DCC52D39645C00D93116 /* PredictedAdultHeightTab.swift in Sources */,
 				A0F89AB72C73779100576618 /* RegistrationHomeView.swift in Sources */,
 				A082DC902D0AF09400102C91 /* agePAH.swift in Sources */,
 				A07A59D72CE61ECF00E5983D /* AmplifyServices.swift in Sources */,
+				A08060912D74BB0100CED4DB /* EstimatedAdultHeightSheet.swift in Sources */,
+				A080608F2D74BA7700CED4DB /* PercentageOfAdultHeightSheet.swift in Sources */,
 				A0E2397A2C9C7BBD0042C2FE /* ChildrenView.swift in Sources */,
 				A06B1B712D10629600DC250E /* handleCmCoversion.swift in Sources */,
 				A06B1B6C2D10616D00DC250E /* CmConversion.swift in Sources */,
@@ -569,11 +590,13 @@
 				A0CDCE692C6CB451003DCD61 /* ForgotPasswordView.swift in Sources */,
 				A04804002C7768C0003428B4 /* AddChildStepOneView.swift in Sources */,
 				A0E453DD2C99A11200F96CDE /* HomeView.swift in Sources */,
+				A08060932D74BB1E00CED4DB /* MaturityCategorySheet.swift in Sources */,
 				A0E8824F2C6BADB100F649A9 /* RegistrationView.swift in Sources */,
 				A0F121A62CA2040A00FEB3A1 /* VideosView.swift in Sources */,
 				A0E2397C2C9C7C020042C2FE /* GroupListView.swift in Sources */,
 				A07A59D52CE61EA800E5983D /* ReusableUIComponents.swift in Sources */,
 				7EDAE48FC1F2C47A3791F0A2 /* AmplifyModels.swift in Sources */,
+				A080608B2D74B7EA00CED4DB /* BiologicalAgeSheet.swift in Sources */,
 				A0E453DF2C99A27E00F96CDE /* NewEntryView.swift in Sources */,
 				EB0FAE80AD25BEE77C314126 /* Child+Schema.swift in Sources */,
 				21771F16E3CC11B9A05E4176 /* Child.swift in Sources */,
@@ -586,6 +609,7 @@
 				B9D05576FDCADE5E1210E253 /* Entry+Schema.swift in Sources */,
 				A082DC942D0AF14000102C91 /* handlePAHCSV.swift in Sources */,
 				BCA90481620A11ADFC3695D7 /* Entry.swift in Sources */,
+				A08060882D74B1E400CED4DB /* GrowthGraphTab.swift in Sources */,
 				A0F461E42C9B20E400C44FE6 /* FullScreenMenuView.swift in Sources */,
 				882FF1E4E5A347CBCDAFA646 /* LinkChildToUser+Schema.swift in Sources */,
 				A0CAF08D2C9C715300CDE42C /* AccountView.swift in Sources */,

@@ -94,6 +94,20 @@ struct AccountView: View {
                         }
                         .padding()
                     }
+                    .onTapGesture {
+                        hideKeyboard() // Hide keyboard when tapping outside
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .keyboard) {
+                            HStack {
+                                Spacer()
+                                Button("Done") {
+                                    hideKeyboard()
+                                }
+                                .foregroundColor(.blue)
+                            }
+                        }
+                    }
                     if showMessage {
                         if isSuccessMessage {
                             SuccessCustomText(title: messageText)

@@ -4,6 +4,11 @@ struct Graphs: View {
     
     private let amplifyService = AmplifyService()
     
+    // Variables related to the entries drop-down
+    @State private var entries: [Entry] = []  // Array of Entry objects
+    @State private var dateToEntryMap: [String: Entry] = [:] // Dictionary to map dateOfEntry to Entry
+    @State private var selectedUnit: String = ""
+    
     @State private var predictedAdultHeightTwoDigits: [Double] = [105.0]
     @State private var percentageAH: [String] = ["20%"]
     @State private var predictedAdultHeightString: String = ""
@@ -11,10 +16,6 @@ struct Graphs: View {
     @State private var agePAHString: String = ""
     @State private var maturityCategory: String = ""
     
-    @State private var entries: [Entry] = []  // Array of Entry objects
-    @State private var dateToEntryMap: [String: Entry] = [:] // Dictionary to map dateOfEntry to Entry
-    @State private var selectedUnit: String = ""
-    @State private var units: [String] = [] // Just for dateOfEntries
     @State private var isLoading: Bool = true
     @State var BetaValues:[BetaValues]
     
@@ -40,94 +41,97 @@ struct Graphs: View {
     @State private var childParentsMeasurements: String = ""
     
     var body: some View {
-        ScrollView {
+        ScrollView{
             VStack {
                 // Loading indicator
-                if isLoading {
-                    ProgressView("Loading...")
-                        .progressViewStyle(CircularProgressViewStyle())
-                        .padding()
+                //                if isLoading {
+                //                    ProgressView("Loading...")
+                //                        .progressViewStyle(CircularProgressViewStyle())
+                //                        .padding()
+                //                }
+                //                        
+                //                // Show message if there are no entries
+                //                if entries.isEmpty {
+                //                    Text("Please add an entry first!")
+                //                        .foregroundColor(.red)
+                //                        .padding()
+                //                } else {
+                
+                Spacer()
+                Spacer()
+                Spacer()
+                Text("Choose another entry below:")
+                    .foregroundColor(.black)
+                    .font(Font.custom("Inter", size: 14))
+                DropDownEntries(
+                    label: "",
+                    placeholder: "",
+                    fieldWidth: 250,
+                    entries: $entries,
+                    text: $selectedUnit,
+                    selectedUnit: $selectedUnit,
+                    isTextFieldDisabled: true
+                )
+                .zIndex(1)
+                .frame(height: 60)
+                .onChange(of: selectedUnit) { newValue in
+                    dataLoaded = false
+                    Task {
+                        await handleSelectedUnitChange(newValue)
+                        dataLoaded = true  // Trigger view update
+                    }
                 }
+                .onAppear {
+                    // Simply call the function with the selectedUnit value
+                    handleSelectedUnitChange(selectedUnit)
+                }
+                
+                if(dataLoaded) {
+                    TabView {
+                        PredictedAdultHeight(
+                            motherHeightDouble: $childMotherHeightDouble,
+                            fatherHeightDouble: $childFatherHeightDouble,
+                            predictedAdultHeightTwoDigits: $predictedAdultHeightTwoDigits,
+                            childGender: $childGender,
+                            childName: $childName,
+                            childSurname: $childSurname,
+                            childHeight: $childHeight,
+                            chronologicalAgeString: $chronologicalAgeString,
+                            predictedAdultHeightString: $predictedAdultHeightString,
+                            percentageAH: $percentageAH,
+                            agePAH: $agePAH,
+                            agePAHString: $agePAHString,
+                            maturityCategory: $maturityCategory
+                        )
+                        .tag(0)
                         
-                // Show message if there are no entries
-                if entries.isEmpty {
-                    Text("Please add an entry first!")
-                        .foregroundColor(.red)
-                        .padding()
-                } else {
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Text("Growth predictions for: ")
-                        .foregroundColor(.black) +
-                    Text("\(childName) \(childSurname)")
-                        .foregroundColor(.purple)
-                    Spacer()
-                    Spacer()
-                    DropDownTextField(
-                        label: "",
-                        placeholder: "",
-                        fieldWidth: 250,
-                        units: units,
-                        text: $selectedUnit,
-                        selectedUnit: $selectedUnit,
-                        isTextFieldDisabled: true
+                        GrowthGraphTab(
+                            childId: $childId,
+                            predictedAdultHeightTwoDigits: $predictedAdultHeightTwoDigits
+//                            entries: $entries
+                        )
+                            .tag(1)
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                    .frame(height: 525)
+                    .padding(.top, 10)
+                    .overlay(
+                        VStack {
+                            Rectangle()
+                                .frame(height: 1) // Thin border
+                                .foregroundColor(.gray.opacity(0.5))
+                                .padding(.horizontal, 16) // Optional for some spacing from edges
+                            Spacer()
+                        }
                     )
-                    .frame(height: 60)
-                    .onChange(of: selectedUnit) { newValue in
-                        dataLoaded = false
-                        Task {
-                            await handleSelectedUnitChange(newValue)
-                            dataLoaded = true  // Trigger view update
-                        }
-                    }
-
                     .onAppear {
-                        // Simply call the function with the selectedUnit value
-                        handleSelectedUnitChange(selectedUnit)
-                    }
-
-                    
-                        
-                    Spacer()
-                    Spacer()
-                    // Carousel Section
-                    
-                    if(dataLoaded) {
-                        TabView {
-                            // Pass the necessary values to PredictedAdultHeight using bindings
-                            PredictedAdultHeight(
-                                motherHeightDouble: $childMotherHeightDouble,
-                                fatherHeightDouble: $childFatherHeightDouble,
-                                predictedAdultHeightTwoDigits: $predictedAdultHeightTwoDigits,
-                                childGender: $childGender,
-                                childName: $childName,
-                                childSurname: $childSurname,
-                                childHeight: $childHeight,
-                                chronologicalAgeString: $chronologicalAgeString,
-                                predictedAdultHeightString: $predictedAdultHeightString,
-                                percentageAH: $percentageAH,
-                                agePAH: $agePAH,
-                                agePAHString: $agePAHString,
-                                maturityCategory: $maturityCategory
-                            )
-                            .tag(0)
-                            
-                            Text("Analysis View")
-                                .tag(1)
-                                .font(.title)
-                                .foregroundColor(.blue)
-                            
-                            Text("Historical Data View")
-                                .tag(2)
-                                .font(.title)
-                                .foregroundColor(.green)
-                        }
-                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                        .frame(height: 650)
-                        .padding(.top, 20)
+                        // Customize the dots
+                        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.darkGray // Softer active dot color
+                        UIPageControl.appearance().pageIndicatorTintColor = UIColor.lightGray.withAlphaComponent(0.5) // Lighter inactive dots
                     }
                 }
+
+                //} Uncomment for loading
             }
             .onAppear {
                 isLoading = true
@@ -251,6 +255,95 @@ struct Graphs: View {
         }
     }
     
+    // For this and the following 2 function, the values are stored, ordered and in the end they are similar to this: 02/03/2025, 03/07/2021, etc... (they are also parsed in some cases)
+    func fetchEntries() async {
+        guard !childId.isEmpty else { return }
+        isLoading = true
+        do {
+            if let fetchedEntries = await amplifyService.fetchEntriesForChild(childId: childId) {
+                print("Fetched Entries Count: \(fetchedEntries.count)")
+
+                // Sort entries by dateOfEntry in descending order (latest first)
+                let sortedEntries = fetchedEntries.sorted { entry1, entry2 in
+                    guard let date1 = parseDate(from: entry1.dateOfEntry),
+                          let date2 = parseDate(from: entry2.dateOfEntry) else {
+                        print("Failed to parse dates for sorting")
+                        return false
+                    }
+                    return date1 > date2 // Most recent first
+                }
+                
+                // Display sorted entries for debugging
+                print("Sorted Entries (Latest First):")
+                for entry in sortedEntries {
+                    print("\(entry.dateOfEntry)")
+                }
+
+                // Assign the sorted entries to the state variables
+                entries = sortedEntries
+                dateToEntryMap = Dictionary(uniqueKeysWithValues: sortedEntries.map { ($0.dateOfEntry, $0) })
+
+                // Ensure the latest entry is selected in the dropdown
+                if let mostRecentEntry = sortedEntries.first {
+                    let formattedDate = formatDateString(mostRecentEntry.dateOfEntry)
+                    selectedUnit = formattedDate
+                    print("Selected Unit (Most Recent Entry): \(formattedDate)")
+                }
+            } else {
+                print("No entries found for child.")
+            }
+        } catch {
+            print("Error fetching entries: \(error)")
+        }
+        isLoading = false
+    }
+    func parseDate(from string: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy" // Corrected format for European-style dates
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC") // Ensure UTC time zone
+
+        if let date = dateFormatter.date(from: string) {
+            print("Successfully parsed date: \(string) -> \(date)")
+            return date
+        } else {
+            print("Failed to parse date: \(string)")
+            return nil
+        }
+    }
+    func formatDateString(_ dateString: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "dd/MM/yyyy" // Corrected input format
+        inputFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "d MMM yyyy" // Output format (e.g., 3 Feb 2025)
+        outputFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+        if let date = inputFormatter.date(from: dateString) {
+            return outputFormatter.string(from: date)
+        } else {
+            print("Failed to format date: \(dateString)")
+            return dateString // Return original if formatting fails
+        }
+    }
+    
+    func reverseFormatDateString(_ formattedDate: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "d MMM yyyy" // Matches the formatted input
+        inputFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd/MM/yyyy" // Converts back to the original format
+        outputFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+        if let date = inputFormatter.date(from: formattedDate) {
+            return outputFormatter.string(from: date)
+        } else {
+            print("Failed to reverse format date: \(formattedDate)")
+            return formattedDate // Return original if conversion fails
+        }
+    }
+
     func handleSelectedUnitChange(_ selectedUnit: String) {
         print("Handle selected unit change for: \(selectedUnit)")
         
@@ -263,7 +356,7 @@ struct Graphs: View {
             fileForPAH = "agePAHmale"
         }
 
-        if let selectedEntry = dateToEntryMap[selectedUnit] {
+        if let selectedEntry = dateToEntryMap[reverseFormatDateString(selectedUnit)] {
             print("Selected entry changed to: \(selectedEntry)")
 
             entryHeight = selectedEntry.height
@@ -398,37 +491,6 @@ struct Graphs: View {
             print("No entry found for the selected date.")
         }
     }
-
-    func fetchEntries() async {
-        guard !childId.isEmpty else { return }
-        isLoading = true
-        do {
-            if let fetchedEntries = await amplifyService.fetchEntriesForChild(childId: childId) {
-                // Sort entries by dateOfEntry in descending order
-                let sortedEntries = fetchedEntries.sorted { entry1, entry2 in
-                    guard let date1 = parseDate(from: entry1.dateOfEntry),
-                          let date2 = parseDate(from: entry2.dateOfEntry) else {
-                        return false
-                    }
-                    return date1 > date2 // Most recent first
-                }
-                
-                entries = sortedEntries
-                // Map the dateOfEntry to the Entry object
-                dateToEntryMap = Dictionary(uniqueKeysWithValues: sortedEntries.map { ($0.dateOfEntry, $0) })
-                
-                // Populate the units list with dates
-                units = sortedEntries.map { $0.dateOfEntry }
-                
-                if let mostRecentEntry = sortedEntries.first {
-                    selectedUnit = mostRecentEntry.dateOfEntry
-                }
-            } else {
-                print("No entries found for child.")
-            }
-        }
-        isLoading = false
-    }
     
     func findClosestAgeValue(ageValue: Double, fileName: String) -> Double? {
         // Load the CSV data if not already loaded
@@ -493,18 +555,6 @@ struct Graphs: View {
             print("Error: Could not find closest match for \(inchesValue) inches")
             return nil
         }
-    }
-    
-    func parseDate(from string: String) -> Date? {
-        print("HERE IN PARSE DATA")
-        let dateFormatter = DateFormatter()
-        print("HERE IN PARSE DATA: \(dateFormatter)")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        print("HERE IN PARSE DATA: \(dateFormatter.dateFormat)")
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC") // Set to UTC time zone
-        print("HERE IN PARSE DATA: \(dateFormatter.timeZone)")
-        print("HERE IN PARSE DATA: \(dateFormatter.date(from: string))")
-        return dateFormatter.date(from: string)
     }
     
     func getBetaValues(fileName: String, key: Double) -> [Double]? {

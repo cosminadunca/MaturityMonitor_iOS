@@ -158,7 +158,7 @@ struct AllEntriesView: View {
                         }
                     }
                 },
-                secondaryButton: .cancel()
+                secondaryButton: .cancel(Text("Cancel").foregroundColor(.black))
             )
         }
     }

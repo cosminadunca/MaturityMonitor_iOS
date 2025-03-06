@@ -95,6 +95,20 @@ struct AddChildStepFourView: View {
             .padding(.bottom, 60)
             ProgressBar(progressMultiplier: 4)
         }
+        .onTapGesture {
+            hideKeyboard() // Hide keyboard when tapping outside
+        }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                HStack {
+                    Spacer()
+                    Button("Done") {
+                        hideKeyboard()
+                    }
+                    .foregroundColor(.blue)
+                }
+            }
+        }
         .edgesIgnoringSafeArea(.top)
     }
 }

@@ -129,6 +129,20 @@ struct VerificationCodeView: View {
                         )
                         .offset(y: -220)
                 }
+                .onTapGesture {
+                    hideKeyboard() // Hide keyboard when tapping outside
+                }
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        HStack {
+                            Spacer()
+                            Button("Done") {
+                                hideKeyboard()
+                            }
+                            .foregroundColor(.blue)
+                        }
+                    }
+                }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .edgesIgnoringSafeArea(.top)
                 .navigationBarBackButtonHidden(true) // Hide back button

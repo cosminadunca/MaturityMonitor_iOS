@@ -23,6 +23,9 @@ struct RequestGroupAccessView: View {
                     
                     Spacer()
                 }
+                .onTapGesture {
+                    hideKeyboard() // Hide keyboard when tapping outside
+                }
                 .edgesIgnoringSafeArea(.top) // Adjust to ignore top safe area
                 .navigationBarBackButtonHidden(true) // Hide the default back button
                 .toolbar {

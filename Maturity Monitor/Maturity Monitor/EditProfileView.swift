@@ -33,7 +33,6 @@ struct EditProfileView: View {
     @State private var ethnicity: String
     @State private var primarySport: String
     @State private var approveData: Bool
-    @State private var disserartionApproval: Bool
     @State private var uniqueId: Int
     
     // Initialization with the Child instance
@@ -51,7 +50,6 @@ struct EditProfileView: View {
         self._ethnicity = State(initialValue: child.ethnicity)
         self._primarySport = State(initialValue: child.primarySport)
         self._approveData = State(initialValue: child.approveData)
-        self._disserartionApproval = State(initialValue: child.disserartionApproval)
         self._uniqueId = State(initialValue: child.uniqueId)
     }
     
@@ -195,8 +193,6 @@ struct EditProfileView: View {
                         .padding(.bottom, 20)
                         Toggle("Approve Data for Research", isOn: $approveData)
                             .toggleStyle(SwitchToggleStyle(tint: .buttonTurquoiseDark))
-                        Toggle("Approve Dissertation Research", isOn: $disserartionApproval)
-                            .toggleStyle(SwitchToggleStyle(tint: .buttonTurquoiseDark))
                         Spacer()
                         if showButtonErrorMessage {
                             ErrorCustomText(title: buttonErrorMessage!)
@@ -247,6 +243,20 @@ struct EditProfileView: View {
                                     .foregroundColor(.red)
                                     .multilineTextAlignment(.center)
                                     .padding()
+                        }
+                    }
+                    .onTapGesture {
+                        hideKeyboard() // Hide keyboard when tapping outside
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .keyboard) {
+                            HStack {
+                                Spacer()
+                                Button("Done") {
+                                    hideKeyboard()
+                                }
+                                .foregroundColor(.blue)
+                            }
                         }
                     }
                     .padding()
@@ -347,8 +357,7 @@ struct EditProfileView: View {
            primarySport != child.primarySport ||
            country != child.country ||
            ethnicity != child.ethnicity ||
-           approveData != child.approveData ||
-           disserartionApproval != child.disserartionApproval {
+           approveData != child.approveData {
             
             isUpdateAvailable = true
         }
@@ -387,7 +396,6 @@ struct EditProfileView: View {
                 updatedChild.ethnicity = ethnicity
                 updatedChild.primarySport = primarySport
                 updatedChild.approveData = approveData
-                updatedChild.disserartionApproval = disserartionApproval
                 updatedChild.uniqueId = uniqueId
                 
                 try await Amplify.DataStore.save(updatedChild)
@@ -521,7 +529,6 @@ struct EditProfileView_Previews: PreviewProvider {
             ethnicity: "Caucasian",
             primarySport: "Soccer",
             approveData: true,
-            disserartionApproval: false,
             uniqueId: 123456,
             status: .active,
             entries: [],

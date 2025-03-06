@@ -77,6 +77,20 @@ struct LoginView: View {
                     .padding(.bottom, 40)
                 }
                 .background(.white)
+                .onTapGesture {
+                    hideKeyboard() // Hide keyboard when tapping outside
+                }
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        HStack {
+                            Spacer()
+                            Button("Done") {
+                                hideKeyboard()
+                            }
+                            .foregroundColor(.blue)
+                        }
+                    }
+                }
                 
                 if isLoading {
                     ProgressView("Signing In...")

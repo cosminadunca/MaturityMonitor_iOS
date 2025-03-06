@@ -23,7 +23,6 @@ class ChildDetailsModel: ObservableObject {
 
     // Step 5 data
     @Published var agreeToResearch: Bool = false
-    @Published var approveAIResearch: ApproveAIResearch? = nil // To store approval for data in AI research
 }
 
 enum Gender: String, CustomStringConvertible {

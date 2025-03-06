@@ -18,7 +18,6 @@ public struct Child: Model {
   public var ethnicity: String
   public var primarySport: String
   public var approveData: Bool
-  public var disserartionApproval: Bool
   public var uniqueId: Int
   public var status: ChildStatus
   public var entries: List<Entry>?
@@ -41,7 +40,6 @@ public struct Child: Model {
       ethnicity: String,
       primarySport: String,
       approveData: Bool,
-      disserartionApproval: Bool,
       uniqueId: Int,
       status: ChildStatus,
       entries: List<Entry>? = [],
@@ -61,7 +59,6 @@ public struct Child: Model {
       ethnicity: ethnicity,
       primarySport: primarySport,
       approveData: approveData,
-      disserartionApproval: disserartionApproval,
       uniqueId: uniqueId,
       status: status,
       entries: entries,
@@ -84,7 +81,6 @@ public struct Child: Model {
       ethnicity: String,
       primarySport: String,
       approveData: Bool,
-      disserartionApproval: Bool,
       uniqueId: Int,
       status: ChildStatus,
       entries: List<Entry>? = [],
@@ -106,7 +102,6 @@ public struct Child: Model {
       self.ethnicity = ethnicity
       self.primarySport = primarySport
       self.approveData = approveData
-      self.disserartionApproval = disserartionApproval
       self.uniqueId = uniqueId
       self.status = status
       self.entries = entries

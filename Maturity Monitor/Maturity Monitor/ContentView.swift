@@ -33,7 +33,7 @@ struct ContentView: View {
             }
             .onAppear {
                 Task {
-                    await amplifyService.signOut()
+                    //await amplifyService.signOut()
                     await checkUserStatus()
                 }
             }

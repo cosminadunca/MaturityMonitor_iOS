@@ -20,7 +20,6 @@ extension Child {
     case ethnicity
     case primarySport
     case approveData
-    case disserartionApproval
     case uniqueId
     case status
     case entries
@@ -63,7 +62,6 @@ extension Child {
       .field(child.ethnicity, is: .required, ofType: .string),
       .field(child.primarySport, is: .required, ofType: .string),
       .field(child.approveData, is: .required, ofType: .bool),
-      .field(child.disserartionApproval, is: .required, ofType: .bool),
       .field(child.uniqueId, is: .required, ofType: .int),
       .field(child.status, is: .required, ofType: .enum(type: ChildStatus.self)),
       .hasMany(child.entries, is: .optional, ofType: Entry.self, associatedWith: Entry.keys.child),

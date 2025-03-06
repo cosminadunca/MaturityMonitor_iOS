@@ -80,8 +80,31 @@ struct NewEntryView: View {
                 }
                 .disabled(isLoading) // Disable button while loading
                 .opacity(isLoading ? 0.5 : 1.0) // Change opacity when loading
+                
+                // Navigation link that activates when `isSuccess` becomes true
+                NavigationLink(
+                    destination: ResourcesView(currentPage: .constant("resources")),
+                    isActive: $isSuccess
+                ) {
+                    EmptyView()
+                }
+                .hidden()
                 Spacer()
                 Spacer()
+            }
+            .onTapGesture {
+                hideKeyboard() // Hide keyboard when tapping outside
+            }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        Button("Done") {
+                            hideKeyboard()
+                        }
+                        .foregroundColor(.blue)
+                    }
+                }
             }
         }
     }
@@ -140,6 +163,7 @@ struct NewEntryView: View {
                 isSuccess = true
                 message = "Entry added successfully!"
                 clearFields()
+                
             } catch {
                 isSuccess = false
                 errorMessage = "Failed to add entry: \(error.localizedDescription)"

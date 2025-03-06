@@ -84,6 +84,10 @@ struct SimpleCustomTextField: View {
             .padding(.bottom, 15)
             .keyboardType(keyboardType)
             .autocapitalization(.none)
+            .submitLabel(.done)
+            .onSubmit {
+                hideKeyboard() // Hide keyboard when return is pressed
+            }
             .onChange(of: text) { newValue in
                 if newValue.count > characterLimit {
                     text = String(newValue.prefix(characterLimit)) // Enforce character limit
@@ -113,9 +117,14 @@ struct CustomTextField: View {
             
             TextField(placeholder, text: $text)
                 .padding(.leading, 5)
+                .accentColor(Color("ButtonGreyLightStroke"))
                 .keyboardType(keyboardType)
                 .autocapitalization(.none)
-                .accentColor(Color("ButtonGreyLightStroke"))
+                .submitLabel(.done)
+
+                .onSubmit {
+                    hideKeyboard() // Hide keyboard when return is pressed
+                }
                 .onChange(of: text) { newValue in
                     if newValue.count > characterLimit {
                         text = String(newValue.prefix(characterLimit)) // Enforce character limit
@@ -128,7 +137,7 @@ struct CustomTextField: View {
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color(red: 0.62, green: 0.62, blue: 0.62).opacity(0.80), lineWidth: 0.5)
+                .stroke(Color(.sRGB, red: 0.62, green: 0.62, blue: 0.62, opacity: 0.80), lineWidth: 0.5)
         )
         .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 4, y: 4)
     }
@@ -154,13 +163,21 @@ struct CustomPasswordField: View {
             if isPasswordVisible {
                 TextField(placeholder, text: $text)
                     .padding(.leading, 5)
-                    .autocapitalization(.none)
                     .accentColor(Color("ButtonGreyLightStroke"))
+                    .autocapitalization(.none)
+                    .submitLabel(.done)
+                    .onSubmit {
+                        hideKeyboard() // Hide keyboard when return is pressed
+                    }
             } else {
                 SecureField(placeholder, text: $text)
                     .padding(.leading, 5)
                     .autocapitalization(.none)
                     .accentColor(Color("ButtonGreyLightStroke"))
+                    .submitLabel(.done)
+                    .onSubmit {
+                        hideKeyboard() // Hide keyboard when return is pressed
+                    }
             }
             
             Button(action: {
@@ -412,6 +429,10 @@ struct DropDownTextField: View {
                 .frame(width: fieldWidth)
                 .accentColor(Color("ButtonGreyLightStroke")) // For typing bar
                 .disabled(isTextFieldDisabled) // Disable typing into TextField
+                .submitLabel(.done)
+                .onSubmit {
+                    hideKeyboard() // Hide keyboard when return is pressed
+                }
                 .onReceive(Just(text)) { newValue in
                     // Apply text filtering only when isTextFieldDisabled is false
                     if !isTextFieldDisabled {
@@ -446,6 +467,119 @@ struct DropDownTextField: View {
             }
             .frame(width: fieldWidth + 60) // Adjust width to account for the dropdown icon
             .padding(.leading, -20)
+        }
+    }
+}
+
+struct DropDownEntries: View {
+    let label: String
+    let placeholder: String
+    let fieldWidth: CGFloat
+    @Binding var entries: [Entry]
+    @Binding var text: String
+    @Binding var selectedUnit: String
+    @State private var isMenuOpen: Bool = false
+    var isTextFieldDisabled: Bool = false
+    var dropdownHeight: CGFloat = 300 // Set a fixed height for the dropdown
+
+    var body: some View {
+        GeometryReader { geometry in
+            VStack {
+                // Use a VStack to ensure the TextField stays centered
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+
+                        ZStack(alignment: .trailing) {
+                            TextField(
+                                text.isEmpty ? placeholder : text,
+                                text: $text
+                            )
+                            .keyboardType(.decimalPad)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .frame(width: fieldWidth)
+                            .accentColor(Color("ButtonGreyLightStroke"))
+                            .disabled(isTextFieldDisabled)
+                            .submitLabel(.done)
+                            .onSubmit {
+                                hideKeyboard() // Hide keyboard when return is pressed
+                            }
+
+                            Button(action: {
+                                isMenuOpen.toggle()
+                            }) {
+                                Image(systemName: isMenuOpen ? "arrow.up.circle.fill" : "arrow.down.circle.fill")
+                                    .foregroundColor(.buttonPurpleLight)
+                                    .font(.system(size: 20))
+                                    .padding()
+                            }
+                        }
+
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                // Conditional dropdown menu that only opens when isMenuOpen is true
+                if isMenuOpen {
+                    VStack {
+                        ScrollView {
+                            LazyVStack(alignment: .center, spacing: 8) { // Center alignment
+                                ForEach($entries, id: \.id) { entry in
+                                    Button(action: {
+                                        selectedUnit = formatDateString(entry.dateOfEntry.wrappedValue)
+                                        if !isTextFieldDisabled {
+                                            text = formatDateString(entry.dateOfEntry.wrappedValue)
+                                        }
+                                        isMenuOpen = false // Close the dropdown after selection
+                                    }) {
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text(formatDateString(entry.dateOfEntry.wrappedValue))
+                                                .font(.headline)
+                                                .foregroundColor(.black)
+
+                                            Text("Height: \(entry.height.wrappedValue) | Weight: \(entry.weight.wrappedValue) | Sitting Height: \(entry.sittingHeigh.wrappedValue)")
+                                                .font(.subheadline)
+                                                .foregroundColor(.gray)
+                                        }
+                                        .padding()
+                                        .frame(width: UIScreen.main.bounds.width * 0.8) // 80% of screen width
+                                        .frame(minHeight: 100)
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                        .shadow(radius: 5)
+                                    }
+                                    .frame(maxWidth: .infinity) // Ensures the button is centered
+                                }
+                            }
+                            .frame(maxWidth: .infinity) // Centers LazyVStack inside ScrollView
+                            .padding(.top, 10)
+                        }
+                        .frame(minHeight: 400, maxHeight: .infinity) // Ensures dropdown is big and scrollable when needed
+                        .foregroundColor(Color.buttonGreyLight)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                    }
+                    .frame(maxWidth: .infinity) // Ensures VStack is centered
+                }
+            }
+        }
+    }
+
+    func formatDateString(_ dateString: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "dd/MM/yyyy"
+        inputFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "d MMM yyyy" // Output format (e.g., 3 Feb 2025)
+        outputFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+        if let date = inputFormatter.date(from: dateString) {
+            return outputFormatter.string(from: date)
+        } else {
+            print("Failed to format date: \(dateString)")
+            return dateString // Return original if formatting fails
         }
     }
 }

@@ -27,7 +27,6 @@ type Child
   ethnicity: String!
   primarySport: String!
   approveData: Boolean!
-  disserartionApproval: Boolean!
   uniqueId: Int!
   status: ChildStatus!
   entries: [Entry]! @hasMany(indexName: "byChild", fields: ["id"])

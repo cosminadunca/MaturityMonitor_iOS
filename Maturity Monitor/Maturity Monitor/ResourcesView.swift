@@ -18,7 +18,7 @@ struct ResourcesView: View {
             NavigationStack {
                 VStack {
                     HStack(spacing: 0) {
-                        Text("Resources")
+                        Text("Maturity Estimations")
                             .font(Font.custom("Inter-Regular", size: 20))
                             .foregroundColor(.black)
                         Spacer()

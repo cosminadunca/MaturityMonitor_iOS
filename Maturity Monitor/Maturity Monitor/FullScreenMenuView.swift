@@ -8,7 +8,7 @@ struct FullScreenMenuView: View {
     private let menuOptions: [(title: String, tag: String, destination: AnyView)] = [
         ("Home", "home", AnyView(HomeView(currentPage: .constant("home")))),
         ("Children & Groups", "group", AnyView(GroupView(currentPage: .constant("group")))),
-        ("Resources", "resources", AnyView(ResourcesView(currentPage: .constant("resources")))),
+        ("Maturity Estimations", "resources", AnyView(ResourcesView(currentPage: .constant("resources")))),
         ("Account", "account", AnyView(AccountView(currentPage: .constant("account"))))
     ]
 
@@ -17,13 +17,13 @@ struct FullScreenMenuView: View {
             NavigationStack {
                 VStack {
                     HStack {
+                        Spacer()
                         Button(action: dismiss.callAsFunction) {
                             Image(systemName: "xmark")
                                 .font(.system(size: 30))
                                 .foregroundColor(.black)
                                 .padding(.horizontal, 20)
                         }
-                        Spacer()
                     }
                     .padding(.top, 20)
                     Spacer()

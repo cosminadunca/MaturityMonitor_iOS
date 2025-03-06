@@ -62,9 +62,6 @@ struct ForgotPasswordView: View {
                                     text: $verificationCode,
                                     keyboardType: .numberPad
                                 )
-                                .onSubmit {
-                                    hideKeyboard() // Hides the keyboard when "Done" is pressed
-                                }
                                 .onChange(of: verificationCode) { newValue in
                                     // Filter out non-digit characters
                                     let filtered = newValue.filter { $0.isNumber }
@@ -76,7 +73,6 @@ struct ForgotPasswordView: View {
                                         verificationCode = String(filtered.prefix(6))
                                     }
                                 }
-                                
                                 CustomPasswordField(placeholder: "Reset password", text: $password)
                             }
                             .padding()
@@ -138,6 +134,20 @@ struct ForgotPasswordView: View {
                         .padding(.top, 5)
                     )
                     .offset(y: -255)
+            }
+            .onTapGesture {
+                hideKeyboard() // Hide keyboard when tapping outside
+            }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        Button("Done") {
+                            hideKeyboard()
+                        }
+                        .foregroundColor(.blue)
+                    }
+                }
             }
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .shadow(color: Color.black.opacity(0.25), radius: 10, x: 0, y: 10)

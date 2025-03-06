@@ -28,7 +28,6 @@ struct RegistrationView: View {
                     CustomTextTitle(title: "Registration")
                     Spacer()
                     VStack(spacing: 20) {
-                        
                         CustomTextField(iconName: "person.fill", placeholder: "Name", text: $name)
                         CustomTextField(iconName: "person.fill", placeholder: "Surname", text: $surname)
                         CustomTextField(iconName: "envelope", placeholder: "Email", text: $email, keyboardType: .emailAddress)
@@ -65,6 +64,20 @@ struct RegistrationView: View {
                             isActive: $showConfirmationView
                         ) {
                             EmptyView()
+                        }
+                    }
+                }
+                .onTapGesture {
+                    hideKeyboard() // Hide keyboard when tapping outside
+                }
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        HStack {
+                            Spacer()
+                            Button("Done") {
+                                hideKeyboard()
+                            }
+                            .foregroundColor(.blue)
                         }
                     }
                 }

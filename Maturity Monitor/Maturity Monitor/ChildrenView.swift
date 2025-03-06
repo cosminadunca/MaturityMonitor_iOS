@@ -131,6 +131,20 @@ struct ChildrenView: View {
                     await loadChildren()
                 }
             }
+//            .onTapGesture {
+//                hideKeyboard() // Hide keyboard when tapping outside
+//            }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        Button("Done") {
+                            hideKeyboard()
+                        }
+                        .foregroundColor(.blue)
+                    }
+                }
+            }
             NavigationLink(destination: GroupView(currentPage: .constant("group")), isActive: $isLinkActive) {
                 EmptyView()
             }
