@@ -30,7 +30,7 @@
 		A06B1B712D10629600DC250E /* handleCmCoversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06B1B6E2D10629600DC250E /* handleCmCoversion.swift */; };
 		A07A59D52CE61EA800E5983D /* ReusableUIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A59D42CE61EA800E5983D /* ReusableUIComponents.swift */; };
 		A07A59D72CE61ECF00E5983D /* AmplifyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A59D62CE61ECF00E5983D /* AmplifyServices.swift */; };
-		A08060882D74B1E400CED4DB /* GrowthGraphTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08060872D74B1E400CED4DB /* GrowthGraphTab.swift */; };
+		A07C14ED2D7A45860011CD76 /* GrowthChartTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C14EC2D7A45860011CD76 /* GrowthChartTab.swift */; };
 		A080608B2D74B7EA00CED4DB /* BiologicalAgeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A080608A2D74B7EA00CED4DB /* BiologicalAgeSheet.swift */; };
 		A080608D2D74BA5600CED4DB /* ChronologicalAgeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A080608C2D74BA5600CED4DB /* ChronologicalAgeSheet.swift */; };
 		A080608F2D74BA7700CED4DB /* PercentageOfAdultHeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A080608E2D74BA7700CED4DB /* PercentageOfAdultHeightSheet.swift */; };
@@ -295,7 +295,7 @@
 		A06B1B6E2D10629600DC250E /* handleCmCoversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = handleCmCoversion.swift; sourceTree = "<group>"; };
 		A07A59D42CE61EA800E5983D /* ReusableUIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableUIComponents.swift; sourceTree = "<group>"; };
 		A07A59D62CE61ECF00E5983D /* AmplifyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifyServices.swift; sourceTree = "<group>"; };
-		A08060872D74B1E400CED4DB /* GrowthGraphTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowthGraphTab.swift; sourceTree = "<group>"; };
+		A07C14EC2D7A45860011CD76 /* GrowthChartTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowthChartTab.swift; sourceTree = "<group>"; };
 		A080608A2D74B7EA00CED4DB /* BiologicalAgeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologicalAgeSheet.swift; sourceTree = "<group>"; };
 		A080608C2D74BA5600CED4DB /* ChronologicalAgeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronologicalAgeSheet.swift; sourceTree = "<group>"; };
 		A080608E2D74BA7700CED4DB /* PercentageOfAdultHeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageOfAdultHeightSheet.swift; sourceTree = "<group>"; };
@@ -652,7 +652,7 @@
 				A080608E2D74BA7700CED4DB /* PercentageOfAdultHeightSheet.swift */,
 				A08060902D74BB0100CED4DB /* EstimatedAdultHeightSheet.swift */,
 				A08060922D74BB1E00CED4DB /* MaturityCategorySheet.swift */,
-				A08060872D74B1E400CED4DB /* GrowthGraphTab.swift */,
+				A07C14EC2D7A45860011CD76 /* GrowthChartTab.swift */,
 				A0F121A52CA2040A00FEB3A1 /* VideosView.swift */,
 				A0F86A422C6A403600954121 /* Fonts */,
 				A0F86A1C2C69F3D800954121 /* Assets.xcassets */,
@@ -1276,12 +1276,12 @@
 				A0D83E452D04DB0500544728 /* BetaValues.swift in Sources */,
 				A0E453E12C99A2A600F96CDE /* AllEntriesView.swift in Sources */,
 				A0C524622C91FC4400BB7DD2 /* RequestGroupAccessView.swift in Sources */,
+				A07C14ED2D7A45860011CD76 /* GrowthChartTab.swift in Sources */,
 				A038DCC32D393EA400D93116 /* Graphs.swift in Sources */,
 				6A818C15CDD8536B9E4B6580 /* ChildStatus.swift in Sources */,
 				B9D05576FDCADE5E1210E253 /* Entry+Schema.swift in Sources */,
 				A082DC942D0AF14000102C91 /* handlePAHCSV.swift in Sources */,
 				BCA90481620A11ADFC3695D7 /* Entry.swift in Sources */,
-				A08060882D74B1E400CED4DB /* GrowthGraphTab.swift in Sources */,
 				A0F461E42C9B20E400C44FE6 /* FullScreenMenuView.swift in Sources */,
 				882FF1E4E5A347CBCDAFA646 /* LinkChildToUser+Schema.swift in Sources */,
 				A0CAF08D2C9C715300CDE42C /* AccountView.swift in Sources */,

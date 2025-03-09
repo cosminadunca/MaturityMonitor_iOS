@@ -38,4 +38,8 @@ extension Font {
         return Font.custom("Inter-Regular", size: 40)
     }
     
+    static var font20Italic: Font {
+        return Font.custom("Inter-Italic", size: 20)
+    }
+    
 }

@@ -105,10 +105,12 @@ struct Graphs: View {
                         )
                         .tag(0)
                         
-                        GrowthGraphTab(
+                        GrowthChartTab(
                             childId: $childId,
-                            predictedAdultHeightTwoDigits: $predictedAdultHeightTwoDigits
-//                            entries: $entries
+                            childName: $childName,
+                            childSurname: $childSurname,
+                            predictedAdultHeightTwoDigits: $predictedAdultHeightTwoDigits,
+                            entries: $entries
                         )
                             .tag(1)
                     }

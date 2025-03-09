@@ -150,7 +150,7 @@ struct PredictedAdultHeight: View {
                             }
                             .padding(.trailing, 10)
                             .sheet(isPresented: $showChronologicalAgeInfo) {
-                                ChronologicalAgeSheet() // Opens the ChronologicalAgeSheet view
+                                ChronologicalAgeSheet(showChronologicalAgeInfo: $showChronologicalAgeInfo) // Pass binding
                             }
                         }
                         .frame(minWidth: 245, alignment: .leading)
@@ -181,7 +181,7 @@ struct PredictedAdultHeight: View {
                             }
                             .padding(.trailing, 10) // Adds some space between the button and the border
                             .sheet(isPresented: $showBiologicalAgeInfo) {
-                                BiologicalAgeSheet() // Opens the BiologicalAgeSheet view
+                                BiologicalAgeSheet(showBiologicalAgeInfo: $showBiologicalAgeInfo) // Pass binding to control dismissal
                             }
                         }
                         .frame(minWidth: 245, alignment: .leading)
@@ -190,6 +190,7 @@ struct PredictedAdultHeight: View {
                             RoundedRectangle(cornerRadius: 4)
                                 .stroke(Color.black, lineWidth: 0.5)
                         )
+                        
                         Text("\(agePAHString)")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(10)
@@ -210,15 +211,16 @@ struct PredictedAdultHeight: View {
                             }
                             .padding(.trailing, 10) // Adds some space between the button and the border
                             .sheet(isPresented: $showPercentageOfAdultHeightInfo) {
-                                PercentageOfAdultHeightSheet() // Opens the PercentageOfAdultHeightSheet view
+                                PercentageOfAdultHeightSheet(showPercentageOfAdultHeightInfo: $showPercentageOfAdultHeightInfo) // Pass binding
                             }
                         }
                         .frame(minWidth: 245, alignment: .leading)
-                            .padding(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 4)
-                                    .stroke(Color.black, lineWidth: 0.5)
-                            )
+                        .padding(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4)
+                                .stroke(Color.black, lineWidth: 0.5)
+                        )
+
                         Text(percentageAH[0])
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(10)
@@ -239,15 +241,16 @@ struct PredictedAdultHeight: View {
                             }
                             .padding(.trailing, 10) // Adds some space between the button and the border
                             .sheet(isPresented: $showEstimatedAdultHeightInfo) {
-                                EstimatedAdultHeightSheet() // Opens the EstimatedAdultHeightSheet view
+                                EstimatedAdultHeightSheet(showEstimatedAdultHeightInfo: $showEstimatedAdultHeightInfo) // Pass binding
                             }
                         }
                         .frame(minWidth: 245, alignment: .leading)
-                            .padding(9)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 4)
-                                    .stroke(Color.black, lineWidth: 0.5)
-                            )
+                        .padding(9)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4)
+                                .stroke(Color.black, lineWidth: 0.5)
+                        )
+
                         Text("\(predictedAdultHeightString)")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(9)
@@ -268,7 +271,7 @@ struct PredictedAdultHeight: View {
                             }
                             .padding(.trailing, 10) // Adds some space between the button and the border
                             .sheet(isPresented: $showMaturityCategoryInfo) {
-                                MaturityCategorySheet() // Opens the MaturityCategorySheet view
+                                MaturityCategorySheet(showMaturityCategoryInfo: $showMaturityCategoryInfo) // Pass binding
                             }
                         }
                         .frame(minWidth: 245, alignment: .leading)
@@ -277,8 +280,9 @@ struct PredictedAdultHeight: View {
                             RoundedRectangle(cornerRadius: 4)
                                 .stroke(Color.black, lineWidth: 0.5)
                         )
+
                         let maturityColor: Color = maturityCategory == "pre-PHV" ? .green : maturityCategory == "mid-PHV" ? .red : .yellow
-                        
+
                         Text("\(maturityCategory)")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(9)
