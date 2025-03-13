@@ -5,21 +5,11 @@ struct Graphs: View {
     private let amplifyService = AmplifyService()
     
     // Variables related to the entries drop-down
-    @State private var entries: [Entry] = []  // Array of Entry objects
-    @State private var dateToEntryMap: [String: Entry] = [:] // Dictionary to map dateOfEntry to Entry
+    @State private var entries: [Entry] = []
+    @State private var dateToEntryMap: [String: Entry] = [:]
     @State private var selectedUnit: String = ""
     
-    @State private var predictedAdultHeightTwoDigits: [Double] = [105.0]
-    @State private var percentageAH: [String] = ["20%"]
-    @State private var predictedAdultHeightString: String = ""
-    @State private var agePAH: Double = 14.56 // (biological age)
-    @State private var agePAHString: String = ""
-    @State private var maturityCategory: String = ""
-    
-    @State private var isLoading: Bool = true
-    @State var BetaValues:[BetaValues]
-    
-    // Child's details needed in the graph and other values for generating it
+    // Child's details fetched using Amplify
     @State private var childId: String = ""
     @State private var childName: String = ""
     @State private var childSurname: String = ""
@@ -27,16 +17,28 @@ struct Graphs: View {
     @State private var childGender: String = ""
     @State private var childMotherHeight: String = ""
     @State private var childFatherHeight: String = ""
+    
+    // Variables used in the view
+    @State private var dataLoaded: Bool = false
+    @State private var isLoading: Bool = true
+    
+    // Values necessary for passing data to the graphs (parents function)
+    @State private var childMotherHH: Double = 0.0 // To pass to view
+    @State private var childFatherHH: Double = 0.0 // To pass to view
     @State private var childMotherHeightDouble: Double = 0.0
     @State private var childFatherHeightDouble: Double = 0.0
-    @State private var childHeight: Double = 0.0
     @State private var midParentStature: Double = 0.0
-    @State private var chronologicalAgeString: String = ""
-    @State private var dataLoaded: Bool = false
+    @State private var childHeight: Double = 0.0
     
-    // Entry's variables:
-    @State private var entryHeight: String = ""
-    @State private var entryWeight: String = ""
+    // Values necessary for child data (second function)
+    @State var BetaValues:[BetaValues]
+    @State private var chronologicalAgeString: String = ""
+    @State private var predictedAdultHeightTwoDigits: [Double] = [105.0]
+    @State private var percentageAH: [String] = ["20%"]
+    @State private var predictedAdultHeightString: String = ""
+    @State private var agePAH: Double = 14.56 // (biological age)
+    @State private var agePAHString: String = ""
+    @State private var maturityCategory: String = ""
 
     @State private var childParentsMeasurements: String = ""
     
@@ -89,8 +91,8 @@ struct Graphs: View {
                 if(dataLoaded) {
                     TabView {
                         PredictedAdultHeight(
-                            motherHeightDouble: $childMotherHeightDouble,
-                            fatherHeightDouble: $childFatherHeightDouble,
+                            motherHeightDouble: $childMotherHH,
+                            fatherHeightDouble: $childFatherHH,
                             predictedAdultHeightTwoDigits: $predictedAdultHeightTwoDigits,
                             childGender: $childGender,
                             childName: $childName,
@@ -120,9 +122,9 @@ struct Graphs: View {
                     .overlay(
                         VStack {
                             Rectangle()
-                                .frame(height: 1) // Thin border
+                                .frame(height: 1)
                                 .foregroundColor(.gray.opacity(0.5))
-                                .padding(.horizontal, 16) // Optional for some spacing from edges
+                                .padding(.horizontal, 16)
                             Spacer()
                         }
                     )
@@ -188,11 +190,17 @@ struct Graphs: View {
                         var childMotherH = motherHeightDouble
                         var childFatherH = fatherHeightDouble
                         
-                        print("Mother's Height Double: \(childMotherH)")
-                        print("Father's Height Double: \(childFatherH)")
+                        print("childMotherH: \(childMotherH)")
+                        print("childFatherH: \(childFatherH)")
                         
                         // Apply conversion if heights were originally in centimeters
+                        if lastTwoLetters == "in" {
+                            childMotherHH = childMotherH * 2.54
+                            childFatherHH = childFatherH * 2.54
+                        }
                         if lastTwoLetters == "cm" {
+                            childMotherHH = childMotherH
+                            childFatherHH = childFatherH
                             if let convertedMotherHeight = findClosestInchesForCm(cmValue: childMotherH),
                                let convertedFatherHeight = findClosestInchesForCm(cmValue: childFatherH) {
                                 
@@ -231,20 +239,20 @@ struct Graphs: View {
                         midParentStature = (childMotherH + childFatherH) / 2
                         print("Mid Parent Stature: \(midParentStature)")
                         
-                        var motherHeightString = String(format: "%.1f", childMotherH)
-                        var fatherHeightString = String(format: "%.1f", childFatherH)
-                        var midParentStatureString = String(format: "%.1f", midParentStature)
-                        
-                        // Convert back to Double
-                        var motherHeightDouble = Double(motherHeightString) ?? 0.0
-                        var fatherHeightDouble = Double(fatherHeightString) ?? 0.0
-                        childMotherHeightDouble = motherHeightDouble
-                        childFatherHeightDouble = fatherHeightDouble
-                        midParentStature = Double(midParentStatureString) ?? 0.0
-
-                        print("Mother's Height Double: \(motherHeightDouble)")
-                        print("Father's Height Double: \(fatherHeightDouble)")
-                        print("Mid Parent Stature Double: \(midParentStature)")
+//                        var motherHeightString = String(format: "%.1f", childMotherH)
+//                        var fatherHeightString = String(format: "%.1f", childFatherH)
+//                        var midParentStatureString = String(format: "%.1f", midParentStature)
+//                        
+//                        // Convert back to Double
+//                        var motherHeightDouble = Double(motherHeightString) ?? 0.0
+//                        var fatherHeightDouble = Double(fatherHeightString) ?? 0.0
+//                        childMotherHeightDouble = motherHeightDouble
+//                        childFatherHeightDouble = fatherHeightDouble
+//                        midParentStature = Double(midParentStatureString) ?? 0.0
+//
+//                        print("Mother's Height Double: \(motherHeightDouble)")
+//                        print("Father's Height Double: \(fatherHeightDouble)")
+//                        print("Mid Parent Stature Double: \(midParentStature)")
                     }
                 }
                 
@@ -347,7 +355,7 @@ struct Graphs: View {
     }
 
     func handleSelectedUnitChange(_ selectedUnit: String) {
-        print("Handle selected unit change for: \(selectedUnit)")
+//        print("Handle selected unit change for: \(selectedUnit)")
         
         var fileForPAH = ""
         if childGender == "Female" {
@@ -361,8 +369,8 @@ struct Graphs: View {
         if let selectedEntry = dateToEntryMap[reverseFormatDateString(selectedUnit)] {
             print("Selected entry changed to: \(selectedEntry)")
 
-            entryHeight = selectedEntry.height
-            entryWeight = selectedEntry.weight
+            var entryHeight = selectedEntry.height
+            var entryWeight = selectedEntry.weight
             print("Entry height: \(entryHeight), Entry weight: \(entryWeight)")
 
             guard let age = calculateAgeOnDate(dateOfBirthString: childDateOfBirth, referenceDateString: selectedEntry.dateOfEntry) else {
@@ -370,7 +378,8 @@ struct Graphs: View {
                 return
             }
             print("Calculated age: \(age)")
-
+            
+            print("Mid parents height: \(midParentStature)")
             // Calculate chronological age (in years and months)
             let chronologicalAge = calculateAgeInYearsAndMonths(dateOfBirthString: childDateOfBirth, referenceDateString: selectedEntry.dateOfEntry)
             print("Chronological Age: \(chronologicalAge) years")
@@ -494,6 +503,103 @@ struct Graphs: View {
         }
     }
     
+    func calculateAgeOnDate(dateOfBirthString: String, referenceDateString: String) -> Double? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+        guard let dateOfBirth = dateFormatter.date(from: dateOfBirthString),
+              let referenceDate = dateFormatter.date(from: referenceDateString) else {
+            print("Error: Invalid date format")
+            return nil
+        }
+
+        let calendar = Calendar.current
+
+        // Get the year and month difference
+        let ageComponents = calendar.dateComponents([.year, .month], from: dateOfBirth, to: referenceDate)
+        
+        let years = ageComponents.year ?? 0
+        let months = ageComponents.month ?? 0
+
+        // Apply rounding rule:
+        let roundedAge: Double
+        if months >= 7 {
+            roundedAge = Double(years + 1) // Round up to the next full year
+        } else {
+            roundedAge = Double(years) + 0.5 // Round to the half-year mark
+        }
+
+        return roundedAge
+    }
+    
+    func calculateAgeInYearsAndMonths(dateOfBirthString: String, referenceDateString: String) -> String {
+        // DateFormatter to parse the date strings
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"  // Updated format to match the input format
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC") // Set to UTC time zone
+        
+        // Parse the dateOfBirth and referenceDate strings into Date objects
+        print("Attempting to parse dates...")
+        
+        guard let dateOfBirth = dateFormatter.date(from: dateOfBirthString),
+              let referenceDate = dateFormatter.date(from: referenceDateString) else {
+            print("Error: Invalid date format")
+            return "Error" // Return error message in case of parsing failure
+        }
+        
+        print("Date of Birth: \(dateOfBirth)")
+        print("Reference Date: \(referenceDate)")
+        
+        // Get the calendar for date calculations
+        let calendar = Calendar.current
+        
+        // Calculate the difference in years and months
+        let ageComponents = calendar.dateComponents([.year, .month], from: dateOfBirth, to: referenceDate)
+        
+        // Get the age in years and months
+        var yearsDifference = ageComponents.year ?? 0
+        var monthsDifference = ageComponents.month ?? 0
+        
+        print("Calculated age in years: \(yearsDifference), months: \(monthsDifference)")
+        
+        // Adjust the months if necessary (if months are negative)
+        if monthsDifference < 0 {
+            monthsDifference += 12
+            yearsDifference -= 1
+        }
+        
+        // Print after adjusting months
+        print("After adjusting months: \(yearsDifference) years, \(monthsDifference) months")
+        
+        // Return the age in "y.m" format
+        let result = "\(yearsDifference).\(monthsDifference)"
+        print("Final age: \(result)")
+        
+        return result
+    }
+    
+    func getBetaValues(fileName: String, key: Double) -> [Double]? {
+        // Load the CSV file into an array of BetaValues
+        let betaValuesList = loadCSVData(fileName: fileName)
+        
+        if betaValuesList.isEmpty {
+            print("Error: No beta values data available.")
+            return nil
+        }
+        
+        // Find the row where the first element (age) matches the key
+        if let matchingRow = betaValuesList.first(where: { $0.id == key }) {
+            print("Found matching row for age \(key): \(matchingRow)")
+            
+            // Return the values from the matching row, skipping the age (first element)
+            return [matchingRow.beta0, matchingRow.beta1, matchingRow.beta2, matchingRow.beta3]
+        } else {
+            print("Error: Could not find match for age: \(key) in file: \(fileName)")
+            return nil
+        }
+    }
+    
     func findClosestAgeValue(ageValue: Double, fileName: String) -> Double? {
         // Load the CSV data if not already loaded
         let ageValues = loadCSVDataPAH(fileName: fileName)
@@ -557,111 +663,6 @@ struct Graphs: View {
             print("Error: Could not find closest match for \(inchesValue) inches")
             return nil
         }
-    }
-    
-    func getBetaValues(fileName: String, key: Double) -> [Double]? {
-        // Load the CSV file into an array of BetaValues
-        let betaValuesList = loadCSVData(fileName: fileName)
-        
-        if betaValuesList.isEmpty {
-            print("Error: No beta values data available.")
-            return nil
-        }
-        
-        // Find the row where the first element (age) matches the key
-        if let matchingRow = betaValuesList.first(where: { $0.id == key }) {
-            print("Found matching row for age \(key): \(matchingRow)")
-            
-            // Return the values from the matching row, skipping the age (first element)
-            return [matchingRow.beta0, matchingRow.beta1, matchingRow.beta2, matchingRow.beta3]
-        } else {
-            print("Error: Could not find match for age: \(key) in file: \(fileName)")
-            return nil
-        }
-    }
-
-    func calculateAgeOnDate(dateOfBirthString: String, referenceDateString: String) -> Double? {
-        // DateFormatter to parse the date strings
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"  // Updated format to match the input format
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC") // Set to UTC time zone
-        
-        // Parse the dateOfBirth and referenceDate strings into Date objects
-        print("Attempting to parse dates...")
-        
-        guard let dateOfBirth = dateFormatter.date(from: dateOfBirthString),
-              let referenceDate = dateFormatter.date(from: referenceDateString) else {
-            print("Error: Invalid date format")
-            return nil // Return nil if date parsing fails
-        }
-        
-        print("Date of Birth: \(dateOfBirth)")
-        print("Reference Date: \(referenceDate)")
-        
-        // Get the calendar for date calculations
-        let calendar = Calendar.current
-        
-        // Calculate the difference in years
-        print("Calculating the difference in years...")
-        let ageComponents = calendar.dateComponents([.year], from: dateOfBirth, to: referenceDate)
-        
-        // Get the age in years as a double
-        let ageInYears = Double(ageComponents.year ?? 0)
-        
-        print("Calculated age in years: \(ageInYears)")
-        
-        // Round to the nearest half year
-        let roundedAge = round(ageInYears * 2) / 2.0
-        
-        print("Rounded age to nearest half year: \(roundedAge)")
-        
-        return roundedAge
-    }
-    
-    func calculateAgeInYearsAndMonths(dateOfBirthString: String, referenceDateString: String) -> String {
-        // DateFormatter to parse the date strings
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"  // Updated format to match the input format
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC") // Set to UTC time zone
-        
-        // Parse the dateOfBirth and referenceDate strings into Date objects
-        print("Attempting to parse dates...")
-        
-        guard let dateOfBirth = dateFormatter.date(from: dateOfBirthString),
-              let referenceDate = dateFormatter.date(from: referenceDateString) else {
-            print("Error: Invalid date format")
-            return "Error" // Return error message in case of parsing failure
-        }
-        
-        print("Date of Birth: \(dateOfBirth)")
-        print("Reference Date: \(referenceDate)")
-        
-        // Get the calendar for date calculations
-        let calendar = Calendar.current
-        
-        // Calculate the difference in years and months
-        let ageComponents = calendar.dateComponents([.year, .month], from: dateOfBirth, to: referenceDate)
-        
-        // Get the age in years and months
-        var yearsDifference = ageComponents.year ?? 0
-        var monthsDifference = ageComponents.month ?? 0
-        
-        print("Calculated age in years: \(yearsDifference), months: \(monthsDifference)")
-        
-        // Adjust the months if necessary (if months are negative)
-        if monthsDifference < 0 {
-            monthsDifference += 12
-            yearsDifference -= 1
-        }
-        
-        // Print after adjusting months
-        print("After adjusting months: \(yearsDifference) years, \(monthsDifference) months")
-        
-        // Return the age in "y.m" format
-        let result = "\(yearsDifference).\(monthsDifference)"
-        print("Final age: \(result)")
-        
-        return result
     }
 }
 
