@@ -1,0 +1,17 @@
+{
+    "appName": "MaturityMonitor",
+    "roleName": "pinpointLambdaRole2eb9a7bc",
+    "cloudformationPolicyName": "cloudformationPolicy2eb9a7bc",
+    "cloudWatchPolicyName": "cloudWatchPolicy2eb9a7bc",
+    "pinpointPolicyName": "pinpointPolicy2eb9a7bc",
+    "authPolicyName": "pinpoint_amplify_2eb9a7bc",
+    "unauthPolicyName": "pinpoint_amplify_2eb9a7bc",
+    "authRoleName": "amplify-maturitymonitor-dev-140742-authRole",
+    "unauthRoleName": "amplify-maturitymonitor-dev-140742-unauthRole",
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
