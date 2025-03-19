@@ -17,6 +17,9 @@
       },
       "api": {
         "maturitymonitor": {}
+      },
+      "analytics": {
+        "maturitymonitor": {}
       }
     }
   }

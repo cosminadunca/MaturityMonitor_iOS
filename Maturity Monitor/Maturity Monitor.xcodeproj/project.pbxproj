@@ -14,6 +14,18 @@
 		882FF1E4E5A347CBCDAFA646 /* LinkChildToUser+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2BFF8F0D1A5555BEDAEF88 /* LinkChildToUser+Schema.swift */; };
 		A038DCC32D393EA400D93116 /* Graphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A038DCC22D393EA400D93116 /* Graphs.swift */; };
 		A038DCC52D39645C00D93116 /* PredictedAdultHeightTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A038DCC42D39645C00D93116 /* PredictedAdultHeightTab.swift */; };
+		A044F47F2D881BF800EB9A91 /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A044F47E2D881BF800EB9A91 /* AWSAPIPlugin */; };
+		A044F4812D881BF800EB9A91 /* AWSCloudWatchLoggingPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A044F4802D881BF800EB9A91 /* AWSCloudWatchLoggingPlugin */; };
+		A044F4832D881BF800EB9A91 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A044F4822D881BF800EB9A91 /* AWSCognitoAuthPlugin */; };
+		A044F4852D881BF800EB9A91 /* AWSDataStorePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A044F4842D881BF800EB9A91 /* AWSDataStorePlugin */; };
+		A044F4872D881BF800EB9A91 /* AWSLocationGeoPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A044F4862D881BF800EB9A91 /* AWSLocationGeoPlugin */; };
+		A044F4892D881BF800EB9A91 /* AWSPinpointAnalyticsPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A044F4882D881BF800EB9A91 /* AWSPinpointAnalyticsPlugin */; };
+		A044F48B2D881BF800EB9A91 /* AWSPinpointPushNotificationsPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A044F48A2D881BF800EB9A91 /* AWSPinpointPushNotificationsPlugin */; };
+		A044F48D2D881BF800EB9A91 /* AWSPluginsCore in Frameworks */ = {isa = PBXBuildFile; productRef = A044F48C2D881BF800EB9A91 /* AWSPluginsCore */; };
+		A044F48F2D881BF800EB9A91 /* AWSPredictionsPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A044F48E2D881BF800EB9A91 /* AWSPredictionsPlugin */; };
+		A044F4912D881BF800EB9A91 /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A044F4902D881BF800EB9A91 /* AWSS3StoragePlugin */; };
+		A044F4932D881BF800EB9A91 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = A044F4922D881BF800EB9A91 /* Amplify */; };
+		A044F4952D881BF800EB9A91 /* CoreMLPredictionsPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A044F4942D881BF800EB9A91 /* CoreMLPredictionsPlugin */; };
 		A04804002C7768C0003428B4 /* AddChildStepOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04803FF2C7768C0003428B4 /* AddChildStepOneView.swift */; };
 		A04804042C7768F1003428B4 /* AddChildStepTwoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04804032C7768F1003428B4 /* AddChildStepTwoView.swift */; };
 		A04804062C776986003428B4 /* AddChildStepThreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04804052C776986003428B4 /* AddChildStepThreeView.swift */; };
@@ -48,15 +60,6 @@
 		A082DC932D0AF14000102C91 /* handlePAHCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = A082DC922D0AF14000102C91 /* handlePAHCSV.swift */; };
 		A082DC942D0AF14000102C91 /* handlePAHCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = A082DC922D0AF14000102C91 /* handlePAHCSV.swift */; };
 		A082DC952D0AF14000102C91 /* handlePAHCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = A082DC922D0AF14000102C91 /* handlePAHCSV.swift */; };
-		A0895E052C828163004651C9 /* Maturity-Monitor-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0895E042C828163004651C9 /* Maturity-Monitor-Info.plist */; };
-		A08CF18D2C8761CF00626012 /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A08CF18C2C8761CF00626012 /* AWSAPIPlugin */; };
-		A08CF18F2C8761CF00626012 /* AWSCloudWatchLoggingPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A08CF18E2C8761CF00626012 /* AWSCloudWatchLoggingPlugin */; };
-		A08CF1912C8761CF00626012 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A08CF1902C8761CF00626012 /* AWSCognitoAuthPlugin */; };
-		A08CF1932C8761CF00626012 /* AWSDataStorePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A08CF1922C8761CF00626012 /* AWSDataStorePlugin */; };
-		A08CF1952C8761CF00626012 /* AWSPredictionsPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = A08CF1942C8761CF00626012 /* AWSPredictionsPlugin */; };
-		A08CF1972C8761CF00626012 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = A08CF1962C8761CF00626012 /* Amplify */; };
-		A0A1CB5D2CF5F10000AB52D3 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = A0A1CB5C2CF5F10000AB52D3 /* DGCharts */; };
-		A0BDBB942D01F3C70098B970 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = A0BDBB932D01F3C70098B970 /* SwiftCSV */; };
 		A0C311282C6D46670050A1BE /* VerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C311272C6D46670050A1BE /* VerificationCodeView.swift */; };
 		A0C524622C91FC4400BB7DD2 /* RequestGroupAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C524612C91FC4400BB7DD2 /* RequestGroupAccessView.swift */; };
 		A0C524642C94971D00BB7DD2 /* ChildDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C524632C94971D00BB7DD2 /* ChildDetailsModel.swift */; };
@@ -64,6 +67,17 @@
 		A0CAF08D2C9C715300CDE42C /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAF08C2C9C715300CDE42C /* AccountView.swift */; };
 		A0CAF08F2C9C71A800CDE42C /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CAF08E2C9C71A800CDE42C /* ResourcesView.swift */; };
 		A0CDCE692C6CB451003DCD61 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CDCE682C6CB451003DCD61 /* ForgotPasswordView.swift */; };
+		A0D489492D8739B300432E26 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = A0D489482D8739B300432E26 /* DGCharts */; };
+		A0D4894C2D873A3A00432E26 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = A0D4894B2D873A3A00432E26 /* Mixpanel */; };
+		A0D4894F2D873A7500432E26 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = A0D4894E2D873A7500432E26 /* Amplitude */; };
+		A0D489522D873AF100432E26 /* DatadogCore in Frameworks */ = {isa = PBXBuildFile; productRef = A0D489512D873AF100432E26 /* DatadogCore */; };
+		A0D489542D873AF100432E26 /* DatadogCrashReporting in Frameworks */ = {isa = PBXBuildFile; productRef = A0D489532D873AF100432E26 /* DatadogCrashReporting */; };
+		A0D489562D873AF100432E26 /* DatadogLogs in Frameworks */ = {isa = PBXBuildFile; productRef = A0D489552D873AF100432E26 /* DatadogLogs */; };
+		A0D489582D873AF100432E26 /* DatadogObjc in Frameworks */ = {isa = PBXBuildFile; productRef = A0D489572D873AF100432E26 /* DatadogObjc */; };
+		A0D4895A2D873AF100432E26 /* DatadogRUM in Frameworks */ = {isa = PBXBuildFile; productRef = A0D489592D873AF100432E26 /* DatadogRUM */; };
+		A0D4895C2D873AF100432E26 /* DatadogSessionReplay in Frameworks */ = {isa = PBXBuildFile; productRef = A0D4895B2D873AF100432E26 /* DatadogSessionReplay */; };
+		A0D4895E2D873AF100432E26 /* DatadogTrace in Frameworks */ = {isa = PBXBuildFile; productRef = A0D4895D2D873AF100432E26 /* DatadogTrace */; };
+		A0D489602D873AF100432E26 /* DatadogWebViewTracking in Frameworks */ = {isa = PBXBuildFile; productRef = A0D4895F2D873AF100432E26 /* DatadogWebViewTracking */; };
 		A0D83E3D2D04DAC200544728 /* femaleTableCM.csv in Resources */ = {isa = PBXBuildFile; fileRef = A0D83E3C2D04DAC200544728 /* femaleTableCM.csv */; };
 		A0D83E3E2D04DAC200544728 /* femaleTableCM.csv in Resources */ = {isa = PBXBuildFile; fileRef = A0D83E3C2D04DAC200544728 /* femaleTableCM.csv */; };
 		A0D83E3F2D04DAC200544728 /* femaleTableCM.csv in Resources */ = {isa = PBXBuildFile; fileRef = A0D83E3C2D04DAC200544728 /* femaleTableCM.csv */; };
@@ -86,7 +100,6 @@
 		A0E8824B2C6BA11200F649A9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E8824A2C6BA11200F649A9 /* LoginView.swift */; };
 		A0E8824F2C6BADB100F649A9 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E8824E2C6BADB100F649A9 /* RegistrationView.swift */; };
 		A0EA45A22CA72B69002AE332 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EA45A12CA72B69002AE332 /* EditProfileView.swift */; };
-		A0ECBD322C8A2227005CF8FD /* Maturity-Monitor-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0ECBD312C8A2227005CF8FD /* Maturity-Monitor-Info.plist */; };
 		A0F121A62CA2040A00FEB3A1 /* VideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F121A52CA2040A00FEB3A1 /* VideosView.swift */; };
 		A0F461E42C9B20E400C44FE6 /* FullScreenMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F461E32C9B20E400C44FE6 /* FullScreenMenuView.swift */; };
 		A0F86A192C69F3D600954121 /* Maturity_MonitorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F86A182C69F3D600954121 /* Maturity_MonitorApp.swift */; };
@@ -511,14 +524,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A08CF1952C8761CF00626012 /* AWSPredictionsPlugin in Frameworks */,
-				A0BDBB942D01F3C70098B970 /* SwiftCSV in Frameworks */,
-				A08CF18D2C8761CF00626012 /* AWSAPIPlugin in Frameworks */,
-				A08CF18F2C8761CF00626012 /* AWSCloudWatchLoggingPlugin in Frameworks */,
-				A08CF1972C8761CF00626012 /* Amplify in Frameworks */,
-				A08CF1912C8761CF00626012 /* AWSCognitoAuthPlugin in Frameworks */,
-				A0A1CB5D2CF5F10000AB52D3 /* DGCharts in Frameworks */,
-				A08CF1932C8761CF00626012 /* AWSDataStorePlugin in Frameworks */,
+				A044F47F2D881BF800EB9A91 /* AWSAPIPlugin in Frameworks */,
+				A0D489522D873AF100432E26 /* DatadogCore in Frameworks */,
+				A044F4872D881BF800EB9A91 /* AWSLocationGeoPlugin in Frameworks */,
+				A0D489602D873AF100432E26 /* DatadogWebViewTracking in Frameworks */,
+				A044F4952D881BF800EB9A91 /* CoreMLPredictionsPlugin in Frameworks */,
+				A044F48D2D881BF800EB9A91 /* AWSPluginsCore in Frameworks */,
+				A044F4852D881BF800EB9A91 /* AWSDataStorePlugin in Frameworks */,
+				A0D4895E2D873AF100432E26 /* DatadogTrace in Frameworks */,
+				A0D4894F2D873A7500432E26 /* Amplitude in Frameworks */,
+				A0D4895A2D873AF100432E26 /* DatadogRUM in Frameworks */,
+				A0D489582D873AF100432E26 /* DatadogObjc in Frameworks */,
+				A044F48F2D881BF800EB9A91 /* AWSPredictionsPlugin in Frameworks */,
+				A044F4892D881BF800EB9A91 /* AWSPinpointAnalyticsPlugin in Frameworks */,
+				A0D4895C2D873AF100432E26 /* DatadogSessionReplay in Frameworks */,
+				A0D489542D873AF100432E26 /* DatadogCrashReporting in Frameworks */,
+				A044F4832D881BF800EB9A91 /* AWSCognitoAuthPlugin in Frameworks */,
+				A044F4932D881BF800EB9A91 /* Amplify in Frameworks */,
+				A044F48B2D881BF800EB9A91 /* AWSPinpointPushNotificationsPlugin in Frameworks */,
+				A0D4894C2D873A3A00432E26 /* Mixpanel in Frameworks */,
+				A044F4912D881BF800EB9A91 /* AWSS3StoragePlugin in Frameworks */,
+				A0D489562D873AF100432E26 /* DatadogLogs in Frameworks */,
+				A0D489492D8739B300432E26 /* DGCharts in Frameworks */,
+				A044F4812D881BF800EB9A91 /* AWSCloudWatchLoggingPlugin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,14 +959,29 @@
 			);
 			name = "Maturity Monitor";
 			packageProductDependencies = (
-				A08CF18C2C8761CF00626012 /* AWSAPIPlugin */,
-				A08CF18E2C8761CF00626012 /* AWSCloudWatchLoggingPlugin */,
-				A08CF1902C8761CF00626012 /* AWSCognitoAuthPlugin */,
-				A08CF1922C8761CF00626012 /* AWSDataStorePlugin */,
-				A08CF1942C8761CF00626012 /* AWSPredictionsPlugin */,
-				A08CF1962C8761CF00626012 /* Amplify */,
-				A0A1CB5C2CF5F10000AB52D3 /* DGCharts */,
-				A0BDBB932D01F3C70098B970 /* SwiftCSV */,
+				A0D489482D8739B300432E26 /* DGCharts */,
+				A0D4894B2D873A3A00432E26 /* Mixpanel */,
+				A0D4894E2D873A7500432E26 /* Amplitude */,
+				A0D489512D873AF100432E26 /* DatadogCore */,
+				A0D489532D873AF100432E26 /* DatadogCrashReporting */,
+				A0D489552D873AF100432E26 /* DatadogLogs */,
+				A0D489572D873AF100432E26 /* DatadogObjc */,
+				A0D489592D873AF100432E26 /* DatadogRUM */,
+				A0D4895B2D873AF100432E26 /* DatadogSessionReplay */,
+				A0D4895D2D873AF100432E26 /* DatadogTrace */,
+				A0D4895F2D873AF100432E26 /* DatadogWebViewTracking */,
+				A044F47E2D881BF800EB9A91 /* AWSAPIPlugin */,
+				A044F4802D881BF800EB9A91 /* AWSCloudWatchLoggingPlugin */,
+				A044F4822D881BF800EB9A91 /* AWSCognitoAuthPlugin */,
+				A044F4842D881BF800EB9A91 /* AWSDataStorePlugin */,
+				A044F4862D881BF800EB9A91 /* AWSLocationGeoPlugin */,
+				A044F4882D881BF800EB9A91 /* AWSPinpointAnalyticsPlugin */,
+				A044F48A2D881BF800EB9A91 /* AWSPinpointPushNotificationsPlugin */,
+				A044F48C2D881BF800EB9A91 /* AWSPluginsCore */,
+				A044F48E2D881BF800EB9A91 /* AWSPredictionsPlugin */,
+				A044F4902D881BF800EB9A91 /* AWSS3StoragePlugin */,
+				A044F4922D881BF800EB9A91 /* Amplify */,
+				A044F4942D881BF800EB9A91 /* CoreMLPredictionsPlugin */,
 			);
 			productName = "Maturity Monitor";
 			productReference = A0F86A152C69F3D600954121 /* Maturity Monitor.app */;
@@ -988,7 +1031,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					A0F86A142C69F3D600954121 = {
 						CreatedOnToolsVersion = 15.4;
@@ -1013,9 +1056,11 @@
 			);
 			mainGroup = A0F86A0C2C69F3D600954121;
 			packageReferences = (
-				A08CF18B2C8761CF00626012 /* XCRemoteSwiftPackageReference "amplify-swift" */,
-				A0D5C1972CF5EFF10032F308 /* XCRemoteSwiftPackageReference "Charts" */,
-				A0BDBB922D01F3C70098B970 /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+				A0D489472D8739B300432E26 /* XCRemoteSwiftPackageReference "Charts" */,
+				A0D4894A2D873A3A00432E26 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
+				A0D4894D2D873A7500432E26 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
+				A0D489502D873AF100432E26 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */,
+				A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */,
 			);
 			productRefGroup = A0F86A162C69F3D600954121 /* Products */;
 			projectDirPath = "";
@@ -1191,11 +1236,9 @@
 				D51B2FE12D7A1FE500BA46E7 /* InterDisplay-SemiBoldItalic.woff2 in Resources */,
 				D51B2FE22D7A1FE500BA46E7 /* ic-showPassword.png in Resources */,
 				D51B2FE32D7A1FE500BA46E7 /* ic-girl@3x.png in Resources */,
-				A0ECBD322C8A2227005CF8FD /* Maturity-Monitor-Info.plist in Resources */,
 				A0D83E3E2D04DAC200544728 /* femaleTableCM.csv in Resources */,
 				A0F86A1D2C69F3D800954121 /* Assets.xcassets in Resources */,
 				A06B1B672D105F5900DC250E /* cmToIn 2.csv in Resources */,
-				A0895E052C828163004651C9 /* Maturity-Monitor-Info.plist in Resources */,
 				A0D83E412D04DACA00544728 /* maleTableCM.csv in Resources */,
 				BD56C9B8245B55F23A778D17 /* awsconfiguration.json in Resources */,
 				A082DC842D0AF03100102C91 /* agePAHfemale.csv in Resources */,
@@ -1531,7 +1574,6 @@
 		A0F86A3D2C69F3DB00954121 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1550,7 +1592,6 @@
 		A0F86A3E2C69F3DB00954121 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1569,7 +1610,6 @@
 		A0F86A402C69F3DB00954121 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1586,7 +1626,6 @@
 		A0F86A412C69F3DB00954121 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1642,72 +1681,163 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A08CF18B2C8761CF00626012 /* XCRemoteSwiftPackageReference "amplify-swift" */ = {
+		A0D489472D8739B300432E26 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/aws-amplify/amplify-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.39.0;
-			};
-		};
-		A0BDBB922D01F3C70098B970 /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/naoty/SwiftCSV";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.10.0;
-			};
-		};
-		A0D5C1972CF5EFF10032F308 /* XCRemoteSwiftPackageReference "Charts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			repositoryURL = "https://github.com/ChartsOrg/Charts.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.1.0;
 			};
 		};
+		A0D4894A2D873A3A00432E26 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		A0D4894D2D873A7500432E26 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		A0D489502D873AF100432E26 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DataDog/dd-sdk-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 2.24.0;
+			};
+		};
+		A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/amplify-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 2.46.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A08CF18C2C8761CF00626012 /* AWSAPIPlugin */ = {
+		A044F47E2D881BF800EB9A91 /* AWSAPIPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A08CF18B2C8761CF00626012 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
 			productName = AWSAPIPlugin;
 		};
-		A08CF18E2C8761CF00626012 /* AWSCloudWatchLoggingPlugin */ = {
+		A044F4802D881BF800EB9A91 /* AWSCloudWatchLoggingPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A08CF18B2C8761CF00626012 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
 			productName = AWSCloudWatchLoggingPlugin;
 		};
-		A08CF1902C8761CF00626012 /* AWSCognitoAuthPlugin */ = {
+		A044F4822D881BF800EB9A91 /* AWSCognitoAuthPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A08CF18B2C8761CF00626012 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
 			productName = AWSCognitoAuthPlugin;
 		};
-		A08CF1922C8761CF00626012 /* AWSDataStorePlugin */ = {
+		A044F4842D881BF800EB9A91 /* AWSDataStorePlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A08CF18B2C8761CF00626012 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
 			productName = AWSDataStorePlugin;
 		};
-		A08CF1942C8761CF00626012 /* AWSPredictionsPlugin */ = {
+		A044F4862D881BF800EB9A91 /* AWSLocationGeoPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A08CF18B2C8761CF00626012 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSLocationGeoPlugin;
+		};
+		A044F4882D881BF800EB9A91 /* AWSPinpointAnalyticsPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSPinpointAnalyticsPlugin;
+		};
+		A044F48A2D881BF800EB9A91 /* AWSPinpointPushNotificationsPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSPinpointPushNotificationsPlugin;
+		};
+		A044F48C2D881BF800EB9A91 /* AWSPluginsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSPluginsCore;
+		};
+		A044F48E2D881BF800EB9A91 /* AWSPredictionsPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
 			productName = AWSPredictionsPlugin;
 		};
-		A08CF1962C8761CF00626012 /* Amplify */ = {
+		A044F4902D881BF800EB9A91 /* AWSS3StoragePlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A08CF18B2C8761CF00626012 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSS3StoragePlugin;
+		};
+		A044F4922D881BF800EB9A91 /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
 			productName = Amplify;
 		};
-		A0A1CB5C2CF5F10000AB52D3 /* DGCharts */ = {
+		A044F4942D881BF800EB9A91 /* CoreMLPredictionsPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A0D5C1972CF5EFF10032F308 /* XCRemoteSwiftPackageReference "Charts" */;
+			package = A0D489612D87680100432E26 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = CoreMLPredictionsPlugin;
+		};
+		A0D489482D8739B300432E26 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489472D8739B300432E26 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = DGCharts;
 		};
-		A0BDBB932D01F3C70098B970 /* SwiftCSV */ = {
+		A0D4894B2D873A3A00432E26 /* Mixpanel */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A0BDBB922D01F3C70098B970 /* XCRemoteSwiftPackageReference "SwiftCSV" */;
-			productName = SwiftCSV;
+			package = A0D4894A2D873A3A00432E26 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
+		};
+		A0D4894E2D873A7500432E26 /* Amplitude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D4894D2D873A7500432E26 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
+			productName = Amplitude;
+		};
+		A0D489512D873AF100432E26 /* DatadogCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489502D873AF100432E26 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogCore;
+		};
+		A0D489532D873AF100432E26 /* DatadogCrashReporting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489502D873AF100432E26 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogCrashReporting;
+		};
+		A0D489552D873AF100432E26 /* DatadogLogs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489502D873AF100432E26 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogLogs;
+		};
+		A0D489572D873AF100432E26 /* DatadogObjc */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489502D873AF100432E26 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogObjc;
+		};
+		A0D489592D873AF100432E26 /* DatadogRUM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489502D873AF100432E26 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogRUM;
+		};
+		A0D4895B2D873AF100432E26 /* DatadogSessionReplay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489502D873AF100432E26 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogSessionReplay;
+		};
+		A0D4895D2D873AF100432E26 /* DatadogTrace */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489502D873AF100432E26 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogTrace;
+		};
+		A0D4895F2D873AF100432E26 /* DatadogWebViewTracking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D489502D873AF100432E26 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogWebViewTracking;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

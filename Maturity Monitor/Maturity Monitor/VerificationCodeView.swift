@@ -57,6 +57,8 @@ struct VerificationCodeView: View {
                                         } else {
                                             verificationCode = String(filtered.prefix(6))
                                         }
+                                        // Track the interaction with the verification code field
+                                        trackFieldInteraction(fieldName: "Verification Code")
                                     }
                                     Text("Re-enter your email address:")
                                         .font(Font.custom("Inter", size: 15))
@@ -77,6 +79,7 @@ struct VerificationCodeView: View {
                                         Button(action: {
                                             Task {
                                                 await resendConfirmationCode(for: email)
+                                                trackButtonClick(actionName: "Resend")
                                             }
                                         }) {
                                             CustomButton(
@@ -88,6 +91,7 @@ struct VerificationCodeView: View {
                                         Button(action: {
                                             Task {
                                                 await confirmSignUp(for: email, with: verificationCode)
+                                                trackButtonClick(actionName: "Verify")
                                             }
                                         }) {
                                             CustomButton(
@@ -99,6 +103,7 @@ struct VerificationCodeView: View {
                                     }.padding(.bottom, 10)
                                     Button(action:{
                                         isVerificationSuccessful = true
+                                        trackButtonClick(actionName: "Move On")
                                     }) {
                                         Text("Can't confirm email address? Move on ->")
                                             .foregroundColor(.buttonPurpleLight)
@@ -161,6 +166,20 @@ struct VerificationCodeView: View {
         } else {
             // Fallback on earlier versions
         }
+    }
+    
+    // Helper function to track field interactions
+    private func trackFieldInteraction(fieldName: String) {
+        let event = BasicAnalyticsEvent(name: "VerificationFieldInteraction", properties: ["Field": fieldName])
+        Amplify.Analytics.record(event: event)
+        print("Tracked: User interacted with \(fieldName) field")
+    }
+
+    // Helper function to track button clicks
+    private func trackButtonClick(actionName: String) {
+        let event = BasicAnalyticsEvent(name: "VerificationButtonClick", properties: ["Action": actionName])
+        Amplify.Analytics.record(event: event)
+        print("Tracked: \(actionName) button clicked")
     }
     
     // Function to confirm the sign-up

@@ -1,5 +1,6 @@
 import SwiftUI
 import Amplify
+import AWSPinpoint
 
 struct HomeView: View {
     
@@ -13,6 +14,8 @@ struct HomeView: View {
     @State private var userSurname: String = ""
     @State private var currentChildName: String = ""
     @State private var currentChildGender: String = ""
+    
+    @State private var startTime: Date?
     
     var body: some View {
         if #available(iOS 16.0, *) {
@@ -45,6 +48,12 @@ struct HomeView: View {
             .interactiveDismissDisabled(true) // Disable swipe back gesture
             .onAppear {
                 fetchUserDetails()
+                startTime = Date()
+            }.onDisappear {
+                if let startTime = startTime {
+                    let timeSpent = Date().timeIntervalSince(startTime)
+                    logEvent(eventName: "time_spent_on_homeview", attributes: ["time_spent": "\(timeSpent)"])
+                }
             }
         } else {
             // Fallback on earlier versions
@@ -60,6 +69,8 @@ struct HomeView: View {
             Button(action: {
                 withAnimation {
                     showMenu.toggle()
+                    // Log the event in AWS Pinpoint
+                    logEvent(eventName: "main_menu_pressed", attributes: ["action": "toggle"])
                 }
             }) {
                 Image(systemName: "line.horizontal.3")
@@ -88,7 +99,9 @@ struct HomeView: View {
     }
     
     private func tabButton(title: String, index: Int) -> some View {
-        Button(action: { selectedTab = index }) {
+        Button(action: {
+            selectedTab = index
+        }) {
             Text(title)
                 .font(Font.custom("Inter", size: 15))
                 .foregroundColor(selectedTab == index ? Color.black.opacity(0.6) : .black)
@@ -138,6 +151,9 @@ struct HomeView: View {
                         .foregroundColor(.buttonTurquoiseDark)
                         .padding()
                         .shadow(color: Color.buttonTurquoiseDark.opacity(0.25), radius: 10)
+                }.onTapGesture {
+                    // Log the event in AWS Pinpoint
+                    logEvent(eventName: "bottom_menu_button_pressed", attributes: ["action": "open_menu"])
                 }
             }
             .padding(.horizontal)
@@ -164,6 +180,19 @@ struct HomeView: View {
             print("Could not find child")
         }
     }
+    
+    // ANALYTICS
+    private func logEvent(eventName: String, attributes: [String: String]) {
+        // Use Amplify's Analytics to record the event
+        let event = BasicAnalyticsEvent(name: eventName, properties: attributes)
+        
+        // Record the event using Amplify's Analytics
+        Amplify.Analytics.record(event: event)
+        
+        // Print out the event for debugging
+        print("Tracked Event: \(eventName) with attributes: \(attributes)")
+    }
+
 }
 
 #Preview {

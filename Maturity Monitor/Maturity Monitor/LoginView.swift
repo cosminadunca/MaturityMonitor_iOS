@@ -117,11 +117,21 @@ struct LoginView: View {
     private func signIn() async {
         isLoading = true
         errorMessage = nil
-        
+
         do {
             // Attempt to sign in
             let isSignedIn = try await amplifyService.signIn(username: email, password: password)
             if isSignedIn {
+                // Track User Type
+                await amplifyService.trackUserType()
+
+                // Track Successful Sign-in
+                let signInEvent = BasicAnalyticsEvent(name: "SignIn",
+                                                      properties: ["Status": "Success",
+                                                                   "Email": email])
+                Amplify.Analytics.record(event: signInEvent)
+                print("Tracked: Successful Sign-in")
+
                 // Fetch currentChild after successful sign-in
                 if let currentChild = try await amplifyService.getCurrentChild(), currentChild == "-" {
                     isSignedInForAdmin = true
@@ -130,13 +140,37 @@ struct LoginView: View {
                 }
             } else {
                 errorMessage = "Sign in failed. Please check your credentials."
+                
+                // Track Failed Sign-in
+                let failedSignInEvent = BasicAnalyticsEvent(name: "SignIn",
+                                                            properties: ["Status": "Failed",
+                                                                         "Reason": "Invalid credentials",
+                                                                         "Email": email])
+                Amplify.Analytics.record(event: failedSignInEvent)
+                print("Tracked: Failed Sign-in")
             }
         } catch let error as AuthError {
             errorMessage = "Sign in failed: \(error.errorDescription)"
+            
+            // Track Error during Sign-in
+            let errorEvent = BasicAnalyticsEvent(name: "SignIn",
+                                                 properties: ["Status": "Error",
+                                                              "ErrorMessage": error.errorDescription,
+                                                              "Email": email])
+            Amplify.Analytics.record(event: errorEvent)
+            print("Tracked: Sign-in Error")
         } catch {
             errorMessage = "Unexpected error: \(error.localizedDescription)"
+            
+            // Track Unexpected Error
+            let errorEvent = BasicAnalyticsEvent(name: "SignIn",
+                                                 properties: ["Status": "Error",
+                                                              "ErrorMessage": error.localizedDescription,
+                                                              "Email": email])
+            Amplify.Analytics.record(event: errorEvent)
+            print("Tracked: Sign-in Error")
         }
-        
+
         isLoading = false
     }
 }

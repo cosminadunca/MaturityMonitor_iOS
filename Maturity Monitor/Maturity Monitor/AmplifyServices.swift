@@ -3,6 +3,27 @@ import UIKit
 import Foundation
 
 class AmplifyService {
+    
+    // FUNCTIONS FOR ANALYTICS
+    
+    // Track New vs Returning User
+    func trackUserType() async {
+        let isNewUser = await isNewUser()  // Custom logic to determine new vs returning
+        let userType = isNewUser ? "NewUser" : "ReturningUser"
+            
+        let event = BasicAnalyticsEvent(name: "UserType",
+                                            properties: ["Type": userType])
+        Amplify.Analytics.record(event: event)
+        print("Tracked: \(userType)")
+    }
+
+    // Example logic to check if a user is new
+    func isNewUser() async -> Bool {
+        let userAttributes = try? await Amplify.Auth.fetchUserAttributes()
+        return userAttributes?.first(where: { $0.key == AuthUserAttributeKey.emailVerified }) == nil
+    }
+    
+    // END FUNCTIONS FOR ANALYTICS
 
     // Sign up function
     func signUp(username: String, password: String, userAttributes: [AuthUserAttribute]) async -> Result<AuthSignUpResult, Error> {
@@ -140,7 +161,7 @@ class AmplifyService {
     // Function for error handling
     func handleAuthError(_ error: AuthError) -> String {
         switch error {
-        case .service(let message, let underlyingError, _):
+        case .service(let message, _, _):
             if message.contains("usernameExists") {
                 return "An account with this email already exists!"
             } else if message.contains("password") {
@@ -284,7 +305,7 @@ class AmplifyService {
         }
 
         let imageKey = UUID().uuidString + ".jpg"
-        let result = try await Amplify.Storage.uploadData(key: imageKey, data: imageData)
+        _ = try await Amplify.Storage.uploadData(key: imageKey, data: imageData)
         return imageKey  // or result if you need additional response data
     }
     
@@ -322,13 +343,13 @@ class AmplifyService {
             name: childDetails.name,
             surname: childDetails.surname,
             dateOfBirth: childDetails.dateOfBirth,
-            gender: childDetails.gender?.rawValue ?? "",
-            motherHeight: childDetails.momHeight ?? "",
-            fatherHeight: childDetails.dadHeight ?? "",
-            parentsMeasurements: childDetails.measurementType?.rawValue ?? "",
-            country: childDetails.country,
-            ethnicity: childDetails.ethnicity,
-            primarySport: childDetails.primarySport,
+            gender: childDetails.gender?.rawValue ?? "-",
+            motherHeight: childDetails.momHeight ?? "-",
+            fatherHeight: childDetails.dadHeight ?? "-",
+            parentsMeasurements: childDetails.measurementType?.rawValue ?? "-",
+            country: childDetails.country.isEmpty ? "-" : childDetails.country,
+            ethnicity: childDetails.ethnicity.isEmpty ? "-" : childDetails.ethnicity,
+            primarySport: childDetails.primarySport.isEmpty ? "-" : childDetails.primarySport,
             approveData: childDetails.agreeToResearch,
             uniqueId: uniqueId,
             status: childStatus,
@@ -336,14 +357,17 @@ class AmplifyService {
             entries: [],
             linkChildToUser: []
         )
-            
+        
         do {
             try await Amplify.DataStore.save(child)
-            await createLinkChildToUser(childId: child.id, child: child) // if creation succeeds then change navigation to home view to true
+            print("✅ Child saved successfully to DataStore")
+            
+            await createLinkChildToUser(childId: child.id, child: child)
             await updateCurrentChildAttribute(with: child.id)
+            
             return .success(())
         } catch {
-            print("Failed to save child to DataStore: \(error)")
+            print("❌ Failed to save child to DataStore: \(error)")
             return .failure(error)
         }
     }
@@ -389,6 +413,7 @@ class AmplifyService {
             throw NSError(domain: "AmplifyService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch Child details"])
         }
 
+        print("Here right before adding the entry to the dataset!")
         // Create the Entry object
         let entry = Entry(
             id: UUID().uuidString,
@@ -404,6 +429,7 @@ class AmplifyService {
 
         // Save entry to DataStore
         try await Amplify.DataStore.save(entry)
+        try await Amplify.API.mutate(request: .create(child))
 
         // Optionally, show a success message or handle success
         print("Entry added successfully!")

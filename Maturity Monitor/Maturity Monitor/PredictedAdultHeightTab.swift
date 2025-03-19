@@ -191,13 +191,15 @@ struct PredictedAdultHeight: View {
                                 .stroke(Color.black, lineWidth: 0.5)
                         )
                         
-                        Text("\(agePAHString)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 4)
-                                    .stroke(Color.buttonPurpleLight, lineWidth: 1.5)
-                            )
+                        Text("\(agePAHString) yrs")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(10)
+                                .minimumScaleFactor(0.8) // Allows text to shrink to 80% of its original size
+                                .lineLimit(1) // Ensures text stays on one line
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .stroke(Color.buttonPurpleLight, lineWidth: 1.5)
+                                )
                     }
                     
                     HStack {

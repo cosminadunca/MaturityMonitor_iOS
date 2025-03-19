@@ -1,4 +1,10 @@
 {
+  "analytics": {
+    "maturitymonitor": {
+      "providerPlugin": "awscloudformation",
+      "service": "Pinpoint"
+    }
+  },
   "api": {
     "maturitymonitor": {
       "dependsOn": [

@@ -29,10 +29,25 @@ struct RegistrationView: View {
                     Spacer()
                     VStack(spacing: 20) {
                         CustomTextField(iconName: "person.fill", placeholder: "Name", text: $name)
+                            .onChange(of: name) { _ in
+                                        trackFieldInteraction(fieldName: "Name")
+                                    }
                         CustomTextField(iconName: "person.fill", placeholder: "Surname", text: $surname)
+                            .onChange(of: surname) { _ in
+                                        trackFieldInteraction(fieldName: "Surname")
+                                    }
                         CustomTextField(iconName: "envelope", placeholder: "Email", text: $email, keyboardType: .emailAddress)
+                            .onChange(of: email) { _ in
+                                        trackFieldInteraction(fieldName: "Email")
+                                    }
                         CustomTextField(iconName: "envelope", placeholder: "Re-enter Email", text: $reEmail, keyboardType: .emailAddress)
+                            .onChange(of: reEmail) { _ in
+                                        trackFieldInteraction(fieldName: "Re-enter Email")
+                                    }
                         CustomPasswordField(placeholder: "Password", text: $password)
+                            .onChange(of: password) { _ in
+                                        trackFieldInteraction(fieldName: "Password")
+                                    }
                     }
                     
                     Spacer()
@@ -91,25 +106,57 @@ struct RegistrationView: View {
         .navigationBarHidden(true)
     }
     
+    // Helper function for tracking field interactions
+    private func trackFieldInteraction(fieldName: String) {
+        let event = BasicAnalyticsEvent(name: "SignUpFieldInteraction",
+                                        properties: ["Field": fieldName])
+        Amplify.Analytics.record(event: event)
+        print("Tracked: User interacted with \(fieldName) field")
+    }
+    
     private func validateAndSignUp() {
         // Check if any of the fields are empty
         guard !name.isEmpty, !surname.isEmpty, !email.isEmpty, !reEmail.isEmpty, !password.isEmpty else {
             errorMessage = "Please fill all fields!"
+
+            // Track Failed Sign-up: Missing Fields
+            let failedSignUpEvent = BasicAnalyticsEvent(name: "SignUp",
+                                                        properties: ["Status": "Failed",
+                                                                     "Reason": "Missing Fields"])
+            Amplify.Analytics.record(event: failedSignUpEvent)
+            print("Tracked: Failed Sign-up (Missing Fields)")
+
             return
         }
 
         // Check if the email addresses match
         guard email.trimmingCharacters(in: .whitespaces) == reEmail.trimmingCharacters(in: .whitespaces) else {
             errorMessage = "Email addresses do not match!"
+
+            // Track Failed Sign-up: Email Mismatch
+            let failedSignUpEvent = BasicAnalyticsEvent(name: "SignUp",
+                                                        properties: ["Status": "Failed",
+                                                                     "Reason": "Email Mismatch"])
+            Amplify.Analytics.record(event: failedSignUpEvent)
+            print("Tracked: Failed Sign-up (Email Mismatch)")
+
             return
         }
 
         // Validate email format
         guard isValidEmail(email) else {
             errorMessage = "Please enter a valid email address!"
+
+            // Track Failed Sign-up: Invalid Email
+            let failedSignUpEvent = BasicAnalyticsEvent(name: "SignUp",
+                                                        properties: ["Status": "Failed",
+                                                                     "Reason": "Invalid Email Format"])
+            Amplify.Analytics.record(event: failedSignUpEvent)
+            print("Tracked: Failed Sign-up (Invalid Email Format)")
+
             return
         }
-        
+
         // Proceed with signing up if everything is valid
         errorMessage = "" // Clear any previous error message
         Task {
@@ -117,9 +164,25 @@ struct RegistrationView: View {
             let signUpResult = await amplifyService.signUp(username: email, password: password, userAttributes: createUserAttributes())
             switch signUpResult {
             case .success:
+                // Track Successful Sign-up
+                let successEvent = BasicAnalyticsEvent(name: "SignUp",
+                                                       properties: ["Status": "Success",
+                                                                    "Email": email])
+                Amplify.Analytics.record(event: successEvent)
+                print("Tracked: Successful Sign-up")
+
                 showConfirmationView = true // Show the confirmation view after successful signup
+
             case .failure(let error):
                 errorMessage = amplifyService.handleAuthError(error as! AuthError)
+
+                // Track Failed Sign-up with Error Details
+                let failedSignUpEvent = BasicAnalyticsEvent(name: "SignUp",
+                                                            properties: ["Status": "Failed",
+                                                                         "ErrorMessage": error.localizedDescription,
+                                                                         "Email": email])
+                Amplify.Analytics.record(event: failedSignUpEvent)
+                print("Tracked: Failed Sign-up (Error)")
             }
         }
     }

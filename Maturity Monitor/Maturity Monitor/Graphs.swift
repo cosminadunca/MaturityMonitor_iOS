@@ -193,31 +193,34 @@ struct Graphs: View {
                         print("childMotherH: \(childMotherH)")
                         print("childFatherH: \(childFatherH)")
                         
-                        // Apply conversion if heights were originally in centimeters
+//                        // Apply conversion if heights were originally in centimeters
                         if lastTwoLetters == "in" {
                             childMotherHH = childMotherH * 2.54
                             childFatherHH = childFatherH * 2.54
-                        }
-                        if lastTwoLetters == "cm" {
+                        } else {
                             childMotherHH = childMotherH
                             childFatherHH = childFatherH
-                            if let convertedMotherHeight = findClosestInchesForCm(cmValue: childMotherH),
-                               let convertedFatherHeight = findClosestInchesForCm(cmValue: childFatherH) {
-                                
-                                childMotherH = convertedMotherHeight
-                                childFatherH = convertedFatherHeight
-                                
-                                print("Mother's Height in Inches: \(childMotherH)")
-                                print("Father's Height in Inches: \(childFatherH)")
-                            } else {
-                                if findClosestInchesForCm(cmValue: childMotherH) == nil {
-                                    print("No matching inch value found for Mother's Height: \(childMotherH) cm")
-                                }
-                                if findClosestInchesForCm(cmValue: childFatherH) == nil {
-                                    print("No matching inch value found for Father's Height: \(childFatherH) cm")
-                                }
-                            }
                         }
+//                        if lastTwoLetters == "cm" {
+//                            childMotherHH = childMotherH
+//                            childFatherHH = childFatherH
+//                            if let convertedMotherHeight = findClosestInchesForCm(cmValue: childMotherH),
+//                               let convertedFatherHeight = findClosestInchesForCm(cmValue: childFatherH) {
+//                                
+//                                childMotherH = convertedMotherHeight
+//                                childFatherH = convertedFatherHeight
+//                                
+//                                print("Mother's Height in Inches: \(childMotherH)")
+//                                print("Father's Height in Inches: \(childFatherH)")
+//                            } else {
+//                                if findClosestInchesForCm(cmValue: childMotherH) == nil {
+//                                    print("No matching inch value found for Mother's Height: \(childMotherH) cm")
+//                                }
+//                                if findClosestInchesForCm(cmValue: childFatherH) == nil {
+//                                    print("No matching inch value found for Father's Height: \(childFatherH) cm")
+//                                }
+//                            }
+//                        }
                         
                         // Check for "Estimated" parents' heights and adjust
                         if childParentsMeasurements == "Estimated" {
@@ -228,9 +231,9 @@ struct Graphs: View {
                             print("Adjusted Father's Height (estimated): \(childFatherH)")
                         }
                         
-                        // Change back to cm from inches using 2.54 this time
-                        childMotherH *= 2.54
-                        childFatherH *= 2.54
+//                        // Change back to cm from inches using 2.54 this time
+//                        childMotherH *= 2.54
+//                        childFatherH *= 2.54
                         
                         print("Mother's Height in Cm: \(childMotherH)")
                         print("Father's Height in Cm: \(childFatherH)")
@@ -477,7 +480,8 @@ struct Graphs: View {
                     // Pass the 2-decimal rounded value of percentageAHDouble to the function
                     print(childGender)
                     agePAH = findClosestAgeValue(ageValue: percentageAHDouble, fileName: fileForPAH) ?? 0.0
-                    agePAHString = String(format: "%.3f", agePAH)
+//                    agePAHString = String(format: "%.2f", agePAH)
+                    agePAHString = String(agePAH)
                     print("Percentage AH Double (2 decimal places): \(percentageAHDouble)")
                     
                     // Determine maturity category based on the percentage
@@ -522,12 +526,17 @@ struct Graphs: View {
         let years = ageComponents.year ?? 0
         let months = ageComponents.month ?? 0
 
-        // Apply rounding rule:
+        // Apply the new rounding rule
         let roundedAge: Double
-        if months >= 7 {
-            roundedAge = Double(years + 1) // Round up to the next full year
-        } else {
+        switch months {
+        case 0...2:
+            roundedAge = Double(years) // Round to the current year
+        case 3...8:
             roundedAge = Double(years) + 0.5 // Round to the half-year mark
+        case 9...11:
+            roundedAge = Double(years + 1) // Round up to the next full year
+        default:
+            roundedAge = Double(years) // Fallback (should never hit this case)
         }
 
         return roundedAge

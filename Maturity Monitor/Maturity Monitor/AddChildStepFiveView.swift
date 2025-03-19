@@ -235,16 +235,19 @@ struct AddChildStepFiveView: View {
     func createChild() async {
         // Show loading state
         isLoading = true
+        print("Here in AddChildStepFiveView!")
             
         let uniqueId = generateUniqueId()
         let result = await amplifyService.createChild(
             childDetails: childDetails,
             uniqueId: uniqueId
         )
-            
+        
+        print("Here in AddChildStepFiveView at the end!")
         // Handle result
         switch result {
         case .success:
+            print("Success")
             navigateToHomeView = true
         case .failure(let error):
             errorMessage = error.localizedDescription

@@ -1,13 +1,13 @@
 {
-  "originHash" : "dfa8d5871b7e933360cf459eefd5c7027501180ba311e379c5a61f9d1452547c",
+  "originHash" : "d7ce166bc8756d4d773da855900cb6e2bfcc46f01aff09988d7490a8cb68af23",
   "pins" : [
     {
       "identity" : "amplify-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aws-amplify/amplify-swift",
       "state" : {
-        "revision" : "c13d7b723b236a68d32d04718011ad1f4c6f2f49",
-        "version" : "2.39.0"
+        "revision" : "aa1b0ca22de2090d0dfb13c7c34593e306497eb4",
+        "version" : "2.46.0"
       }
     },
     {
@@ -20,30 +20,84 @@
       }
     },
     {
+      "identity" : "amplitude-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/Amplitude-iOS",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5154b757d91b683d018ba2a12e6fbcb8a53a1bb9"
+      }
+    },
+    {
+      "identity" : "analytics-connector-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/analytics-connector-ios.git",
+      "state" : {
+        "revision" : "4adbfe85486e6dcdcdca5fa9362097ffe5ec712b",
+        "version" : "1.3.1"
+      }
+    },
+    {
       "identity" : "aws-crt-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/awslabs/aws-crt-swift",
       "state" : {
-        "revision" : "0d0a0cf2e2cb780ceeceac190b4ede94f4f96902",
-        "version" : "0.26.0"
+        "revision" : "dd17a98750b6182edacd6e8f0c30aa289c472b22",
+        "version" : "0.40.0"
       }
     },
     {
       "identity" : "aws-sdk-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/awslabs/aws-sdk-swift.git",
+      "location" : "https://github.com/awslabs/aws-sdk-swift",
       "state" : {
-        "revision" : "47922c05dd66be717c7bce424651a534456717b7",
-        "version" : "0.36.2"
+        "revision" : "9ad12684f6cb9c9b60e840c051a2bba604024650",
+        "version" : "1.0.69"
       }
     },
     {
       "identity" : "charts",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielgindi/Charts.git",
+      "location" : "https://github.com/ChartsOrg/Charts.git",
       "state" : {
         "revision" : "dd9c72e3d7e751e769971092a6bd72d39198ae63",
         "version" : "5.1.0"
+      }
+    },
+    {
+      "identity" : "dd-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DataDog/dd-sdk-ios",
+      "state" : {
+        "revision" : "c94f13fc965111a754d07c56abe94a9e8f97cf13",
+        "version" : "2.24.0"
+      }
+    },
+    {
+      "identity" : "mixpanel-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mixpanel/mixpanel-swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "773dd92248e8aca005b29912043526511a5ce4d2"
+      }
+    },
+    {
+      "identity" : "opentelemetry-swift-packages",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DataDog/opentelemetry-swift-packages.git",
+      "state" : {
+        "revision" : "659e9007fffe6361578336427102d8310b0bc9f3",
+        "version" : "1.13.0"
+      }
+    },
+    {
+      "identity" : "plcrashreporter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/plcrashreporter.git",
+      "state" : {
+        "revision" : "8c61e5e38e9f737dd68512ed1ea5ab081244ad65",
+        "version" : "1.12.0"
       }
     },
     {
@@ -51,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smithy-lang/smithy-swift",
       "state" : {
-        "revision" : "8a5b0105c1b8a1d26a9435fb0af3959a7f5de578",
-        "version" : "0.41.1"
+        "revision" : "402f091374dcf72c1e7ed43af10e3ee7e634fad8",
+        "version" : "0.106.0"
       }
     },
     {
@@ -69,17 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log.git",
       "state" : {
-        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
-        "version" : "1.6.1"
-      }
-    },
-    {
-      "identity" : "swiftcsv",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/naoty/SwiftCSV",
-      "state" : {
-        "revision" : "6ab5d0fe9b6ef3c79d717eefa70862df389e74d9",
-        "version" : "0.10.0"
+        "revision" : "3d8596ed08bd13520157f0355e35caed215ffbfa",
+        "version" : "1.6.3"
       }
     }
   ],

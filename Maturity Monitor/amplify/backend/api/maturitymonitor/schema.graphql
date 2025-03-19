@@ -29,8 +29,8 @@ type Child
   approveData: Boolean!
   uniqueId: Int!
   status: ChildStatus!
-  entries: [Entry]! @hasMany(indexName: "byChild", fields: ["id"])
-  linkChildToUser: [LinkChildToUser]! @hasMany(indexName: "byChildLink", fields: ["id"])
+  entries: [Entry] @hasMany(indexName: "byChild", fields: ["id"])
+  linkChildToUser: [LinkChildToUser] @hasMany(indexName: "byChildLink", fields: ["id"])
 }
 
 type Entry
