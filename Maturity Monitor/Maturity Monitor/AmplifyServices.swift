@@ -311,21 +311,23 @@ class AmplifyService {
     
     // Function to create a new Child entry and save it to DataStore - ASYNC
     func createChild(childDetails: ChildDetailsModel, uniqueId: Int) async -> Result<Void, Error> {
+        // Fetch current user ID
         guard let userId = await fetchCurrentUserId() else {
             return .failure(AuthError.unknown("User ID not found!"))
         }
             
         let childStatus: ChildStatus = .active
-        
+            
+        // Fetch user attributes
         guard let userAttributes = await fetchUserAttributes() else {
-                return .failure(AuthError.unknown("User attributes not found!"))
-            }
+            return .failure(AuthError.unknown("User attributes not found!"))
+        }
             
         let userName = userAttributes.firstName
         let userSurname = userAttributes.lastName
-        
-        // Upload image to S3 and get the image URL
-        var imageURL: String? = nil  // Default to nil if no image is selected
+            
+        // Upload image to S3 and get the image URL (if image is selected)
+        var imageURL: String? = nil
         if let selectedImage = childDetails.image {
             do {
                 imageURL = try await uploadImageToS3(image: selectedImage)
@@ -335,34 +337,61 @@ class AmplifyService {
             }
         }
         
+        // Create the Child object
+//        let child = Child(
+//            id: UUID().uuidString,
+//            idUser: userId,
+//            userName: userName,
+//            userSurname: userSurname,
+//            name: childDetails.name,
+//            surname: childDetails.surname,
+//            dateOfBirth: childDetails.dateOfBirth,
+//            gender: childDetails.gender?.rawValue ?? "-",
+//            motherHeight: childDetails.momHeight ?? "-",
+//            fatherHeight: childDetails.dadHeight ?? "-",
+//            parentsMeasurements: childDetails.measurementType?.rawValue ?? "-",
+//            country: childDetails.country.isEmpty ? "-" : childDetails.country,
+//            ethnicity: childDetails.ethnicity.isEmpty ? "-" : childDetails.ethnicity,
+//            primarySport: childDetails.primarySport.isEmpty ? "-" : childDetails.primarySport,
+//            approveData: childDetails.agreeToResearch,
+//            uniqueId: uniqueId,
+//            status: childStatus,
+//            entries: [],  // Initialize as empty list
+//            linkChildToUser: []  // Initialize as empty list
+//        )
+        
         let child = Child(
             id: UUID().uuidString,
             idUser: userId,
-            userName: userName,
-            userSurname: userSurname,
-            name: childDetails.name,
-            surname: childDetails.surname,
-            dateOfBirth: childDetails.dateOfBirth,
-            gender: childDetails.gender?.rawValue ?? "-",
-            motherHeight: childDetails.momHeight ?? "-",
-            fatherHeight: childDetails.dadHeight ?? "-",
-            parentsMeasurements: childDetails.measurementType?.rawValue ?? "-",
-            country: childDetails.country.isEmpty ? "-" : childDetails.country,
-            ethnicity: childDetails.ethnicity.isEmpty ? "-" : childDetails.ethnicity,
-            primarySport: childDetails.primarySport.isEmpty ? "-" : childDetails.primarySport,
-            approveData: childDetails.agreeToResearch,
-            uniqueId: uniqueId,
+            userName: "Cosmina",
+            userSurname: "Dunca",
+            name: "Blah",
+            surname: "Blah blah",
+            dateOfBirth: "25/03/2011",
+            gender: "-",
+            motherHeight:  "-",
+            fatherHeight: "-",
+            parentsMeasurements: "-",
+            country:  "-" ,
+            ethnicity: "-" ,
+            primarySport: "-" ,
+            approveData: true,
+            uniqueId: 785362,
             status: childStatus,
-//            imageURL: imageURL,
-            entries: [],
-            linkChildToUser: []
+            entries: List(elements: []),  // Initialize as empty list
+            linkChildToUser: List(elements: [])  // Initialize as empty list
         )
-        
+            
         do {
+            print("Saving child: \(child)")
+            // Save child to DataStore
             try await Amplify.DataStore.save(child)
             print("✅ Child saved successfully to DataStore")
             
+            // Create the LinkChildToUser object to associate the child with the user
             await createLinkChildToUser(childId: child.id, child: child)
+            
+            // Optionally update the current child attribute (e.g., for the logged-in user)
             await updateCurrentChildAttribute(with: child.id)
             
             return .success(())
@@ -429,7 +458,6 @@ class AmplifyService {
 
         // Save entry to DataStore
         try await Amplify.DataStore.save(entry)
-        try await Amplify.API.mutate(request: .create(child))
 
         // Optionally, show a success message or handle success
         print("Entry added successfully!")
