@@ -2,6 +2,7 @@
 
 import SwiftUI
 import Amplify
+import Mixpanel
 
 struct AccountView: View {
     private let amplifyService = AmplifyService()
@@ -20,6 +21,10 @@ struct AccountView: View {
     @State private var isLoggedOut: Bool = false
     @State private var name: String = ""
     @State private var surname: String = ""
+    
+    // Mixpanel variables
+    @State private var passwordToggleCount = 0 // Track the number of times the password toggle is pressed
+    @State private var viewStartTime: Date = Date()
 
     var body: some View {
         if #available(iOS 16.0, *) {
@@ -50,18 +55,31 @@ struct AccountView: View {
                     ScrollView {
                         VStack(spacing: 15) {
                             ForEach(menuItems) { item in
-                                DisclosureGroup(
-                                    isExpanded: Binding(
-                                        get: { expandedSections.contains(item.id) },
-                                        set: { isExpanded in
-                                            if isExpanded {
-                                                expandedSections.insert(item.id)
-                                            } else {
+                                VStack(spacing: 0) {
+                                    Button(action: {
+                                        withAnimation {
+                                            if expandedSections.contains(item.id) {
                                                 expandedSections.remove(item.id)
+                                            } else {
+                                                expandedSections.insert(item.id)
                                             }
                                         }
-                                    ),
-                                    content: {
+                                    }) {
+                                        HStack {
+                                            Text(item.title)
+                                                .font(.headline)
+                                                .foregroundColor(.black)
+                                            Spacer()
+                                            Image(systemName: expandedSections.contains(item.id) ? "chevron.up" : "chevron.down")
+                                                .foregroundColor(.black)
+                                        }
+                                        .padding()
+                                        .background(Color.gray.opacity(0.1))
+                                        .cornerRadius(10)
+                                        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                                    }
+
+                                    if expandedSections.contains(item.id) {
                                         VStack {
                                             if item.title == "Change Password" {
                                                 changePasswordSection()
@@ -70,27 +88,10 @@ struct AccountView: View {
                                             }
                                         }
                                         .padding()
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 4)
-                                    },
-                                    label: {
-                                        HStack {
-                                            Text(item.title)
-                                                .font(.headline)
-                                                .foregroundColor(.black)
-                                            Spacer()
-                                            Image(systemName: expandedSections.contains(item.id) ? "chevron.up" : "chevron.down")
-                                                    .foregroundColor(.black)
-                                        }
-                                        .padding()
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .background(Color.gray.opacity(0.1))
-                                        .cornerRadius(10)
-                                        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
                                     }
-                                )
+                                }
                             }
+
                         }
                         .padding()
                     }
@@ -126,6 +127,7 @@ struct AccountView: View {
                     LoginView()
                 }
                 .onAppear {
+                    viewStartTime = Date()
                     Task {
                         if let userDetails = await amplifyService.fetchUserAttributes() {
                             name = userDetails.firstName
@@ -133,19 +135,29 @@ struct AccountView: View {
                         }
                     }
                 }
+                .onDisappear {
+                    trackViewTime()
+                    Mixpanel.mainInstance().track(event: "MIX Password Toggle Count in Account View", properties: ["count": passwordToggleCount])
+                }
                 .navigationBarBackButtonHidden(true)
             }
         } else {
             // Fallback on earlier versions
         }
     }
+    
+    // Mixpanel
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Account View Time", properties: ["time_spent": timeSpent])
+    }
 
     @ViewBuilder
     private func changePasswordSection() -> some View {
         VStack(spacing: 20) {
-            CustomPasswordField(placeholder: "Enter old password", text: $oldPassword)
-            CustomPasswordField(placeholder: "Enter new password", text: $password)
-            CustomPasswordField(placeholder: "Re-enter new password", text: $confirmPassword)
+            CustomPasswordField(placeholder: "Enter old password", text: $oldPassword, viewName: "Account - Old Password Textfield", passwordToggleCount: $passwordToggleCount)
+            CustomPasswordField(placeholder: "Enter new password", text: $password, viewName: "Account - New Password Textfield", passwordToggleCount: $passwordToggleCount)
+            CustomPasswordField(placeholder: "Re-enter new password", text: $confirmPassword, viewName: "Account - Confirm New Password Textfield", passwordToggleCount: $passwordToggleCount)
             Button(action: {
                 Task { await handleButtonPress(for: "Change Password") }
             }) {
@@ -213,12 +225,12 @@ struct AccountView: View {
 // Sample data model for the menu items with customizable content
 struct MenuItem: Identifiable {
     var id = UUID()
-    var title: String
+    var title: LocalizedStringKey
     var content: [SectionContent]
 }
 
 struct SectionContent {
-    var textFieldTitle: String?
+    var textFieldTitle: LocalizedStringKey?
     var buttonTitle: String?
 }
 

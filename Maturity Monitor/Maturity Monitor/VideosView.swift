@@ -2,6 +2,7 @@
 
 import SwiftUI
 import WebKit
+import Mixpanel
 
 // WebView to load and display YouTube videos
 struct WebView: UIViewRepresentable {
@@ -20,6 +21,10 @@ struct WebView: UIViewRepresentable {
 }
 
 struct VideosView: View {
+    
+    // Mixpanel variables
+    @State private var viewStartTime: Date = Date()
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -47,12 +52,24 @@ struct VideosView: View {
                 Text("How to measure standing height")
                     .font(Font.custom("Inter", size: 15))
                     .padding(.top)
-                WebView(urlString: "https://www.youtube.com/embed/2D9kWCz-EyE?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1")
+                WebView(urlString: "https://www.youtube.com/embed/Q-BjPHS5pfQ?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1")
                     .frame(height: 200)
                     .cornerRadius(10)
                     .padding()
             }
         }
+        .onAppear {
+            viewStartTime = Date()
+        }
+        .onDisappear {
+            trackViewTime()
+        }
+    }
+    
+    // Mixpanel
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Videos View Time", properties: ["time_spent": timeSpent])
     }
 }
 

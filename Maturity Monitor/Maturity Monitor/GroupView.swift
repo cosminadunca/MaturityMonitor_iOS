@@ -2,6 +2,7 @@
 
 import SwiftUI
 import Amplify
+import Mixpanel
 
 struct GroupView: View {
     
@@ -15,6 +16,9 @@ struct GroupView: View {
     @State private var userSurname: String = ""
     @State private var currentChildName: String = ""
     @State private var currentChildGender: String = ""
+    
+    // Mixpanel variables
+    @State private var viewStartTime: Date = Date()
 
     var body: some View {
         if #available(iOS 16.0, *) {
@@ -42,6 +46,10 @@ struct GroupView: View {
             .interactiveDismissDisabled(true) // Disable swipe back gesture
             .onAppear {
                 fetchUserDetails()
+                viewStartTime = Date()
+            }
+            .onDisappear {
+                trackViewTime()
             }
         } else {
             // Fallback on earlier versions
@@ -149,6 +157,12 @@ struct GroupView: View {
             .padding(.horizontal)
             .padding(.bottom, 0)
         }
+    }
+    
+    // Mixpanel tracking
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Children & Groups View Time", properties: ["time_spent": timeSpent])
     }
 
     private func fetchUserDetails() {

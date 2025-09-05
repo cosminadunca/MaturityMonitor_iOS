@@ -129,6 +129,22 @@ class AmplifyService {
             return "Unexpected error: \(error)"
         }
     }
+    
+    // Function to check if user's email is verified - ASYNC
+    func isEmailVerified() async -> Bool {
+        do {
+            let attributes = try await Amplify.Auth.fetchUserAttributes()
+            if let emailVerifiedAttribute = attributes.first(where: { $0.key == .emailVerified }) {
+                return emailVerifiedAttribute.value.lowercased() == "true"
+            } else {
+                print("Email verified attribute not found.")
+                return false
+            }
+        } catch {
+            print("Error fetching user attributes: \(error.localizedDescription)")
+            return false
+        }
+    }
 
     // Function to reset password - ASYNC
     func resetPassword(username: String) async throws -> AuthResetPasswordStep {
@@ -337,49 +353,26 @@ class AmplifyService {
             }
         }
         
-        // Create the Child object
-//        let child = Child(
-//            id: UUID().uuidString,
-//            idUser: userId,
-//            userName: userName,
-//            userSurname: userSurname,
-//            name: childDetails.name,
-//            surname: childDetails.surname,
-//            dateOfBirth: childDetails.dateOfBirth,
-//            gender: childDetails.gender?.rawValue ?? "-",
-//            motherHeight: childDetails.momHeight ?? "-",
-//            fatherHeight: childDetails.dadHeight ?? "-",
-//            parentsMeasurements: childDetails.measurementType?.rawValue ?? "-",
-//            country: childDetails.country.isEmpty ? "-" : childDetails.country,
-//            ethnicity: childDetails.ethnicity.isEmpty ? "-" : childDetails.ethnicity,
-//            primarySport: childDetails.primarySport.isEmpty ? "-" : childDetails.primarySport,
-//            approveData: childDetails.agreeToResearch,
-//            uniqueId: uniqueId,
-//            status: childStatus,
-//            entries: [],  // Initialize as empty list
-//            linkChildToUser: []  // Initialize as empty list
-//        )
-        
         let child = Child(
             id: UUID().uuidString,
             idUser: userId,
-            userName: "Cosmina",
-            userSurname: "Dunca",
-            name: "Blah",
-            surname: "Blah blah",
-            dateOfBirth: "25/03/2011",
-            gender: "-",
-            motherHeight:  "-",
-            fatherHeight: "-",
-            parentsMeasurements: "-",
-            country:  "-" ,
-            ethnicity: "-" ,
-            primarySport: "-" ,
-            approveData: true,
-            uniqueId: 785362,
+            userName: userName,
+            userSurname: userSurname,
+            name: childDetails.name,
+            surname: childDetails.surname,
+            dateOfBirth: childDetails.dateOfBirth,
+            gender: childDetails.gender?.rawValue ?? "-",
+            motherHeight:  childDetails.momHeight,
+            fatherHeight: childDetails.dadHeight,
+            parentsMeasurements: childDetails.measurementType?.rawValue ?? "-",
+            country: childDetails.country ?? "-",
+            ethnicity: childDetails.ethnicity ?? "-",
+            primarySport: childDetails.primarySport ?? "-",
+            approveData: childDetails.agreeToResearch,
+            uniqueId: uniqueId,
             status: childStatus,
             entries: List(elements: []),  // Initialize as empty list
-            linkChildToUser: List(elements: [])  // Initialize as empty list
+            linkChildToUser: List(elements: [])
         )
             
         do {
@@ -400,6 +393,15 @@ class AmplifyService {
             return .failure(error)
         }
     }
+    
+    func localizedStringInEnglish(forKey key: String) -> String {
+        if let path = Bundle.main.path(forResource: "en", ofType: "lproj"),
+           let bundle = Bundle(path: path) {
+            return String(localized: String.LocalizationValue(key), bundle: bundle)
+        }
+        return key  // fallback if bundle not found
+    }
+
     
     // Create new entry for one child
     func createEntry(

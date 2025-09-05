@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct BiologicalAgeSheet: View {
     @Binding var showBiologicalAgeInfo: Bool // Binding to control dismissal
+    @State private var chartStartTime: Date?
+
     var body: some View {
         VStack {
             HStack {
@@ -20,32 +23,44 @@ struct BiologicalAgeSheet: View {
                 Button(action: {
                     showBiologicalAgeInfo = false // Close the sheet
                 }) {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(.gray)
-                    .font(.title)
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                        .font(.title)
                 }
                 .padding()
             }
             .padding(.top, 20)
+
             HStack {
                 Text("Definition: ")
-                    .underline() // Underlines the text
-                    .padding(.horizontal, 25) // Left and right padding only
+                    .underline()
+                    .padding(.horizontal, 25)
                     .padding(.top, 30)
                 Spacer()
             }
 
             Text("This is the biological age of the individual, which may vary from chronological age based on the developmental stage of the individual.")
-                .padding(.horizontal, 25) // Left and right padding only
-                .padding(.top, 20) // Optional: Adjust top padding if needed
-                .padding(.bottom, 0) // Ensures bottom padding is 0
+                .padding(.horizontal, 25)
+                .padding(.top, 20)
+                .padding(.bottom, 0)
                 .font(Font.custom("Inter-Italic", size: 17))
                 .foregroundColor(.red)
-            
-            // !! Add an ML generated script that finds similar children and give some information on their Chronological Age Growt
+
+            // !! Add an ML generated script that finds similar children and give some information on their Chronological Age Growth
             // If possible ask about their nutrition and sleep, etc to find out and generate more details about children
             // Maybe try and include ML to see if it changes the app for better in any way
             Spacer()
+        }
+        .onAppear {
+            chartStartTime = Date()
+        }
+        .onDisappear {
+            if let start = chartStartTime {
+                let duration = Date().timeIntervalSince(start)
+                Mixpanel.mainInstance().track(event: "MIX Biological Age Sheet View Time", properties: [
+                    "duration_seconds": Int(duration)
+                ])
+            }
         }
     }
 }

@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct ChronologicalAgeSheet: View {
     @Binding var showChronologicalAgeInfo: Bool // Binding to control dismissal
+    @State private var chartStartTime: Date?
+    
     var body: some View {
         VStack {
             HStack {
@@ -46,6 +49,17 @@ struct ChronologicalAgeSheet: View {
             // If possible ask about their nutrition and sleep, etc to find out and generate more details about children
             // Maybe try and include ML to see if it changes the app for better in any way
             Spacer()
+        }
+        .onAppear {
+            chartStartTime = Date()
+        }
+        .onDisappear {
+            if let start = chartStartTime {
+                let duration = Date().timeIntervalSince(start)
+                Mixpanel.mainInstance().track(event: "MIX Chronological Age Sheet View Time", properties: [
+                    "duration_seconds": Int(duration)
+                ])
+            }
         }
     }
 }

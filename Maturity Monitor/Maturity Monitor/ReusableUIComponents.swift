@@ -3,10 +3,11 @@
 import SwiftUI
 import Combine
 import PhotosUI
+import Mixpanel
 
 // Texts
 struct CustomTextTitle: View { // Title with a shadow
-    var title: String
+    var title: LocalizedStringKey
     
     var body: some View {
         Text(title)
@@ -18,7 +19,7 @@ struct CustomTextTitle: View { // Title with a shadow
 }
 
 struct SimpleCustomTextTitle: View { // Title without shadow
-    var title: String
+    var title: LocalizedStringKey
     
     var body: some View {
         Text(title)
@@ -29,7 +30,7 @@ struct SimpleCustomTextTitle: View { // Title without shadow
 }
 
 struct SimpleCustomText: View {
-    var title: String
+    var title: LocalizedStringKey
     
     var body: some View {
         Text(title)
@@ -62,47 +63,78 @@ struct SuccessCustomText: View { // Success message so displaying green
 
 //  Text Fields
 struct SimpleCustomTextField: View {
-    var placeholder: String
+    var placeholder: LocalizedStringKey
     @Binding var text: String
     var keyboardType: UIKeyboardType = .default
-    var characterLimit: Int = 30 // Set a default character limit of 30
-    
+    var characterLimit: Int = 30
+    var viewName: String // Added to track in which view the text field exists
+
+    // State to track interaction time
+    @State private var textFieldInteractionStartTime: Date?
+
     var body: some View {
-        TextField(placeholder, text: $text)
-            .font(Font.custom("Inter", size: 18))
-            .foregroundColor(Color.black.opacity(0.60))
-            .padding()
-            .frame(width: 330, height: 50)
-            .background(Color.white)
-            .cornerRadius(10)
-            .accentColor(Color("ButtonGreyLightStroke"))
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray.opacity(0.8), lineWidth: 0.5)
-            )
-            .shadow(color: Color.black.opacity(0.25), radius: 4, y: 4)
-            .padding(.bottom, 15)
-            .keyboardType(keyboardType)
-            .autocapitalization(.none)
-            .submitLabel(.done)
-            .onSubmit {
-                hideKeyboard() // Hide keyboard when return is pressed
+        TextField(placeholder, text: $text, onEditingChanged: { editing in
+            if editing {
+                textFieldInteractionStartTime = Date()
+            } else {
+                trackTextFieldInteraction(field: placeholder, text: text)
             }
-            .onChange(of: text) { newValue in
-                if newValue.count > characterLimit {
-                    text = String(newValue.prefix(characterLimit)) // Enforce character limit
-                }
+        })
+        .font(Font.custom("Inter", size: 18))
+        .foregroundColor(Color.black.opacity(0.60))
+        .padding()
+        .frame(width: 330, height: 50)
+        .background(Color.white)
+        .cornerRadius(10)
+        .accentColor(Color("ButtonGreyLightStroke"))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.gray.opacity(0.8), lineWidth: 0.5)
+        )
+        .shadow(color: Color.black.opacity(0.25), radius: 4, y: 4)
+        .padding(.bottom, 15)
+        .keyboardType(keyboardType)
+        .autocapitalization(.none)
+        .submitLabel(.done)
+        .onSubmit {
+            hideKeyboard()
+        }
+        .onChange(of: text) { newValue in
+            if newValue.count > characterLimit {
+                text = String(newValue.prefix(characterLimit))
             }
+        }
+    }
+
+    private func trackTextFieldInteraction(field: LocalizedStringKey, text: String) {
+        guard let startTime = textFieldInteractionStartTime else { return }
+
+        let duration = Date().timeIntervalSince(startTime)
+
+        Mixpanel.mainInstance().track(event: "MIX \(field) TextField Interaction in \(viewName) View", properties: [
+            "field": "\(field)",
+            "start_time": startTime.timeIntervalSince1970,
+            "duration": duration,
+            "\(field)_length": text.count
+        ])
+
+        textFieldInteractionStartTime = nil
     }
 }
 
+
 struct CustomTextField: View {
     var iconName: String
-    var placeholder: String
+    var placeholder: LocalizedStringKey
     @Binding var text: String
+    var viewName: String
     var keyboardType: UIKeyboardType = .default
-    var characterLimit: Int = 50 // Set a default character limit of 30
+    var characterLimit: Int = 50
     
+    // Use sessionId from SessionManager.shared
+    @State private var textFieldInteractionStartTime: Date?
+    @State private var textFieldInteractionDuration: TimeInterval = 0
+
     var body: some View {
         HStack {
             Image(systemName: iconName)
@@ -115,21 +147,26 @@ struct CustomTextField: View {
                 .foregroundColor(Color(red: 0.62, green: 0.62, blue: 0.62).opacity(0.80))
                 .padding(.horizontal, 10)
             
-            TextField(placeholder, text: $text)
-                .padding(.leading, 5)
-                .accentColor(Color("ButtonGreyLightStroke"))
-                .keyboardType(keyboardType)
-                .autocapitalization(.none)
-                .submitLabel(.done)
-
-                .onSubmit {
-                    hideKeyboard() // Hide keyboard when return is pressed
+            TextField(placeholder, text: $text, onEditingChanged: { editing in
+                if editing {
+                    textFieldInteractionStartTime = Date()
+                } else {
+                    trackTextFieldInteraction(field: placeholder, text: text)
                 }
-                .onChange(of: text) { newValue in
-                    if newValue.count > characterLimit {
-                        text = String(newValue.prefix(characterLimit)) // Enforce character limit
-                    }
+            })
+            .padding(.leading, 5)
+            .accentColor(Color("ButtonGreyLightStroke"))
+            .keyboardType(keyboardType)
+            .autocapitalization(.none)
+            .submitLabel(.done)
+            .onSubmit {
+                hideKeyboard()
+            }
+            .onChange(of: text) { newValue in
+                if newValue.count > characterLimit {
+                    text = String(newValue.prefix(characterLimit))
                 }
+            }
         }
         .padding()
         .frame(width: 330, height: 50)
@@ -141,52 +178,91 @@ struct CustomTextField: View {
         )
         .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 4, y: 4)
     }
+    
+    private func trackTextFieldInteraction(field: LocalizedStringKey, text: String) {
+        guard let startTime = textFieldInteractionStartTime else { return }
+
+        let duration = Date().timeIntervalSince(startTime)
+
+        Mixpanel.mainInstance().track(event: "MIX Date of Birth TextField Interaction in \(viewName) View", properties: [
+            "field": "\(field)",
+            "start_time": startTime.timeIntervalSince1970,
+            "duration": duration,
+            "\(field)_length": text.count
+        ])
+
+        // Reset start time after tracking
+        textFieldInteractionStartTime = nil
+    }
 }
 
 struct CustomPasswordField: View {
-    var placeholder: String
+    var placeholder: LocalizedStringKey
     @Binding var text: String
+    var viewName: String
+    @Binding var passwordToggleCount: Int
     @State private var isPasswordVisible = false
+    @FocusState private var isSecureFieldFocused: Bool
     
+    @State private var textFieldInteractionStartTime: Date?
+    @State private var textFieldInteractionDuration: TimeInterval = 0
+
     var body: some View {
         HStack {
             Image(systemName: "key")
                 .foregroundColor(Color("ButtonPurpleLight"))
                 .frame(width: 20, height: 20)
                 .padding(.leading, 10)
-            
+
             Rectangle()
                 .frame(width: 1, height: 30)
                 .foregroundColor(Color(red: 0.62, green: 0.62, blue: 0.62).opacity(0.80))
                 .padding(.horizontal, 10)
-            
-            if isPasswordVisible {
-                TextField(placeholder, text: $text)
+
+            ZStack(alignment: .leading) {
+                if isPasswordVisible {
+                    TextField(placeholder, text: $text, onEditingChanged: { editing in
+                        if editing {
+                            textFieldInteractionStartTime = Date()
+                        } else {
+                            trackTextFieldInteraction(field: placeholder, text: text)
+                        }
+                    })
                     .padding(.leading, 5)
                     .accentColor(Color("ButtonGreyLightStroke"))
                     .autocapitalization(.none)
                     .submitLabel(.done)
                     .onSubmit {
-                        hideKeyboard() // Hide keyboard when return is pressed
+                        hideKeyboard()
                     }
-            } else {
-                SecureField(placeholder, text: $text)
-                    .padding(.leading, 5)
-                    .autocapitalization(.none)
-                    .accentColor(Color("ButtonGreyLightStroke"))
-                    .submitLabel(.done)
-                    .onSubmit {
-                        hideKeyboard() // Hide keyboard when return is pressed
-                    }
+                } else {
+                    SecureField(placeholder, text: $text)
+                        .focused($isSecureFieldFocused)
+                        .padding(.leading, 5)
+                        .accentColor(Color("ButtonGreyLightStroke"))
+                        .autocapitalization(.none)
+                        .submitLabel(.done)
+                        .onSubmit {
+                            hideKeyboard()
+                            trackTextFieldInteraction(field: placeholder, text: text)
+                        }
+                        .onChange(of: isSecureFieldFocused) { focused in
+                            if focused {
+                                textFieldInteractionStartTime = Date()
+                            } else {
+                                trackTextFieldInteraction(field: placeholder, text: text)
+                            }
+                        }
+                }
             }
-            
+
             Button(action: {
                 isPasswordVisible.toggle()
+                passwordToggleCount += 1 // Increment the count when the toggle is pressed
             }) {
                 Image(systemName: isPasswordVisible ? "eye.slash" : "eye")
                     .foregroundColor(Color("ButtonGreyLightStroke"))
             }
-            
         }
         .padding()
         .frame(width: 330, height: 50)
@@ -194,37 +270,65 @@ struct CustomPasswordField: View {
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color(red: 0.62, green: 0.62, blue: 0.62).opacity(0.80), lineWidth: 0.5)
+                .stroke(Color(.sRGB, red: 0.62, green: 0.62, blue: 0.62, opacity: 0.80), lineWidth: 0.5)
         )
         .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 4, y: 4)
+    }
+    
+    private func trackTextFieldInteraction(field: LocalizedStringKey, text: String) {
+        guard let startTime = textFieldInteractionStartTime else { return }
+
+        let duration = Date().timeIntervalSince(startTime)
+
+        Mixpanel.mainInstance().track(event: "MIX \(String(describing: field)) TextField Interaction in \(viewName) View", properties: [
+            "field": String(describing: field),
+            "start_time": startTime.timeIntervalSince1970,
+            "duration": duration,
+            "\(String(describing: field))_length": text.count
+        ])
+
+        textFieldInteractionStartTime = nil
     }
 }
 
 struct CustomDateTextField: View {
     var placeholder: String = "DD/MM/YYYY"
     @Binding var dateText: String
+    var viewName: String
+    @Binding var calendarTapCount: Int
+    
     @State private var showDatePicker = false
     @State private var selectedDate = Date()
     
+    @State private var textFieldInteractionStartTime: Date?
+    @State private var textFieldInteractionDuration: TimeInterval = 0
+    
     var body: some View {
         ZStack(alignment: .trailing) {
-            TextField(placeholder, text: $dateText)
-                .font(Font.custom("Inter", size: 18))
-                .foregroundColor(Color.black.opacity(0.60))
-                .padding(15)
-                .accentColor(Color("ButtonGreyLightStroke"))
-                .frame(width: 330, height: 50)
-                .background(Color.white)
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray.opacity(0.8), lineWidth: 0.5)
-                )
-                .shadow(color: Color.black.opacity(0.25), radius: 4, y: 4)
-                .keyboardType(.numberPad)
-                .onChange(of: dateText, perform: formatDateInput)
+            TextField(placeholder, text: $dateText, onEditingChanged: { editing in
+                if editing {
+                    textFieldInteractionStartTime = Date()
+                } else {
+                    trackTextFieldInteraction(field: placeholder, text: dateText)
+                }
+            })
+            .font(Font.custom("Inter", size: 18))
+            .foregroundColor(Color.black.opacity(0.60))
+            .padding(15)
+            .accentColor(Color("ButtonGreyLightStroke"))
+            .frame(width: 330, height: 50)
+            .background(Color.white)
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray.opacity(0.8), lineWidth: 0.5)
+            )
+            .shadow(color: Color.black.opacity(0.25), radius: 4, y: 4)
+            .keyboardType(.numberPad)
+            .onChange(of: dateText, perform: formatDateInput)
             
             Button(action: {
+                calendarTapCount += 1
                 showDatePicker.toggle()
             }) {
                 Image(systemName: "calendar")
@@ -262,12 +366,10 @@ struct CustomDateTextField: View {
     }
     
     private func formatDateInput(_ value: String) {
-        guard !value.isEmpty else {
-            return // Do nothing if the input is empty
-        }
+        guard !value.isEmpty else { return }
 
-        let digitsOnly = value.filter { $0.isNumber } // Only keep the digits
-        
+        let digitsOnly = value.filter { $0.isNumber }
+
         switch digitsOnly.count {
         case 1...2:
             dateText = digitsOnly
@@ -288,11 +390,25 @@ struct CustomDateTextField: View {
             dateText = "\(day)/\(month)/\(year)"
         }
     }
+    
+    private func trackTextFieldInteraction(field: String, text: String) {
+        guard let startTime = textFieldInteractionStartTime else { return }
+        let duration = Date().timeIntervalSince(startTime)
+        
+        Mixpanel.mainInstance().track(event: "MIX \(field) TextField Interaction in \(viewName) View", properties: [
+            "field": field,
+            "start_time": startTime.timeIntervalSince1970,
+            "duration": duration,
+            "\(field.lowercased())_length": text.count
+        ])
+        
+        textFieldInteractionStartTime = nil
+    }
 }
 
 // Buttons
 struct CustomButton: View {
-    var title: String
+    var title: LocalizedStringKey
     var backgroundColor: Color
     var textColor: Color
     var width: CGFloat = 140
@@ -311,7 +427,7 @@ struct CustomButton: View {
 }
 
 struct CustomRegistrationButton: View {
-    var title: String
+    var title: LocalizedStringKey
     var iconName: String? = nil
     var backgroundColor: Color = Color(red: 0.88, green: 0.88, blue: 0.88)
     var textColor: Color = Color("ButtonTurquoiseMoreDark")
@@ -375,7 +491,10 @@ struct CustomCheckbox<Option: Hashable & CustomStringConvertible>: View {
     let options: [Option]
     @Binding var selectedOption: Option?
     var font: Font = Font.custom("Inter", size: 15)
-    
+
+    // Mixpanel tracking variable
+    var trackingEvent: String?
+
     var body: some View {
         HStack(spacing: 50) { // Spacing between the options
             ForEach(options, id: \.self) { option in
@@ -386,9 +505,16 @@ struct CustomCheckbox<Option: Hashable & CustomStringConvertible>: View {
                         .foregroundColor(selectedOption == option ? .buttonPurpleLight : .gray)
                         .onTapGesture {
                             selectedOption = (selectedOption == option) ? nil : option
+
+                            // Track Mixpanel event when a checkbox is tapped
+                            if let event = trackingEvent {
+                                Mixpanel.mainInstance().track(event: event, properties: [
+                                    "selectedOption": option.description
+                                ])
+                            }
                         }
                     
-                    Text(option.description)
+                    Text(LocalizedStringKey(option.description))
                         .font(font)
                         .foregroundColor(.black)
                 }
@@ -400,18 +526,21 @@ struct CustomCheckbox<Option: Hashable & CustomStringConvertible>: View {
 
 // Dorpdown
 struct DropDownTextField: View {
-    let label: String
-    let placeholder: String
+    let label: LocalizedStringKey
+    let placeholder: LocalizedStringKey
     let fieldWidth: CGFloat
     let units: [String]
     @Binding var text: String
     @Binding var selectedUnit: String
-    @State private var isPickerOpen: Bool = false
+    var viewName: String = "Unknown"
     var isTextFieldDisabled: Bool = false
 
+    @State private var isPickerOpen: Bool = false
+    @State private var textFieldInteractionStartTime: Date?
+    
     var body: some View {
         HStack {
-            if !label.isEmpty {
+            if label != "" {
                 Text(label)
                     .font(Font.custom("Inter", size: 18))
                     .foregroundColor(.black)
@@ -420,33 +549,32 @@ struct DropDownTextField: View {
             }
             
             ZStack(alignment: .trailing) {
-                TextField(
-                    text.isEmpty ? placeholder : text,
-                    text: $text
-                )
+                TextField(placeholder, text: $text, onEditingChanged: { editing in
+                    if editing {
+                        textFieldInteractionStartTime = Date()
+                    } else {
+                        trackDropDownTextFieldInteraction(field: label, text: text)
+                    }
+                })
                 .keyboardType(.decimalPad)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(width: fieldWidth)
-                .accentColor(Color("ButtonGreyLightStroke")) // For typing bar
-                .disabled(isTextFieldDisabled) // Disable typing into TextField
+                .accentColor(Color("ButtonGreyLightStroke"))
+                .disabled(isTextFieldDisabled)
                 .submitLabel(.done)
                 .onSubmit {
-                    hideKeyboard() // Hide keyboard when return is pressed
+                    hideKeyboard()
                 }
                 .onReceive(Just(text)) { newValue in
-                    // Apply text filtering only when isTextFieldDisabled is false
                     if !isTextFieldDisabled {
-                        // Prevent entering letters and allow only valid double inputs
                         let filtered = newValue.filter { "0123456789.".contains($0) }
                         let components = filtered.components(separatedBy: ".")
-                                    
-                        // Allow only one decimal point
                         if components.count <= 2 {
                             text = filtered
                         }
                     }
                 }
-            
+                
                 Menu {
                     ForEach(units, id: \.self) { unit in
                         Button(action: {
@@ -465,12 +593,26 @@ struct DropDownTextField: View {
                 }
                 .frame(width: 40, height: 40)
             }
-            .frame(width: fieldWidth + 60) // Adjust width to account for the dropdown icon
+            .frame(width: fieldWidth + 60)
             .padding(.leading, -20)
         }
     }
-}
 
+    private func trackDropDownTextFieldInteraction(field: LocalizedStringKey, text: String) {
+        guard let startTime = textFieldInteractionStartTime else { return }
+        
+        let duration = Date().timeIntervalSince(startTime)
+        
+        Mixpanel.mainInstance().track(event: "MIX \(label) DropDownTextField Interaction in \(viewName) View", properties: [
+            "field": "\(field)",
+            "input_value": text,
+            "start_time": startTime.timeIntervalSince1970,
+            "duration": duration
+        ])
+        
+        textFieldInteractionStartTime = nil
+    }
+}
 struct DropDownEntries: View {
     let label: String
     let placeholder: String

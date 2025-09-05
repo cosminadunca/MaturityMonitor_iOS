@@ -1,0 +1,4456 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " "
+          }
+        }
+      }
+    },
+    " it is " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إنه"
+          }
+        }
+      }
+    },
+    "(Optional)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(اختياري)"
+          }
+        }
+      }
+    },
+    ") and all your information will remain anonymous. Secondly, we may use personal information for teaching and learning purposes. If so, any data, pictures or videos will be anonymised." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ") وستظل جميع معلوماتك مجهولة الهوية. ثانيًا، قد نستخدم المعلومات الشخصية لأغراض التعليم والتعلّم. وفي هذه الحالة، سيتم إخفاء هوية أي بيانات أو صور أو مقاطع فيديو."
+          }
+        }
+      }
+    },
+    "%@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " %2$@ %1$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ cm" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سم %@ "
+          }
+        }
+      }
+    },
+    "%@ kg" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كجم %@"
+          }
+        }
+      }
+    },
+    "%@ yrs" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "س %@ "
+          }
+        }
+      }
+    },
+    "%lld cm" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " سم %lld  "
+          }
+        }
+      }
+    },
+    "0 %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 %@ "
+          }
+        }
+      }
+    },
+    "1. I understand that the validated equations used in this app are estimations of somatic maturity and should be used as indications only." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. أنا أفهم أن المعادلات المُثبتة المستخدمة في هذا التطبيق هي تقديرات للنضج الجسدي ويجب استخدامها كمؤشرات فقط."
+          }
+        }
+      }
+    },
+    "2. All the personal information that I have provided is accurate and up-to-date." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. جميع المعلومات الشخصية التي قدمتها دقيقة ومحدثة."
+          }
+        }
+      }
+    },
+    "3. I consent to the data I input into this app being anonymously stored and potentially used by York St John University for research purposes." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. أوافق على تخزين البيانات التي أدخلها في هذا التطبيق بشكل مجهول وقد يتم استخدامها من قبل جامعة يورك سانت جون لأغراض البحث."
+          }
+        }
+      }
+    },
+    "Accept" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موافقة"
+          }
+        }
+      }
+    },
+    "Account" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حساب"
+          }
+        }
+      }
+    },
+    "Add child" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إضافة طفل"
+          }
+        }
+      }
+    },
+    "Add entry" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إضافة إدخال"
+          }
+        }
+      }
+    },
+    "Add new child" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إضافة طفل جديد"
+          }
+        }
+      }
+    },
+    "Afghanistan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أفغانستان"
+          }
+        }
+      }
+    },
+    "Albania" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ألبانيا"
+          }
+        }
+      }
+    },
+    "Algeria" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الجزائر"
+          }
+        }
+      }
+    },
+    "All personal information gathered and held by York St John University relating to its applicants and students is treated with the care and confidentiality required by the General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يتم التعامل مع جميع المعلومات الشخصية التي تجمعها جامعة يورك سانت جون والخاصة بالمتقدمين والطلاب بعناية وسرية وفقًا للائحة العامة لحماية البيانات (UK GDPR) وقانون حماية البيانات لعام 2018."
+          }
+        }
+      }
+    },
+    "Already have an account?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل لديك حساب بالفعل؟"
+          }
+        }
+      }
+    },
+    "AMBER" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كهرماني"
+          }
+        }
+      }
+    },
+    "American Football" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كرة القدم الأمريكية"
+          }
+        }
+      }
+    },
+    "An entry needs to be added for this graph to display." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يجب إضافة إدخال لكي يظهر هذا الرسم البياني."
+          }
+        }
+      }
+    },
+    "Andorra" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أندورا"
+          }
+        }
+      }
+    },
+    "Angola" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أنغولا"
+          }
+        }
+      }
+    },
+    "Antigua & Deps" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أنتيغوا وباربودا والجزر التابعة"
+          }
+        }
+      }
+    },
+    "Any questions or concerns?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل لديك أي أسئلة أو استفسارات؟"
+          }
+        }
+      }
+    },
+    "Approve" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موافقة"
+          }
+        }
+      }
+    },
+    "Approve Data for Research" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موافقة على البيانات من أجل البحث"
+          }
+        }
+      }
+    },
+    "Are these details measured or estimated?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل تم قياس هذه التفاصيل أم تقديرها؟"
+          }
+        }
+      }
+    },
+    "Are you sure you want to delete this entry created by you?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل أنت متأكد أنك تريد حذف هذه السجل الذي قمت بإنشائه؟"
+          }
+        }
+      }
+    },
+    "Are you sure?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل أنت متأكد؟"
+          }
+        }
+      }
+    },
+    "Argentina" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الأرجنتين"
+          }
+        }
+      }
+    },
+    "Armenia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أرمينيا"
+          }
+        }
+      }
+    },
+    "As we are a university-centred entity, we may use personal information for research purposes. If we do this, your personal information will be handled according to University Ethical Guidelines (available " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نظرًا لأننا كيان مرتبط بالجامعة، قد نستخدم المعلومات الشخصية لأغراض البحث. إذا فعلنا ذلك، سيتم التعامل مع معلوماتك الشخصية وفقًا لإرشادات الأخلاقيات الجامعية (المتاحة"
+          }
+        }
+      }
+    },
+    "As we are also collecting information relating to your health, which the UK GDPR categorises as special category data, we are required to establish an additional condition for processing the information. For the purpose of this privacy notice the processing is covered under GDPR Article 9 (2)(a) where the data subject has given explicit consent to the processing of those personal data for one or more specified purposes." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نظرًا لأننا نقوم أيضًا بجمع معلومات تتعلق بصحتك، والتي يصنفها قانون حماية البيانات العامة في المملكة المتحدة (UK GDPR) كبيانات فئة خاصة، نحن ملزمون بوضع شرط إضافي لمعالجة هذه المعلومات. لأغراض هذا الإشعار بالخصوصية، يتم تغطية المعالجة بموجب المادة 9 (2)(أ) من اللائحة العامة لحماية البيانات (GDPR) حيث يكون الموضوع قد أعطى موافقة صريحة على معالجة تلك البيانات الشخصية لغرض أو أكثر من الأغراض المحددة."
+          }
+        }
+      }
+    },
+    "Asian, British Asian, Welsh Asian" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آسيوي، آسيوي بريطاني، آسيوي ويلزي"
+          }
+        }
+      }
+    },
+    "Athletics" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ألعاب القوى"
+          }
+        }
+      }
+    },
+    "Australia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أستراليا"
+          }
+        }
+      }
+    },
+    "Austria" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "النمسا"
+          }
+        }
+      }
+    },
+    "Azerbaijan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أَذَرْبَيْجان"
+          }
+        }
+      }
+    },
+    "Badminton" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كرة الريشة"
+          }
+        }
+      }
+    },
+    "Bahamas" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جزر البهاما"
+          }
+        }
+      }
+    },
+    "Bahrain" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مَمْلَكَةُ الْبَحْرَيْن"
+          }
+        }
+      }
+    },
+    "Bangladesh" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بنغلاديش"
+          }
+        }
+      }
+    },
+    "Barbados" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بربادوس"
+          }
+        }
+      }
+    },
+    "Basketball" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كرة السلة"
+          }
+        }
+      }
+    },
+    "Belarus" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بيلاروس"
+          }
+        }
+      }
+    },
+    "Belgium" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بلجيكا"
+          }
+        }
+      }
+    },
+    "Belize" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بليز"
+          }
+        }
+      }
+    },
+    "Benin" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بنين"
+          }
+        }
+      }
+    },
+    "Bhutan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بوتان"
+          }
+        }
+      }
+    },
+    "Biological Age" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "العمر البيولوجي"
+          }
+        }
+      }
+    },
+    "Biological Age Information" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معلومات العمر البيولوجي"
+          }
+        }
+      }
+    },
+    "Birth Father Height" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طول الأب البيولوجي"
+          }
+        }
+      }
+    },
+    "Birth Mother Height" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طول الأم البيولوجية"
+          }
+        }
+      }
+    },
+    "Black, British Black, Welsh Black, Caribbean, African" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أسود، بريطاني أسود، ويلزي أسود، كاريبي، أفريقي"
+          }
+        }
+      }
+    },
+    "Body Mass Tempo (kg/year)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وتيرة كتلة الجسم (كجم/سنة)"
+          }
+        }
+      }
+    },
+    "Body Mass Tempo Information" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معلومات وتيرة كتلة الجسم"
+          }
+        }
+      }
+    },
+    "Bolivia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بوليفيا"
+          }
+        }
+      }
+    },
+    "Bosnia Herzegovina" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البوسنة والهرسك"
+          }
+        }
+      }
+    },
+    "Botswana" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بوتسوانا"
+          }
+        }
+      }
+    },
+    "Boxing" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملاكمة"
+          }
+        }
+      }
+    },
+    "Brazil" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البرازيل"
+          }
+        }
+      }
+    },
+    "Brunei" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بْروناي"
+          }
+        }
+      }
+    },
+    "Bulgaria" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بُلْغارِيا"
+          }
+        }
+      }
+    },
+    "Burkina" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بورْكينا فاسو"
+          }
+        }
+      }
+    },
+    "Burundi" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بورونْدي"
+          }
+        }
+      }
+    },
+    "By providing your data, you consent to the University’s use of your personal data as outlined below." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "من خلال تقديمك لبياناتك، فإنك توافق على استخدام الجامعة لبياناتك الشخصية كما هو موضح أدناه."
+          }
+        }
+      }
+    },
+    "Cambodia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كمبوديا"
+          }
+        }
+      }
+    },
+    "Cameroon" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الكاميرون"
+          }
+        }
+      }
+    },
+    "Canada" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كندا"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يلغي"
+          }
+        }
+      }
+    },
+    "Cape Verde" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الرأس الأخضر"
+          }
+        }
+      }
+    },
+    "Central African Rep" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جمهورية إفريقيا الوسطى"
+          }
+        }
+      }
+    },
+    "Chad" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تشاد"
+          }
+        }
+      }
+    },
+    "Change date of birth: " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تغيير تاريخ الميلاد:"
+          }
+        }
+      }
+    },
+    "Change gender: " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تغيير الجنس:"
+          }
+        }
+      }
+    },
+    "Change in Height (Cm)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تغيير الطول (سم)"
+          }
+        }
+      }
+    },
+    "Change name: " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تغيير الاسم:"
+          }
+        }
+      }
+    },
+    "Change Password" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تغيير كلمة المرور"
+          }
+        }
+      }
+    },
+    "Change surname: " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تغيير اللقب:"
+          }
+        }
+      }
+    },
+    "Child" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طفل"
+          }
+        }
+      }
+    },
+    "Child: " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطفل:"
+          }
+        }
+      }
+    },
+    "Child's details" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تفاصيل الطفل"
+          }
+        }
+      }
+    },
+    "Children" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أطفال"
+          }
+        }
+      }
+    },
+    "Children & Groups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الأطفال والمجموعات"
+          }
+        }
+      }
+    },
+    "Chile" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شيلي"
+          }
+        }
+      }
+    },
+    "China" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الصين"
+          }
+        }
+      }
+    },
+    "Choose another entry below:" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر إدخالًا آخر أدناه"
+          }
+        }
+      }
+    },
+    "Choose one of the following" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر واحدًا من الخيارات التالية"
+          }
+        }
+      }
+    },
+    "Chronological Age" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "العمر الزمني"
+          }
+        }
+      }
+    },
+    "Chronological Age Information" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معلومات العمر الزمني"
+          }
+        }
+      }
+    },
+    "Colombia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كولومبيا"
+          }
+        }
+      }
+    },
+    "Comoros" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جزر القمر"
+          }
+        }
+      }
+    },
+    "Confirm" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تأكيد"
+          }
+        }
+      }
+    },
+    "Confirm Deletion" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تأكيد الحذف"
+          }
+        }
+      }
+    },
+    "Confirm Email" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تأكيد البريد الإلكتروني"
+          }
+        }
+      }
+    },
+    "Congo" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الكونغو"
+          }
+        }
+      }
+    },
+    "Congo {Democratic Rep}" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الكونغو {الجمهورية الديمقراطية}"
+          }
+        }
+      }
+    },
+    "Costa Rica" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كوستاريكا"
+          }
+        }
+      }
+    },
+    "Country" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الدولة"
+          }
+        }
+      }
+    },
+    "Created by: %@ %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بواسطة تم الإنشاء: %1$@ %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Created by: %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "Created by: YOU" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم الإنشاء بواسطة: أنت"
+          }
+        }
+      }
+    },
+    "Cricket" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لعبة الكريكيت"
+          }
+        }
+      }
+    },
+    "Croatia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كرواتيا"
+          }
+        }
+      }
+    },
+    "Crossfit" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رياضة الكروس فيت"
+          }
+        }
+      }
+    },
+    "Cuba" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كوبا"
+          }
+        }
+      }
+    },
+    "Current measurement type is: %@!" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوع القياس الحالي هو: %@!"
+          }
+        }
+      }
+    },
+    "Cycling" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ركوب الدراجات"
+          }
+        }
+      }
+    },
+    "Cyprus" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قبرص"
+          }
+        }
+      }
+    },
+    "Czech Republic" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الجمهورية التشيكية"
+          }
+        }
+      }
+    },
+    "Decline" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رفض"
+          }
+        }
+      }
+    },
+    "Definition:" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تعريف:"
+          }
+        }
+      }
+    },
+    "Definition: " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تعريف:"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف"
+          }
+        }
+      }
+    },
+    "Delete Account" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف الحساب"
+          }
+        }
+      }
+    },
+    "Denmark" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الدنمارك"
+          }
+        }
+      }
+    },
+    "Djibouti" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جيبوتي"
+          }
+        }
+      }
+    },
+    "Dominica" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دومينيكا"
+          }
+        }
+      }
+    },
+    "Dominican Republic" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جمهورية الدومينيكان"
+          }
+        }
+      }
+    },
+    "Don’t have an account yet?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل ليس لديك حساب بعد؟"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم"
+          }
+        }
+      }
+    },
+    "Early" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مبكر"
+          }
+        }
+      }
+    },
+    "East Timor" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تيمور الشرقية"
+          }
+        }
+      }
+    },
+    "Ecuador" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الاكوادور"
+          }
+        }
+      }
+    },
+    "Edit profile" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تعديل الملف الشخصي"
+          }
+        }
+      }
+    },
+    "Egypt" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مصر"
+          }
+        }
+      }
+    },
+    "El Salvador" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "السلفادور"
+          }
+        }
+      }
+    },
+    "Email" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البريد الإلكتروني"
+          }
+        }
+      }
+    },
+    "Enter child's surname" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل لقب الطفل"
+          }
+        }
+      }
+    },
+    "Enter new password" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل كلمة المرور الجديدة"
+          }
+        }
+      }
+    },
+    "Enter old password" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل كلمة المرور القديمة"
+          }
+        }
+      }
+    },
+    "Enter the verification code sent to %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل رمز التحقق المرسل إلى %@"
+          }
+        }
+      }
+    },
+    "Enter unique code" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل الرمز الفريد"
+          }
+        }
+      }
+    },
+    "Enter your email address to get the verification code:" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل عنوان بريدك الإلكتروني للحصول على رمز التحقق:"
+          }
+        }
+      }
+    },
+    "Equatorial Guinea" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "غينيا الاستوائية"
+          }
+        }
+      }
+    },
+    "Eritrea" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إريتريا"
+          }
+        }
+      }
+    },
+    "Estimated" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقدر"
+          }
+        }
+      }
+    },
+    "Estimated Adult Height" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطول المتوقع للبالغين"
+          }
+        }
+      }
+    },
+    "Estonia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إستونيا"
+          }
+        }
+      }
+    },
+    "Ethiopia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أثيوبيا"
+          }
+        }
+      }
+    },
+    "Ethnicity" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "العرق"
+          }
+        }
+      }
+    },
+    "Father" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أب"
+          }
+        }
+      }
+    },
+    "Female" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أنثى"
+          }
+        }
+      }
+    },
+    "Fiji" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فيجي"
+          }
+        }
+      }
+    },
+    "Finland" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فنلندا"
+          }
+        }
+      }
+    },
+    "Football" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كرة القدم"
+          }
+        }
+      }
+    },
+    "For the purposes of processing your personal information in this instance, the data controller is York St John University, Lord Mayor’s Walk, York, YO31 7EX. The University’s Data Protection Officer is the University Secretary, York St John University, Lord Mayor’s Walk, York, YO31 7EX, tel: 01904 876027." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لأغراض معالجة معلوماتك الشخصية في هذه الحالة، الجهة المسؤولة عن البيانات هي جامعة يورك سانت جون، طريق عمدة المدينة، يورك، YO31 7EX. ضابط حماية البيانات في الجامعة هو سكرتير الجامعة، جامعة يورك سانت جون، طريق عمدة المدينة، يورك، YO31 7EX، هاتف: 01904 876027."
+          }
+        }
+      }
+    },
+    "For this graph there should be 2 entries for this child. Please go back to the Home View and add another entry (older or recent one)." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لرسم بياني هذا يجب أن يكون هناك مدخلين لهذا الطفل. يرجى العودة إلى صفحة الرئيسية وإضافة مدخل آخر (أقدم أو أحدث)."
+          }
+        }
+      }
+    },
+    "Forgot password?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نسيت كلمة السر؟"
+          }
+        }
+      }
+    },
+    "France" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فرنسا"
+          }
+        }
+      }
+    },
+    "Gabon" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الجابون"
+          }
+        }
+      }
+    },
+    "Gambia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "غامبيا"
+          }
+        }
+      }
+    },
+    "Georgia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جورجيا"
+          }
+        }
+      }
+    },
+    "Germany" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ألمانيا"
+          }
+        }
+      }
+    },
+    "Ghana" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "غانا"
+          }
+        }
+      }
+    },
+    "Golf" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جولف"
+          }
+        }
+      }
+    },
+    "Graphs" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الرسوم البيانية"
+          }
+        }
+      }
+    },
+    "Greece" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اليونان"
+          }
+        }
+      }
+    },
+    "GREEN" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أخضر"
+          }
+        }
+      }
+    },
+    "Grenada" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "غرينادا"
+          }
+        }
+      }
+    },
+    "Groups" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المجموعات"
+          }
+        }
+      }
+    },
+    "Growth Chart for:" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مخطط النمو لـ:"
+          }
+        }
+      }
+    },
+    "Growth Percentile Information" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معلومات النسبة المئوية للنمو"
+          }
+        }
+      }
+    },
+    "Growth Tempo (cm/year)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وتيرة النمو (سم/سنة)"
+          }
+        }
+      }
+    },
+    "Growth Tempo Information" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معلومات وتيرة النمو"
+          }
+        }
+      }
+    },
+    "Guatemala" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "غواتيمالا"
+          }
+        }
+      }
+    },
+    "Guinea" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "غينيا"
+          }
+        }
+      }
+    },
+    "Guinea-Bissau" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "غينيا بيساو"
+          }
+        }
+      }
+    },
+    "Guyana" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "غيانا"
+          }
+        }
+      }
+    },
+    "Haiti" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هايتي"
+          }
+        }
+      }
+    },
+    "Height" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطول"
+          }
+        }
+      }
+    },
+    "Height Change (from last)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تغيير الطول (من الأخير)"
+          }
+        }
+      }
+    },
+    "Height Change Information" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معلومات تغيير الطول"
+          }
+        }
+      }
+    },
+    "Height: %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطول: %@"
+          }
+        }
+      }
+    },
+    "Height: %@ | Weight: %@ | Sitting Height: %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطول: %1$@ | الوزن: %2$@ | الطول الجالس: %3$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Height: %1$@ | Weight: %2$@ | Sitting Height: %3$@"
+          }
+        }
+      }
+    },
+    "HERE" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هنا"
+          }
+        }
+      }
+    },
+    "Hi, %@ %@!" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مرحباً، %2$@ %1$@!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hi, %1$@ %2$@!"
+          }
+        }
+      }
+    },
+    "Hockey (Field)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هوكي (ميداني)"
+          }
+        }
+      }
+    },
+    "Hockey (Ice)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هوكي (جليد)"
+          }
+        }
+      }
+    },
+    "Home" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الصفحة الرئيسية"
+          }
+        }
+      }
+    },
+    "Honduras" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هندوراس"
+          }
+        }
+      }
+    },
+    "How do we use your personal information?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كيف نستخدم معلوماتك الشخصية؟"
+          }
+        }
+      }
+    },
+    "How to measure height" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كيف تقيس الطول"
+          }
+        }
+      }
+    },
+    "How to measure standing height" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كيف تقيس الطول الوقائي"
+          }
+        }
+      }
+    },
+    "How to measure weight" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كيف تقيس الوزن"
+          }
+        }
+      }
+    },
+    "Hungary" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هنغاريا"
+          }
+        }
+      }
+    },
+    "Iceland" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أيسلندا"
+          }
+        }
+      }
+    },
+    "If early: This individual is developing ahead of the typical curve and therefore may experience growth-related changes ahead of their peers. This individual may find some physical related activities easier than their peers, and therefore should be encouraged to continue to work on technical and tactical aspects of their sport." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كان في مرحلة مبكرة: هذا الفرد ينمو بشكل أسرع من المنحنى النمو المعتاد وبالتالي قد يمر بتغيرات مرتبطة بالنمو قبل أقرانه. قد يجد هذا الفرد بعض الأنشطة البدنية أسهل من أقرانه، ولذلك يجب تشجيعه على الاستمرار في العمل على الجوانب التقنية والتكتيكية في رياضته."
+          }
+        }
+      }
+    },
+    "If it is MID-PHV" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كان في منتصف الذروة النموية"
+          }
+        }
+      }
+    },
+    "If it is POST-PHV" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كان بعد الذروة النموية"
+          }
+        }
+      }
+    },
+    "If it is PRE-PHV" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كان قبل الذروة النموية"
+          }
+        }
+      }
+    },
+    "If late: This individual is developing slower than the typical curve and therefore may experience growth-related changes later than their peers. This individual may find some physical related activities harder than their peers, and therefore should be encouraged to rest and recover between activities and continue to work on the technical and tactical aspects of their sport." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كان في مرحلة متأخرة: هذا الفرد ينمو بشكل أبطأ من المنحنى النمو المعتاد وبالتالي قد يمر بتغيرات مرتبطة بالنمو في وقت لاحق عن أقرانه. قد يجد هذا الفرد بعض الأنشطة البدنية أصعب من أقرانه، ولذلك يجب تشجيعه على الراحة والتعافي بين الأنشطة والاستمرار في العمل على الجوانب التقنية والتكتيكية في رياضته."
+          }
+        }
+      }
+    },
+    "If mid-PHV: This individual is experiencing the adolescent growth spurt and may report symptoms of discomfort or uncoordinated movement. Please be mindful about frequent exposure to high-intensity activity and encourage a diverse movement pattern to assist with coordination related issues." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كان في مرحلة الذروة النموية: هذا الفرد يمر بطفرة النمو المراهقية وقد يشعر بأعراض عدم الراحة أو الحركة غير المتناسقة. يرجى الانتباه للتعرض المتكرر للنشاطات عالية الشدة وتشجيع نمط حركة متنوع للمساعدة في التعامل مع المشكلات المتعلقة بالتنسيق."
+          }
+        }
+      }
+    },
+    "If On-Time: This individual is developing at a typical rate and should therefore find guidelines around exposure and loading appropriate. This does not mean they will not experience discomfort and coordination related issues associated with growing, but these will likely align with others in their peer-group." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كان في الوقت المحدد: هذا الشخص يتطور بمعدل نمو طبيعي، وبالتالي يجب أن يجد الإرشادات المتعلقة بالتعرض والتحميل مناسبة. هذا لا يعني أنهم لن يعانوا من مشاكل تتعلق بعدم الراحة والتنسيق المرتبطة بالنمو، ولكن من المحتمل أن تكون هذه المشاكل مشابهة لتلك التي يعاني منها أقرانهم."
+          }
+        }
+      }
+    },
+    "If percentage is between 88-95% it is MID-PHV" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كانت النسبة بين 88-95% فهي مرحلة منتصف ذروة الطول."
+          }
+        }
+      }
+    },
+    "If percentage is less than 88% it is PRE-PHV" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كانت النسبة أقل من 88% فهي قبل مرحلة ذروة الطول."
+          }
+        }
+      }
+    },
+    "If percentage is more than 95% it is POST-PHV" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كانت النسبة أكثر من 95% فهي بعد مرحلة ذروة الطول."
+          }
+        }
+      }
+    },
+    "If post-PHV: This individual has progressed through the most rapid period of growth but may still experience some discomfort. The individual may see an increase in body mass over the coming months and should continue to be mindful of training exposure." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كان بعد مرحلة ذروة الطول: لقد مر هذا الفرد بأسرع فترة نمو، ولكنه قد لا يزال يعاني من بعض الانزعاج. قد يشهد الفرد زيادة في كتلة الجسم خلال الأشهر القادمة ويجب أن يظل حذرًا بشأن التعرض للتدريب."
+          }
+        }
+      }
+    },
+    "If pre-PHV: The individual has not yet started the adolescent growth spurt. They will be growing at a steady rate and there should be minimal concerns around training loading or coordination. If symptom free, continue as planned." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كان قبل مرحلة ذروة الطول: لم يبدأ الفرد بعد في مرحلة النمو السريع للمراهقة. سيستمر في النمو بمعدل ثابت ويجب أن تكون هناك مخاوف قليلة بشأن تحميل التدريب أو التنسيق. إذا كان خاليًا من الأعراض، استمر كما هو مخطط له."
+          }
+        }
+      }
+    },
+    "If you change the measuremnt type for one of the parents' height, make sure to change it for the other parent too so they both are either in cm or in." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا قمت بتغيير نوع القياس لارتفاع أحد الوالدين، تأكد من تغييره للوالد الآخر أيضًا بحيث يكون كلاهما إما بالسنتمتر أو بالبوصة."
+          }
+        }
+      }
+    },
+    "If you have any questions or concerns about the way we are collecting and using your personal data we request that you contact the University by emailing: " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا كانت لديك أي أسئلة أو مخاوف بشأن الطريقة التي نقوم بها بجمع واستخدام بياناتك الشخصية، نرجو منك الاتصال بالجامعة عبر البريد الإلكتروني:"
+          }
+        }
+      }
+    },
+    "If you haven't created this child, you are not allowed to change details or delete the account." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا لم تقم بإنشاء هذا الطفل، فلن يُسمح لك بتغيير التفاصيل أو حذف الحساب."
+          }
+        }
+      }
+    },
+    "India" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الهند"
+          }
+        }
+      }
+    },
+    "Indonesia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أندونيسيا"
+          }
+        }
+      }
+    },
+    "Iran" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إيران"
+          }
+        }
+      }
+    },
+    "Iraq" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "العراق"
+          }
+        }
+      }
+    },
+    "Ireland {Republic}" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أيرلندا {الجمهورية}"
+          }
+        }
+      }
+    },
+    "Israel" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إسرائيل"
+          }
+        }
+      }
+    },
+    "Italy" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إيطاليا"
+          }
+        }
+      }
+    },
+    "Ivory Coast" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ساحل العاج"
+          }
+        }
+      }
+    },
+    "Jamaica" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جامايكا"
+          }
+        }
+      }
+    },
+    "Japan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اليابان"
+          }
+        }
+      }
+    },
+    "Jordan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الأردن"
+          }
+        }
+      }
+    },
+    "Kazakhstan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كازاخستان"
+          }
+        }
+      }
+    },
+    "Kenya" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كينيا"
+          }
+        }
+      }
+    },
+    "Kiribati" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كيريباتي"
+          }
+        }
+      }
+    },
+    "Korea North" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كوريا الشمالية"
+          }
+        }
+      }
+    },
+    "Korea South" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كوريا الجنوبية"
+          }
+        }
+      }
+    },
+    "Kosovo" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كوسوفو"
+          }
+        }
+      }
+    },
+    "Kuwait" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الكويت"
+          }
+        }
+      }
+    },
+    "Kyrgyzstan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قيرغيزستان"
+          }
+        }
+      }
+    },
+    "Laos" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لاوس"
+          }
+        }
+      }
+    },
+    "Late" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "متأخر"
+          }
+        }
+      }
+    },
+    "Latvia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لاتفيا"
+          }
+        }
+      }
+    },
+    "Lebanon" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لُبْنان"
+          }
+        }
+      }
+    },
+    "Lesotho" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ليسوتو"
+          }
+        }
+      }
+    },
+    "Liberia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ليبيريا"
+          }
+        }
+      }
+    },
+    "Libya" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ليبيا"
+          }
+        }
+      }
+    },
+    "Liechtenstein" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ليختنشتاين"
+          }
+        }
+      }
+    },
+    "Link child" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ربط الطفل"
+          }
+        }
+      }
+    },
+    "Link existing account" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ربط الحساب الموجود"
+          }
+        }
+      }
+    },
+    "Link existing group" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ربط المجموعة الموجودة"
+          }
+        }
+      }
+    },
+    "Link group" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ربط المجموعة"
+          }
+        }
+      }
+    },
+    "Lithuania" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ليتوانيا"
+          }
+        }
+      }
+    },
+    "Loading entries..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاري تحميل الإدخالات..."
+          }
+        }
+      }
+    },
+    "Loading growth chart..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاري تحميل مخطط النمو..."
+          }
+        }
+      }
+    },
+    "Loading..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاري التحميل..."
+          }
+        }
+      }
+    },
+    "Login" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تسجيل الدخول"
+          }
+        }
+      }
+    },
+    "Logout" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تسجيل الخروج"
+          }
+        }
+      }
+    },
+    "Luxembourg" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لوكسمبورغ"
+          }
+        }
+      }
+    },
+    "Macedonia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقدونيا"
+          }
+        }
+      }
+    },
+    "Madagascar" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مدغشقر"
+          }
+        }
+      }
+    },
+    "Malawi" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملاوي"
+          }
+        }
+      }
+    },
+    "Malaysia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ماليزيا"
+          }
+        }
+      }
+    },
+    "Maldives" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جزر المالديف"
+          }
+        }
+      }
+    },
+    "Male" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ذكر"
+          }
+        }
+      }
+    },
+    "Mali" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مالي"
+          }
+        }
+      }
+    },
+    "Malta" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مالطا"
+          }
+        }
+      }
+    },
+    "Marshall Islands" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جزر مارشال"
+          }
+        }
+      }
+    },
+    "Mass Change (from last)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تغيير الكتلة (من آخر قياس)"
+          }
+        }
+      }
+    },
+    "Mass Change Information" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معلومات تغيير الكتلة"
+          }
+        }
+      }
+    },
+    "Maturity Category" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فئة النضج"
+          }
+        }
+      }
+    },
+    "Maturity Estimations" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تقديرات النضج"
+          }
+        }
+      }
+    },
+    "Maturity Monitor" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maturity Monitor"
+          }
+        }
+      }
+    },
+    "Maturity Timing (Early On-Time, Late) – This is calculated by the offset between your chronological age and biological age and represents whether the individual is ahead of typical or delayed in their maturity timing." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "توقيت النضج (مبكر، في الوقت المحدد، متأخر) – يتم حساب ذلك من خلال الفارق بين العمر الزمني والعمر البيولوجي ويعكس ما إذا كان الفرد متقدماً عن النمو المعتاد أو متأخراً في توقيت نضجه."
+          }
+        }
+      }
+    },
+    "Mauritania" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موريتانيا"
+          }
+        }
+      }
+    },
+    "Mauritius" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موريشيوس"
+          }
+        }
+      }
+    },
+    "Measured" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقاس"
+          }
+        }
+      }
+    },
+    "Mexico" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المكسيك"
+          }
+        }
+      }
+    },
+    "Micronesia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ميكرونيزيا"
+          }
+        }
+      }
+    },
+    "Mid-PHV" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منتصف سرعة النمو"
+          }
+        }
+      }
+    },
+    "Mixed or Multiple Ethnicities" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أعراق مختلطة أو متعددة"
+          }
+        }
+      }
+    },
+    "Moldova" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مولدوفا"
+          }
+        }
+      }
+    },
+    "Monaco" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موناكو"
+          }
+        }
+      }
+    },
+    "Mongolia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منغوليا"
+          }
+        }
+      }
+    },
+    "Montenegro" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الجبل الأسود"
+          }
+        }
+      }
+    },
+    "Morocco" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المغرب"
+          }
+        }
+      }
+    },
+    "Mother" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أم"
+          }
+        }
+      }
+    },
+    "Mozambique" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موزمبيق"
+          }
+        }
+      }
+    },
+    "Myanmar, {Burma}" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ميانمار (بورما)"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الاسم"
+          }
+        }
+      }
+    },
+    "Namibia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ناميبيا"
+          }
+        }
+      }
+    },
+    "Nauru" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ناورو"
+          }
+        }
+      }
+    },
+    "Nepal" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نيبال"
+          }
+        }
+      }
+    },
+    "Netball" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كرة الشبكة"
+          }
+        }
+      }
+    },
+    "Netherlands" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هولندا"
+          }
+        }
+      }
+    },
+    "New" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جديد"
+          }
+        }
+      }
+    },
+    "New Zealand" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نيوزيلندا"
+          }
+        }
+      }
+    },
+    "Next step" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الخطوة التالية"
+          }
+        }
+      }
+    },
+    "Nicaragua" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نيكاراغوا"
+          }
+        }
+      }
+    },
+    "Niger" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "النيجر"
+          }
+        }
+      }
+    },
+    "Nigeria" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نيجيريا"
+          }
+        }
+      }
+    },
+    "No" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا"
+          }
+        }
+      }
+    },
+    "No entries available yet. Add a new entry!" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا توجد مدخلات متاحة بعد. أضف مدخلاً جديدًا!"
+          }
+        }
+      }
+    },
+    "Norway" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "النرويج"
+          }
+        }
+      }
+    },
+    "Oman" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عمان"
+          }
+        }
+      }
+    },
+    "On-Time" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "في الوقت المحدد"
+          }
+        }
+      }
+    },
+    "Other Ethnic Group" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذا باللغة العربية: مجموعة عرقية أخرى"
+          }
+        }
+      }
+    },
+    "Pakistan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "باكستان"
+          }
+        }
+      }
+    },
+    "Palau" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بالاو"
+          }
+        }
+      }
+    },
+    "Panama" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بنما"
+          }
+        }
+      }
+    },
+    "Papua New Guinea" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بابوا غينيا الجديدة"
+          }
+        }
+      }
+    },
+    "Paraguay" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "باراجواي"
+          }
+        }
+      }
+    },
+    "Password" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كلمة المرور"
+          }
+        }
+      }
+    },
+    "Percentage of Adult Height" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نسبة الطول النهائي للبالغ"
+          }
+        }
+      }
+    },
+    "Percentage Of Adult Height" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نسبة الطول الكامل للبالغ"
+          }
+        }
+      }
+    },
+    "Peru" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بيرو"
+          }
+        }
+      }
+    },
+    "Philippines" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فيلبيني"
+          }
+        }
+      }
+    },
+    "Please add an entry first!" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يرجى إضافة إدخال أولاً!"
+          }
+        }
+      }
+    },
+    "Please enter below the verification code sent to your email address:" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يرجى إدخال رمز التحقق المرسل إلى عنوان بريدك الإلكتروني أدناه:"
+          }
+        }
+      }
+    },
+    "Please enter the date of birth below" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يرجى إدخال تاريخ الميلاد أدناه"
+          }
+        }
+      }
+    },
+    "Please enter their date of birth below" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يرجى إدخال تاريخ ميلادهم أدناه"
+          }
+        }
+      }
+    },
+    "Poland" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بولندا"
+          }
+        }
+      }
+    },
+    "Portugal" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البرتغال"
+          }
+        }
+      }
+    },
+    "Post-PHV" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ما بعد PHV"
+          }
+        }
+      }
+    },
+    "Pre-PHV" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ما قبل PHV"
+          }
+        }
+      }
+    },
+    "Predicted Adult Height for:" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطول المتوقع للبالغين لـ:"
+          }
+        }
+      }
+    },
+    "Previous" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سابق"
+          }
+        }
+      }
+    },
+    "Previous step" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الخطوة السابقة"
+          }
+        }
+      }
+    },
+    "Primary Sport" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الرياضة الأساسية"
+          }
+        }
+      }
+    },
+    "Qatar" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قطر"
+          }
+        }
+      }
+    },
+    "Re-enter Email" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أعد إدخال البريد الإلكتروني"
+          }
+        }
+      }
+    },
+    "Re-enter new password" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أعد إدخال كلمة المرور الجديدة"
+          }
+        }
+      }
+    },
+    "Re-enter your email address:" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أعد إدخال عنوان بريدك الإلكتروني:"
+          }
+        }
+      }
+    },
+    "RED" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أحمر"
+          }
+        }
+      }
+    },
+    "Registration" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التسجيل"
+          }
+        }
+      }
+    },
+    "Remove" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إزالة"
+          }
+        }
+      }
+    },
+    "Request access to a child's details by entering the following:" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طلب الوصول إلى تفاصيل الطفل عن طريق إدخال ما يلي:"
+          }
+        }
+      }
+    },
+    "Request account access" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طلب الوصول إلى الحساب"
+          }
+        }
+      }
+    },
+    "Research Agreement" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اتفاقية البحث"
+          }
+        }
+      }
+    },
+    "Resend" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة الإرسال"
+          }
+        }
+      }
+    },
+    "Reset" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة تعيين"
+          }
+        }
+      }
+    },
+    "Reset password" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة تعيين كلمة المرور"
+          }
+        }
+      }
+    },
+    "Reset Password" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة تعيين كلمة المرور"
+          }
+        }
+      }
+    },
+    "Romania" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رومانيا"
+          }
+        }
+      }
+    },
+    "Rugby League" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دوري الرغبي"
+          }
+        }
+      }
+    },
+    "Rugby Union" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اتحاد الرغبي"
+          }
+        }
+      }
+    },
+    "Running" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الجري"
+          }
+        }
+      }
+    },
+    "Russian Federation" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الاتحاد الروسي"
+          }
+        }
+      }
+    },
+    "Rwanda" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رواندا"
+          }
+        }
+      }
+    },
+    "Saint Vincent & the Grenadines" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سانت فينسنت والغرينادين"
+          }
+        }
+      }
+    },
+    "Samoa" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ساموا"
+          }
+        }
+      }
+    },
+    "San Marino" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سان مارينو"
+          }
+        }
+      }
+    },
+    "Sao Tome & Principe" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ساو تومي وبرينسيبي"
+          }
+        }
+      }
+    },
+    "Saudi Arabia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المملكة العربية السعودية"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حفظ"
+          }
+        }
+      }
+    },
+    "Search" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بحث"
+          }
+        }
+      }
+    },
+    "Search by name or surname..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ابحث بالاسم أو اللقب..."
+          }
+        }
+      }
+    },
+    "Select a date" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر تاريخًا"
+          }
+        }
+      }
+    },
+    "Select Country" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر الدولة"
+          }
+        }
+      }
+    },
+    "Select Ethnicity" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر العرق"
+          }
+        }
+      }
+    },
+    "Select Sport" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر الرياضة"
+          }
+        }
+      }
+    },
+    "Send code" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إرسال الرمز"
+          }
+        }
+      }
+    },
+    "Senegal" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "السنغال"
+          }
+        }
+      }
+    },
+    "Serbia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "صربيا"
+          }
+        }
+      }
+    },
+    "Seychelles" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سيشيل"
+          }
+        }
+      }
+    },
+    "Sierra Leone" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سيراليون"
+          }
+        }
+      }
+    },
+    "Sign In" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تسجيل الدخول"
+          }
+        }
+      }
+    },
+    "Sign Up" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التسجيل"
+          }
+        }
+      }
+    },
+    "Signing In..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاري تسجيل الدخول..."
+          }
+        }
+      }
+    },
+    "Signing Up..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاري التسجيل..."
+          }
+        }
+      }
+    },
+    "Singapore" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سنغافورة"
+          }
+        }
+      }
+    },
+    "Sitting Height" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطول الجالس"
+          }
+        }
+      }
+    },
+    "Sitting Height: %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطول الجالس: %@"
+          }
+        }
+      }
+    },
+    "Slovakia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سلوفاكيا"
+          }
+        }
+      }
+    },
+    "Slovenia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سلوفينيا"
+          }
+        }
+      }
+    },
+    "Solomon Islands" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جزر سليمان"
+          }
+        }
+      }
+    },
+    "Somalia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الصومال"
+          }
+        }
+      }
+    },
+    "South Africa" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جنوب أفريقيا"
+          }
+        }
+      }
+    },
+    "South Sudan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جنوب السودان"
+          }
+        }
+      }
+    },
+    "Spain" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إسبانيا"
+          }
+        }
+      }
+    },
+    "Squash" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الإسكواش"
+          }
+        }
+      }
+    },
+    "Sri Lanka" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سريلانكا"
+          }
+        }
+      }
+    },
+    "St Kitts & Nevis" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سانت كيتس ونيفيس"
+          }
+        }
+      }
+    },
+    "St Lucia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سانت لوسيا"
+          }
+        }
+      }
+    },
+    "Statement and Disclaimer" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البيان والتنويه"
+          }
+        }
+      }
+    },
+    "Sudan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "السودان"
+          }
+        }
+      }
+    },
+    "Suriname" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سورينام"
+          }
+        }
+      }
+    },
+    "Surname" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اللقب"
+          }
+        }
+      }
+    },
+    "Swaziland" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إيسواتيني"
+          }
+        }
+      }
+    },
+    "Sweden" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "السويد"
+          }
+        }
+      }
+    },
+    "Swimming" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "السباحة"
+          }
+        }
+      }
+    },
+    "Switch account" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تبديل الحساب"
+          }
+        }
+      }
+    },
+    "Switch to this child" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التبديل إلى هذا الطفل"
+          }
+        }
+      }
+    },
+    "Switzerland" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سويسرا"
+          }
+        }
+      }
+    },
+    "Syria" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سوريا"
+          }
+        }
+      }
+    },
+    "Taiwan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تايوان"
+          }
+        }
+      }
+    },
+    "Tajikistan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طاجيكستان"
+          }
+        }
+      }
+    },
+    "Tanzania" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تنزانيا"
+          }
+        }
+      }
+    },
+    "Tennis" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التنس"
+          }
+        }
+      }
+    },
+    "Thailand" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تايلاند"
+          }
+        }
+      }
+    },
+    "The information provided by this app is an indication of biological maturity only. To the best of our knowledge, the information is accurate however at times equations may vary from actual growth patterns. It should be used as an indication of growth and maturation only. Maturity Monitor and York St John University accepts no responsibility for issues arising if this happens." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المعلومات المقدمة من خلال هذا التطبيق هي مجرد مؤشر على النضج البيولوجي فقط. وفقًا لأفضل معرفتنا، المعلومات دقيقة، ولكن في بعض الأحيان قد تختلف المعادلات عن أنماط النمو الفعلية. يجب استخدامها كمؤشر على النمو والنضج فقط. لا يتحمل تطبيق Maturity Monitor وجامعة يورك سانت جون أي مسؤولية عن المشاكل التي قد تنشأ إذا حدث ذلك."
+          }
+        }
+      }
+    },
+    "The same measurement unit applies to both values! Choose between cm & in." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تنطبق نفس وحدة القياس على القيمتين! اختر بين السنتيمتر (سم) والبوصة (إنش)."
+          }
+        }
+      }
+    },
+    "The UK GDPR requires us to establish a legal basis for processing your information. For the purpose of this privacy notice the processing is covered under UK GDPR Article 6 (1)(a) where processing is based on consent and the controller shall be able to demonstrate that the data subject has consented to processing of their personal data. You have the right to withdraw your consent at any time and can do so by emailing the University at" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يتطلب قانون حماية البيانات العام في المملكة المتحدة (GDPR) منا أن نحدد أساسًا قانونيًا لمعالجة معلوماتك. لغرض إشعار الخصوصية هذا، يتم تغطية المعالجة بموجب المادة 6 (1)(أ) من قانون حماية البيانات العام في المملكة المتحدة، حيث تكون المعالجة مبنية على الموافقة ويجب على المراقب أن يكون قادرًا على إثبات أن الشخص المعني قد وافق على معالجة بياناته الشخصية. لديك الحق في سحب موافقتك في أي وقت ويمكنك القيام بذلك عن طريق إرسال بريد إلكتروني إلى الجامعة على"
+          }
+        }
+      }
+    },
+    "This action will permanently delete the account. Do you want to proceed?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سيؤدي هذا الإجراء إلى حذف الحساب بشكل دائم. هل ترغب في المتابعة؟"
+          }
+        }
+      }
+    },
+    "This child is already linked to your account!" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم ربط هذا الطفل بحسابك بالفعل!"
+          }
+        }
+      }
+    },
+    "This is the biological age of the individual, which may vary from chronological age based on the developmental stage of the individual." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذا هو العمر البيولوجي للفرد، والذي قد يختلف عن العمر الزمني بناءً على المرحلة التنموية للفرد."
+          }
+        }
+      }
+    },
+    "This is the current progress towards the individual’s predicted adult height." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذا هو التقدم الحالي نحو الطول المتوقع للفرد عند البلوغ."
+          }
+        }
+      }
+    },
+    "This is the current rate of change in body mass. This is typically presented to illustrate how much change would be observed if this rate continued for a year. A mass tempo of 4kg/year or more is considered high and likely coincides with Peak Weight Velocity (PWV) following the adolescent growth spurt." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذه هي معدل التغيير الحالي في كتلة الجسم. يُعرض هذا عادةً ليوضح مقدار التغيير الذي يمكن ملاحظته إذا استمر هذا المعدل لمدة عام. يُعتبر معدل الكتلة البالغ 4 كجم/سنة أو أكثر مرتفعًا ومن المحتمل أن يتزامن مع سرعة الوزن القصوى (PWV) بعد الطفرة النمائية للمراهقين."
+          }
+        }
+      }
+    },
+    "This is the current rate of change in standing stature. This is typically presented to illustrate how much change would be observed if this rate continued for a year. A growth tempo of 7cm/year or more is considered high and likely coincides with Peak Height Velocity (PHV) -  the adolescent growth spurt." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذه هي معدل التغيير الحالي في الطول القائم. يُعرض هذا عادةً ليوضح مقدار التغيير الذي يمكن ملاحظته إذا استمر هذا المعدل لمدة عام. يُعتبر معدل النمو البالغ 7 سم/سنة أو أكثر مرتفعًا ومن المحتمل أن يتزامن مع سرعة النمو القصوى (PHV) - الطفرة النمائية للمراهقين."
+          }
+        }
+      }
+    },
+    "This is the decimal age of the individual in years and months on the day of data collection." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذا هو العمر العشري للفرد بالسنوات والشهور في يوم جمع البيانات."
+          }
+        }
+      }
+    },
+    "This is the estimated stature of the individual when they reach full stature." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذا هو الطول المقدر للفرد عندما يصل إلى الطول الكامل."
+          }
+        }
+      }
+    },
+    "This is the magnitude of change in body mass since the last measurement, in kg." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذه هي حجم التغيير في كتلة الجسم منذ القياس الأخير، بالكيلوغرام."
+          }
+        }
+      }
+    },
+    "This is the magnitude of change in standing stature since the last measurement, in cm." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذه هي حجم التغيير في الطول القائم منذ القياس الأخير، بالسنتيمتر."
+          }
+        }
+      }
+    },
+    "This represents the current phase of the maturation process relative to the period of most intense growth, peak height velocity (PHV)." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يمثل هذا المرحلة الحالية من عملية النضوج بالنسبة لفترة النمو الأكثر كثافة، وهي سرعة الذروة في الطول (PHV)."
+          }
+        }
+      }
+    },
+    "Togo" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "توجو"
+          }
+        }
+      }
+    },
+    "Tonga" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تونغا"
+          }
+        }
+      }
+    },
+    "Triathlon" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الترياثلون"
+          }
+        }
+      }
+    },
+    "Trinidad & Tobago" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ترينيداد وتوباغو"
+          }
+        }
+      }
+    },
+    "Tunisia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تونس"
+          }
+        }
+      }
+    },
+    "Turkey" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تركيا"
+          }
+        }
+      }
+    },
+    "Turkmenistan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تركمانستان"
+          }
+        }
+      }
+    },
+    "Tuvalu" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "توفالو"
+          }
+        }
+      }
+    },
+    "Uganda" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أوغندا"
+          }
+        }
+      }
+    },
+    "Ukraine" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أوكرانيا"
+          }
+        }
+      }
+    },
+    "Unique code: %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الرمز الفريد: %@"
+          }
+        }
+      }
+    },
+    "United Arab Emirates" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دولة الإمارات العربية المتحدة"
+          }
+        }
+      }
+    },
+    "United Kingdom" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المملكة المتحدة"
+          }
+        }
+      }
+    },
+    "United States" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الولايات المتحدة"
+          }
+        }
+      }
+    },
+    "Uruguay" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أوروغواي"
+          }
+        }
+      }
+    },
+    "Uzbekistan" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أوزبكستان"
+          }
+        }
+      }
+    },
+    "Vanuatu" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فانواتو"
+          }
+        }
+      }
+    },
+    "Vatican City" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "القدس"
+          }
+        }
+      }
+    },
+    "Venezuela" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فنزويلا"
+          }
+        }
+      }
+    },
+    "Verification Code" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رمز التحقق"
+          }
+        }
+      }
+    },
+    "Verify" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحقق"
+          }
+        }
+      }
+    },
+    "Verify Email" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تأكيد البريد الإلكتروني"
+          }
+        }
+      }
+    },
+    "Verify your email" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحقق من بريدك الإلكتروني"
+          }
+        }
+      }
+    },
+    "Videos" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فيديوهات؟"
+          }
+        }
+      }
+    },
+    "Vietnam" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فيتنام"
+          }
+        }
+      }
+    },
+    "View Profile" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عرض الملف الشخصي"
+          }
+        }
+      }
+    },
+    "Weight" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الوزن"
+          }
+        }
+      }
+    },
+    "Weight: %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الوزن: %@"
+          }
+        }
+      }
+    },
+    "What legal basis do we have for processing your personal data?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ما هو الأساس القانوني الذي نعتمد عليه لمعالجة بياناتك الشخصية؟"
+          }
+        }
+      }
+    },
+    "White: Gypsy, Traveller, Roma, or Other White" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أبيض: غجري، مسافر، رومي، أو أبيض آخر"
+          }
+        }
+      }
+    },
+    "White: Irish" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أبيض: إيرلندي"
+          }
+        }
+      }
+    },
+    "White: UK or British" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أبيض: المملكة المتحدة أو بريطاني"
+          }
+        }
+      }
+    },
+    "Who are we?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "من نحن؟"
+          }
+        }
+      }
+    },
+    "Will be available soon..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سيتوفر قريبًا..."
+          }
+        }
+      }
+    },
+    "Would you like to see a growth representation (Path to Adulthood) generated by AI (Artificial Intelligence) based on path recognition from the latest entry until the predicted adult height?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل تود رؤية تمثيل لنمو الطفل (طريق إلى البلوغ) يتم إنشاؤه بواسطة الذكاء الاصطناعي بناءً على التعرف على المسار من آخر إدخال حتى الطول المتوقع عند البلوغ؟"
+          }
+        }
+      }
+    },
+    "Yemen" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اليمن"
+          }
+        }
+      }
+    },
+    "Yes" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نعم"
+          }
+        }
+      }
+    },
+    "You also have the right to complain to the Information Commissioner's Office (ICO) about the way in which we process your personal data. Details can be found at: " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لديك أيضًا الحق في تقديم شكوى إلى مكتب مفوض المعلومات (ICO) بشأن الطريقة التي نعالج بها بياناتك الشخصية. يمكن العثور على التفاصيل على:"
+          }
+        }
+      }
+    },
+    "You can only edit children accounts that you have created! " : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يمكنك تعديل حسابات الأطفال التي أنشأتها فقط!"
+          }
+        }
+      }
+    },
+    "Zambia" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "زامبيا"
+          }
+        }
+      }
+    },
+    "Zimbabwe" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "زيمبابوي"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -1,4 +1,5 @@
 import SwiftUI
+import Mixpanel
 
 struct FullScreenMenuView: View {
     
@@ -9,7 +10,7 @@ struct FullScreenMenuView: View {
         ("Home", "home", AnyView(HomeView(currentPage: .constant("home")))),
         ("Children & Groups", "group", AnyView(GroupView(currentPage: .constant("group")))),
         ("Maturity Estimations", "resources", AnyView(ResourcesView(currentPage: .constant("resources")))),
-        ("Account", "account", AnyView(AccountView(currentPage: .constant("account"))))
+        ("Account", "account", AnyView(AccountView(currentPage: .constant("account")))),
     ]
 
     var body: some View {
@@ -29,8 +30,13 @@ struct FullScreenMenuView: View {
                     Spacer()
                     VStack(spacing: 20) {
                         ForEach(menuOptions, id: \.tag) { option in
-                            NavigationLink(destination: option.destination) {
-                                Text(option.title)
+                            NavigationLink(destination: option.destination
+                                .onAppear {
+                                    Mixpanel.mainInstance().track(event: "MIX Top Menu Tapped: \(option.tag)",properties: ["menuItem": option.title, "id": option.tag]
+                                    )
+                                }
+                            ) {
+                                Text(LocalizedStringKey(option.title))
                                     .font(.custom("Inter", size: 20))
                                     .foregroundColor(.white)
                                     .frame(width: 330, height: 55)

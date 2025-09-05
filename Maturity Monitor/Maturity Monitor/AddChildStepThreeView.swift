@@ -1,7 +1,6 @@
-// AddChildStepThree View comments and messages done - needs testing
-
 import SwiftUI
 import Combine
+import Mixpanel
 
 struct AddChildStepThreeView: View {
     
@@ -15,6 +14,10 @@ struct AddChildStepThreeView: View {
     @State private var navigateToNextView: Bool = false
     
     let units = ["cm", "in"]
+    
+    // Mixpanel variables
+    @State private var viewStartTime: Date = Date()
+    @Binding var numberOfStepsBack: Double
     
     var body: some View {
         VStack {
@@ -35,7 +38,8 @@ struct AddChildStepThreeView: View {
                     fieldWidth: 130,
                     units: units,
                     text: $birthMotherHeight,
-                    selectedUnit: $selectedUnit
+                    selectedUnit: $selectedUnit,
+                    viewName: "Add Child Step Three"
                 )
                 DropDownTextField(
                     label: "Birth Father Height",
@@ -43,7 +47,8 @@ struct AddChildStepThreeView: View {
                     fieldWidth: 130,
                     units: units,
                     text: $birthFatherHeight,
-                    selectedUnit: $selectedUnit
+                    selectedUnit: $selectedUnit,
+                    viewName: "Add Child Step Three"
                 )
             }
             .padding()
@@ -54,7 +59,12 @@ struct AddChildStepThreeView: View {
                     .foregroundColor(.black)
                     .padding(.bottom, 20)
 
-                CustomCheckbox(options: [MeasurementType.measured, MeasurementType.estimated], selectedOption: $childDetails.measurementType, font: Font.custom("Inter", size: 18))
+                CustomCheckbox(
+                    options: [MeasurementType.measured, MeasurementType.estimated],
+                    selectedOption: $childDetails.measurementType,
+                    font: Font.custom("Inter", size: 18),
+                    trackingEvent: "MIX MeasurementType Selected in Add Child Step Three View"
+                )
             }
             .padding()
             
@@ -64,6 +74,7 @@ struct AddChildStepThreeView: View {
 
             HStack(spacing: 10) {
                 Button(action: {
+                    numberOfStepsBack += 1
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     CustomButton(
@@ -72,29 +83,23 @@ struct AddChildStepThreeView: View {
                         textColor: .black
                     )
                 }
-                
-                // NavigationLink for the next view
-                NavigationLink(destination: AddChildStepFourView(childDetails: childDetails), isActive: $navigateToNextView) {
-                    EmptyView()
-                }
-
+                                
                 Button(action: {
-                    if birthMotherHeight.isEmpty || birthFatherHeight.isEmpty || childDetails.measurementType == nil {
-                            showErrorMessage = true
-                    } else {
-                        showErrorMessage = false
-                        
-                        childDetails.momHeight = "\(birthMotherHeight) \(selectedUnit)"
-                        childDetails.dadHeight = "\(birthFatherHeight) \(selectedUnit)"
-                            
-                        navigateToNextView = true
-                    }
+                    validateFields()
                 }) {
                     CustomButton(
                         title: "Next step",
                         backgroundColor: Color(.buttonGreyLight),
                         textColor: .black
                     )
+                }
+
+                // NavigationLink to next view (AddChildStepFourView)
+                NavigationLink(
+                    destination: AddChildStepFourView(childDetails: childDetails, numberOfStepsBack: $numberOfStepsBack),
+                    isActive: $navigateToNextView
+                ) {
+                    EmptyView()
                 }
             }
             .padding(.bottom, 60)
@@ -103,6 +108,12 @@ struct AddChildStepThreeView: View {
                 ErrorCustomText(title: "Please enter parents' heights and select a measurement type!")
             }
             ProgressBar(progressMultiplier: 3)
+        }
+        .onAppear {
+            viewStartTime = Date()
+        }
+        .onDisappear {
+            trackViewTime()
         }
         .onTapGesture {
             hideKeyboard() // Hide keyboard when tapping outside
@@ -121,8 +132,46 @@ struct AddChildStepThreeView: View {
         .edgesIgnoringSafeArea(.top)
         .navigationBarBackButtonHidden(true)
     }
+    
+    // Mixpanel
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Add Child Step Three View Time", properties: ["time_spent": timeSpent])
+    }
+    
+    private func validateFields() {
+        // Track Mixpanel attempt
+        let measurementValue = childDetails.measurementType?.rawValue ?? "None"
+        
+        Mixpanel.mainInstance().track(
+            event: "MIX Next Step Button Attempted in Add Child Step Three View",
+            properties: ["measurementType": measurementValue]
+        )
+
+        // Check if required fields are filled
+        if birthMotherHeight.isEmpty || birthFatherHeight.isEmpty || childDetails.measurementType == nil {
+            showErrorMessage = true
+            
+            Mixpanel.mainInstance().track(
+                event: "MIX Validation Failed - Missing Fields in Add Child Step Three View"
+            )
+            return
+        }
+
+        // Save data
+        childDetails.momHeight = "\(birthMotherHeight) \(selectedUnit)"
+        childDetails.dadHeight = "\(birthFatherHeight) \(selectedUnit)"
+        showErrorMessage = false
+        navigateToNextView = true
+
+        // Track success
+        Mixpanel.mainInstance().track(
+            event: "MIX Validation Succeeded in Add Child Step Three View",
+            properties: ["measurementType": measurementValue]
+        )
+    }
 }
 
 #Preview {
-    AddChildStepThreeView(childDetails: ChildDetailsModel())
+    AddChildStepThreeView(childDetails: ChildDetailsModel(), numberOfStepsBack: .constant(0))
 }

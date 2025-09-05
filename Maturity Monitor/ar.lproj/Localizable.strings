@@ -1,0 +1,10 @@
+"loginTitle" = "تسجيل الدخول";
+
+// Home View
+"hiMessageTopLeft" = "مرحبا";
+"child" = "طفل";
+"newTab" = "جديد";
+"previousTab" = "سابق";
+
+// LanguageView:
+"changeLanguageMessage" = "قم بتغيير لغة التطبيق بالكامل أدناه:";

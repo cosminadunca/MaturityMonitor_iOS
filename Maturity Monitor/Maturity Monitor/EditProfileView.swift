@@ -35,6 +35,9 @@ struct EditProfileView: View {
     @State private var approveData: Bool
     @State private var uniqueId: Int
     
+    // Mixpanel
+    @State private var calendarTapCount = 0
+    
     // Initialization with the Child instance
     init(child: Child) {
         self.child = child
@@ -54,19 +57,19 @@ struct EditProfileView: View {
     }
     
     // Units
-    let countryUnits = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua & Deps", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Rep", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Congo {Democratic Rep}", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland {Republic}", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea North", "Korea South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar, {Burma}", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russian Federation", "Rwanda", "St Kitts & Nevis", "St Lucia", "Saint Vincent & the Grenadines", "Samoa", "San Marino", "Sao Tome & Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"]
+    let countryUnits = [String(localized: "Afghanistan"), String(localized: "Albania"), String(localized: "Algeria"), String(localized: "Andorra"), String(localized: "Angola"), String(localized: "Antigua & Deps"), String(localized: "Argentina"), String(localized: "Armenia"), String(localized: "Australia"), String(localized: "Austria"), String(localized: "Azerbaijan"), String(localized: "Bahamas"), String(localized: "Bahrain"), String(localized: "Bangladesh"), String(localized: "Barbados"), String(localized: "Belarus"), String(localized: "Belgium"), String(localized: "Belize"), String(localized: "Benin"), String(localized: "Bhutan"), String(localized: "Bolivia"), String(localized: "Bosnia Herzegovina"), String(localized: "Botswana"), String(localized: "Brazil"), String(localized: "Brunei"), String(localized: "Bulgaria"), String(localized: "Burkina"), String(localized: "Burundi"), String(localized: "Cambodia"), String(localized: "Cameroon"), String(localized: "Canada"), String(localized: "Cape Verde"), String(localized: "Central African Rep"), String(localized: "Chad"), String(localized: "Chile"), String(localized: "China"), String(localized: "Colombia"), String(localized: "Comoros"), String(localized: "Congo"), String(localized: "Congo {Democratic Rep}"), String(localized: "Costa Rica"), String(localized: "Croatia"), String(localized: "Cuba"), String(localized: "Cyprus"), String(localized: "Czech Republic"), String(localized: "Denmark"), String(localized: "Djibouti"), String(localized: "Dominica"), String(localized: "Dominican Republic"), String(localized: "East Timor"), String(localized: "Ecuador"), String(localized: "Egypt"), String(localized: "El Salvador"), String(localized: "Equatorial Guinea"), String(localized: "Eritrea"), String(localized: "Estonia"), String(localized: "Ethiopia"), String(localized: "Fiji"), String(localized: "Finland"), String(localized: "France"), String(localized: "Gabon"), String(localized: "Gambia"), String(localized: "Georgia"), String(localized: "Germany"), String(localized: "Ghana"), String(localized: "Greece"), String(localized: "Grenada"), String(localized: "Guatemala"), String(localized: "Guinea"), String(localized: "Guinea-Bissau"), String(localized: "Guyana"), String(localized: "Haiti"), String(localized: "Honduras"), String(localized: "Hungary"), String(localized: "Iceland"), String(localized: "India"), String(localized: "Indonesia"), String(localized: "Iran"), String(localized: "Iraq"), String(localized: "Ireland {Republic}"), String(localized: "Israel"), String(localized: "Italy"), String(localized: "Ivory Coast"), String(localized: "Jamaica"), String(localized: "Japan"), String(localized: "Jordan"), String(localized: "Kazakhstan"), String(localized: "Kenya"), String(localized: "Kiribati"), String(localized: "Korea North"), String(localized: "Korea South"), String(localized: "Kosovo"), String(localized: "Kuwait"), String(localized: "Kyrgyzstan"), String(localized: "Laos"), String(localized: "Latvia"), String(localized: "Lebanon"), String(localized: "Lesotho"), String(localized: "Liberia"), String(localized: "Libya"), String(localized: "Liechtenstein"), String(localized: "Lithuania"), String(localized: "Luxembourg"), String(localized: "Macedonia"), String(localized: "Madagascar"), String(localized: "Malawi"), String(localized: "Malaysia"), String(localized: "Maldives"), String(localized: "Mali"), String(localized: "Malta"), String(localized: "Marshall Islands"), String(localized: "Mauritania"), String(localized: "Mauritius"), String(localized: "Mexico"), String(localized: "Micronesia"), String(localized: "Moldova"), String(localized: "Monaco"), String(localized: "Mongolia"), String(localized: "Montenegro"), String(localized: "Morocco"), String(localized: "Mozambique"), String(localized: "Myanmar, {Burma}"), String(localized: "Namibia"), String(localized: "Nauru"), String(localized: "Nepal"), String(localized: "Netherlands"), String(localized: "New Zealand"), String(localized: "Nicaragua"), String(localized: "Niger"), String(localized: "Nigeria"), String(localized: "Norway"), String(localized: "Oman"), String(localized: "Pakistan"), String(localized: "Palau"), String(localized: "Panama"), String(localized: "Papua New Guinea"), String(localized: "Paraguay"), String(localized: "Peru"), String(localized: "Philippines"), String(localized: "Poland"), String(localized: "Portugal"), String(localized: "Qatar"), String(localized: "Romania"), String(localized: "Russian Federation"), String(localized: "Rwanda"), String(localized: "St Kitts & Nevis"), String(localized: "St Lucia"), String(localized: "Saint Vincent & the Grenadines"), String(localized: "Samoa"), String(localized: "San Marino"), String(localized: "Sao Tome & Principe"), String(localized: "Saudi Arabia"), String(localized: "Senegal"), String(localized: "Serbia"), String(localized: "Seychelles"), String(localized: "Sierra Leone"), String(localized: "Singapore"), String(localized: "Slovakia"), String(localized: "Slovenia"), String(localized: "Solomon Islands"), String(localized: "Somalia"), String(localized: "South Africa"), String(localized: "South Sudan"), String(localized: "Spain"), String(localized: "Sri Lanka"), String(localized: "Sudan"), String(localized: "Suriname"), String(localized: "Swaziland"), String(localized: "Sweden"), String(localized: "Switzerland"), String(localized: "Syria"), String(localized: "Taiwan"), String(localized: "Tajikistan"), String(localized: "Tanzania"), String(localized: "Thailand"), String(localized: "Togo"), String(localized: "Tonga"), String(localized: "Trinidad & Tobago"), String(localized: "Tunisia"), String(localized: "Turkey"), String(localized: "Turkmenistan"), String(localized: "Tuvalu"), String(localized: "Uganda"), String(localized: "Ukraine"), String(localized: "United Arab Emirates"), String(localized: "United Kingdom"), String(localized: "United States"), String(localized: "Uruguay"), String(localized: "Uzbekistan"), String(localized: "Vanuatu"), String(localized: "Vatican City"), String(localized: "Venezuela"), String(localized: "Vietnam"), String(localized: "Yemen"), String(localized: "Zambia"), String(localized: "Zimbabwe")]
     
     let ethnicityUnits = [
-        "Asian, British Asian, Welsh Asian",
-        "Black, British Black, Welsh Black, Caribbean, African",
-        "Mixed or Multiple Ethnicities",
-        "White: UK or British",
-        "White: Irish",
-        "White: Gypsy, Traveller, Roma, or Other White",
-        "Other Ethnic Group"
+        String(localized: "Asian, British Asian, Welsh Asian"),
+        String(localized: "Black, British Black, Welsh Black, Caribbean, African"),
+        String(localized: "Mixed or Multiple Ethnicities"),
+        String(localized: "White: UK or British"),
+        String(localized: "White: Irish"),
+        String(localized: "White: Gypsy, Traveller, Roma, or Other White"),
+        String(localized: "Other Ethnic Group")
     ]
     
-    let sportUnits = ["Triathlon","Tennis","Swimming","Squash","Running","Rugby Union","Rugby League","Netball","Hockey (Ice)","Hockey (Field)","Golf","Football","Cycling","Crossfit","Cricket","Boxing","Basketball","Badminton","Athletics","American Football"]
+    let sportUnits = [String(localized: "Triathlon"),String(localized: "Tennis"),String(localized: "Swimming"),String(localized: "Squash"),String(localized: "Running"),String(localized: "Rugby Union"),String(localized: "Rugby League"),String(localized: "Netball"),String(localized: "Hockey (Ice)"),String(localized: "Hockey (Field)"),String(localized: "Golf"),String(localized: "Football"),String(localized: "Cycling"),String(localized: "Crossfit"),String(localized: "Cricket"),String(localized: "Boxing"),String(localized: "Basketball"),String(localized: "Badminton"),String(localized: "Athletics"),String(localized: "American Football")]
     
     // Create a NumberFormatter instance
     let numberFormatter: NumberFormatter = {
@@ -92,15 +95,20 @@ struct EditProfileView: View {
                             .font(.headline)
                         VStack(alignment: .leading) {
                             Text("Change name: ")
-                            SimpleCustomTextField(placeholder: "Name", text: $name)
+                            SimpleCustomTextField(placeholder: "Name", text: $name, viewName: "Edit Profile View")
                             Text("Change surname: ")
-                            SimpleCustomTextField(placeholder: "Surname", text: $surname)
+                            SimpleCustomTextField(placeholder: "Surname", text: $surname, viewName: "Edit Profile View")
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(20)
                         VStack{
                             Text("Change date of birth: ")
-                            CustomDateTextField(dateText: $dateOfBirth)
+                            CustomDateTextField(
+                                placeholder: "DD/MM/YYYY",
+                                dateText: $dateOfBirth,
+                                viewName: "Edit Profile",
+                                calendarTapCount: $calendarTapCount
+                            )
                         }
                         Text("Change gender: ")
                         CustomCheckbox(

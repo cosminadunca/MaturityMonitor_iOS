@@ -1,4 +1,5 @@
 import SwiftUI
+import Mixpanel
 
 struct PredictedAdultHeight: View {
     
@@ -24,6 +25,9 @@ struct PredictedAdultHeight: View {
     @State private var showPercentageOfAdultHeightInfo = false
     @State private var showEstimatedAdultHeightInfo = false
     @State private var showMaturityCategoryInfo = false
+    
+    // Mixpanel variables
+    @State private var viewStartTime: Date = Date()
     
     private func iconWeight(for height: Double) -> CGFloat {
         switch height {
@@ -167,6 +171,8 @@ struct PredictedAdultHeight: View {
                                 RoundedRectangle(cornerRadius: 4)
                                     .stroke(Color.buttonPurpleLight, lineWidth: 1.5)
                             )
+                    }.onTapGesture {
+                        Mixpanel.mainInstance().track(event: "MIX Chronological Age Section Tapped")
                     }
                     
                     HStack {
@@ -200,6 +206,8 @@ struct PredictedAdultHeight: View {
                                     RoundedRectangle(cornerRadius: 4)
                                         .stroke(Color.buttonPurpleLight, lineWidth: 1.5)
                                 )
+                    }.onTapGesture {
+                        Mixpanel.mainInstance().track(event: "MIX Biological Age Section Tapped")
                     }
                     
                     HStack {
@@ -230,6 +238,8 @@ struct PredictedAdultHeight: View {
                                 RoundedRectangle(cornerRadius: 4)
                                     .stroke(Color.buttonPurpleLight, lineWidth: 1.5)
                             )
+                    }.onTapGesture {
+                        Mixpanel.mainInstance().track(event: "MIX Percentage of Adult Height Section Tapped")
                     }
                     
                     HStack {
@@ -260,6 +270,8 @@ struct PredictedAdultHeight: View {
                                 RoundedRectangle(cornerRadius: 4)
                                     .stroke(Color.buttonPurpleLight, lineWidth: 1.5)
                             )
+                    }.onTapGesture {
+                        Mixpanel.mainInstance().track(event: "MIX Estimated Adult Height Section Tapped")
                     }
                     
                     HStack {
@@ -293,15 +305,30 @@ struct PredictedAdultHeight: View {
                                     .stroke(maturityColor, lineWidth: 1.5)
                             )
                     }
+                    .onTapGesture {
+                        Mixpanel.mainInstance().track(event: "MIX Maturity Category Section Tapped")
+                    }
                     .padding(.bottom, 50)
                 }
                 .padding(.top, 30)
+            }
+            .onAppear {
+                viewStartTime = Date()
+            }
+            .onDisappear {
+                trackViewTime()
             }
             .frame(maxWidth: .infinity)
             .padding()
             .cornerRadius(12)
             .shadow(radius: 5)
         }
+    }
+    
+    // Mixpanel
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Predicted Adult Height Tab View Time", properties: ["time_spent": timeSpent])
     }
 }
 

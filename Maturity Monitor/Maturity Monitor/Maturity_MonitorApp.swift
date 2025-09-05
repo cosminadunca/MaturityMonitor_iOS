@@ -4,66 +4,68 @@ import AWSCognitoAuthPlugin
 import AWSAPIPlugin
 import AWSDataStorePlugin
 import AWSPinpointAnalyticsPlugin
-
-// Imports for app tracking purposes
-//import Mixpanel
+import Mixpanel
 
 @main
 struct Maturity_MonitorApp: App {
     @State private var sessionStartTime: Date?
+
     init() {
         do {
-            try Amplify.add(plugin: AWSCognitoAuthPlugin())      // Auth first
-            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels())) // 🔹 API second
-            try Amplify.add(plugin: AWSDataStorePlugin(modelRegistration: AmplifyModels())) // 🔹 DataStore third
-            try Amplify.add(plugin: AWSPinpointAnalyticsPlugin()) // Analytics last
-
+            try Amplify.add(plugin: AWSCognitoAuthPlugin())
+            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels()))
+            try Amplify.add(plugin: AWSDataStorePlugin(modelRegistration: AmplifyModels()))
+            try Amplify.add(plugin: AWSPinpointAnalyticsPlugin())
             try Amplify.configure()
-            print("✅ Amplify configured with Auth, API, DataStore, and Analytics plugins")
-            
-            // ✅ Start DataStore sync engine after configuration
+            print("✅ Amplify configured")
+
             Task {
                 try await Amplify.DataStore.start()
             }
+
+            // Mixpanel Init
+            Mixpanel.initialize(token: "ba2b7aa06eb4384fec82afb09b3f8dc7", trackAutomaticEvents: false)
+            print("✅ Mixpanel initialized")
+
+            // Ensure Mixpanel identifies with the sessionId
+            let sessionId = SessionManager.shared.sessionID
+            Mixpanel.mainInstance().identify(distinctId: sessionId)
+            print("📡 Session ID used as distinctId for Mixpanel: \(sessionId)")
+
+            // Register global sessionID as super property
+            Mixpanel.mainInstance().registerSuperProperties([
+                "sessionId": sessionId
+            ])
         } catch {
-            print("❌ Failed to initialize Amplify with error: \(error)")
+            print("❌ Amplify init error: \(error)")
         }
     }
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()
-            // Track Time Spent in the App
                 .onAppear {
-                    sessionStartTime = Date()  // Start session tracking
-                    trackDeviceDetails()
+                    sessionStartTime = Date()
+                    // Track session start event with sessionId
+                    Mixpanel.mainInstance().track(event: "MIX Session Start", properties: [
+                        "startTime": sessionStartTime ?? Date()
+                    ])
+                    print("🔔 Session Start event tracked for sessionId: \(SessionManager.shared.sessionID)")
                 }
                 .onDisappear {
                     if let startTime = sessionStartTime {
-                        let sessionDuration = Date().timeIntervalSince(startTime)
-                        trackSessionDuration(duration: sessionDuration)
+                        let duration = Date().timeIntervalSince(startTime)
+                        trackSessionDuration(duration: duration)
                     }
                 }
         }
     }
-    
-    // Session Duration Tracking
-    func trackSessionDuration(duration: TimeInterval) {
-        let event = BasicAnalyticsEvent(name: "SessionDuration",
-                                            properties: ["Duration": String(format: "%.2f", duration)])
-        Amplify.Analytics.record(event: event)
-        print("Tracked: Session duration - \(duration) seconds")
-    }
-    func trackDeviceDetails() {
-        let device = UIDevice.current
-        let deviceInfo = [
-            "DeviceType": device.model,
-            "OSVersion": device.systemVersion,
-            "AppVersion": Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
-        ]
 
-        let event = BasicAnalyticsEvent(name: "DeviceDetails", properties: deviceInfo)
-        Amplify.Analytics.record(event: event)
-        print("Tracked: Device details - \(deviceInfo)")
+    func trackSessionDuration(duration: TimeInterval) {
+        // Track session end event with sessionId and session duration
+        Mixpanel.mainInstance().track(event: "MIX Session End", properties: [
+            "sessionDuration": duration
+        ])
+        print("🕓 Session End event tracked for sessionId: \(SessionManager.shared.sessionID) with duration: \(duration) seconds")
     }
 }

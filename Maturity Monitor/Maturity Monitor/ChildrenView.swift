@@ -4,6 +4,7 @@
 
 import SwiftUI
 import Amplify
+import Mixpanel
 
 struct ChildrenView: View {
     
@@ -88,6 +89,9 @@ struct ChildrenView: View {
                         if currentChildId != child.id {
                             Button(action: {
                                 Task {
+                                    Mixpanel.mainInstance().track(event: "MIX Switched Child in Children View", properties: [
+                                        "timestamp": "\(Date())"
+                                    ])
                                     await switchCurrentChild(to: child.id)
                                 }
                             }) {
@@ -103,7 +107,15 @@ struct ChildrenView: View {
                             .buttonStyle(PlainButtonStyle())
                         }
                         Spacer()
-                        NavigationLink(destination: EditProfileView(child: child)) {
+                        NavigationLink(destination: EditProfileView(child: child)
+                            .onAppear {
+                                Mixpanel.mainInstance().track(event: "Viewed Child Profile", properties: [
+                                    "childId": child.id,
+                                    "childName": "\(child.name) \(child.surname)",
+                                    "timestamp": "\(Date())"
+                                ])
+                            }
+                        ) {
                             CustomButton(
                                 title: "View Profile",
                                 backgroundColor: Color(.buttonPurpleLight),

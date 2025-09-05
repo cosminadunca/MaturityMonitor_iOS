@@ -28,8 +28,8 @@ class ChildDetailsModel: ObservableObject {
 enum Gender: String, CustomStringConvertible {
     case male = "Male"
     case female = "Female"
-    
-    var description: String { rawValue }
+
+    var description: String { rawValue } 
 }
 
 enum MeasurementType: String, CustomStringConvertible {

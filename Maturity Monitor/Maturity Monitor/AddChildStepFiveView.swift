@@ -1,6 +1,7 @@
 // AddChildStepFive View comments and messages done - needs testing
 
 import SwiftUI
+import Mixpanel
 
 struct AddChildStepFiveView: View {
     
@@ -16,6 +17,10 @@ struct AddChildStepFiveView: View {
     @State private var isLoading = false
     @State private var errorMessage: String?
     @State private var navigateToHomeView: Bool = false
+    
+    // Mixpanel variables
+    @State private var viewStartTime: Date = Date()
+    @Binding var numberOfStepsBack: Double
     
     var body: some View {
         ScrollView{
@@ -176,6 +181,7 @@ struct AddChildStepFiveView: View {
                 HStack(spacing: 10) {
                     Button(action: {
                         childDetails.agreeToResearch = false
+                        Mixpanel.mainInstance().track(event: "MIX Add Child Step Five - Declined Research Consent")
                         Task {
                             await createChild()
                         }
@@ -187,8 +193,10 @@ struct AddChildStepFiveView: View {
                         )
                     }
                     .disabled(isLoading)
+
                     Button(action: {
                         childDetails.agreeToResearch = true
+                        Mixpanel.mainInstance().track(event: "MIX Add Child Step Five - Accepted Research Consent")
                         Task {
                             await createChild()
                         }
@@ -204,9 +212,25 @@ struct AddChildStepFiveView: View {
                 
                 ProgressBar(progressMultiplier: 5)
                 
-                NavigationLink(destination: HomeView(currentPage: .constant("home")), isActive: $navigateToHomeView) {
+                NavigationLink(
+                    destination: HomeView(
+                        currentPage: .constant("Home"),
+                        cameFromAddChildStepFiveView: true
+                    ),
+                    isActive: $navigateToHomeView
+                ) {
                     EmptyView()
                 }
+
+            }
+            .onAppear {
+                viewStartTime = Date()
+            }
+            .onDisappear {
+                trackViewTime()
+                Mixpanel.mainInstance().track(event: "MIX Add Child Step Five - Steps Back", properties: [
+                    "numberOfStepsBack": numberOfStepsBack
+                ])
             }
             .onTapGesture {
                 hideKeyboard() // Hide keyboard when tapping outside
@@ -224,6 +248,12 @@ struct AddChildStepFiveView: View {
             }
             .edgesIgnoringSafeArea(.top)
         }
+    }
+    
+    // Mixpanel
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Add Child Step Five View Time", properties: ["time_spent": timeSpent])
     }
         
     // Function to generate a random 6-digit number - for the child's unique id
@@ -257,5 +287,5 @@ struct AddChildStepFiveView: View {
 }
 
 #Preview {
-    AddChildStepFiveView(childDetails: ChildDetailsModel())
+    AddChildStepFiveView(childDetails: ChildDetailsModel(), numberOfStepsBack: .constant(0))
 }

@@ -1,6 +1,7 @@
 import SwiftUI
 import Amplify
 import AWSPinpoint
+import Mixpanel
 
 struct HomeView: View {
     
@@ -15,7 +16,12 @@ struct HomeView: View {
     @State private var currentChildName: String = ""
     @State private var currentChildGender: String = ""
     
-    @State private var startTime: Date?
+    // Mixpanel
+    var cameFromAddChildStepFiveView: Bool = false // New flag for Mixpanel
+    @State private var viewStartTime: Date = Date()
+    
+    // Language change
+    @State private var selectedLanguage: String = "en"  // Make sure to initialize this properly.
     
     var body: some View {
         if #available(iOS 16.0, *) {
@@ -39,20 +45,28 @@ struct HomeView: View {
                     }
                     bottomMenu
                 }
-            }
-            .fullScreenCover(isPresented: $showMenu) {
-                FullScreenMenuView(currentPage: $currentPage)
-            }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true) // Hide the whole navigation bar
-            .interactiveDismissDisabled(true) // Disable swipe back gesture
-            .onAppear {
-                fetchUserDetails()
-                startTime = Date()
-            }.onDisappear {
-                if let startTime = startTime {
-                    let timeSpent = Date().timeIntervalSince(startTime)
-                    logEvent(eventName: "time_spent_on_homeview", attributes: ["time_spent": "\(timeSpent)"])
+                .fullScreenCover(isPresented: $showMenu) {
+                    FullScreenMenuView(currentPage: $currentPage)
+                }
+                .navigationBarBackButtonHidden(true)
+                .navigationBarHidden(true) // Hide the whole navigation bar
+                .interactiveDismissDisabled(true) // Disable swipe back gesture
+                .onAppear {
+                    print("Initial selectedLanguage onAppear: \(selectedLanguage)")
+                    Task {
+                        await fetchUserDetails()
+                        viewStartTime = Date() // Start time when the view appears
+                        if cameFromAddChildStepFiveView {
+                            Mixpanel.mainInstance().track(event: "MIX Home View Opened", properties: [
+                                "previousView": "AddChildStepFiveView"
+                            ])
+                        }
+                    }
+                }
+                .onDisappear {
+                    // Cleanup or saving language settings if needed
+                    print("Language onDisappear")
+                    trackViewTime()
                 }
             }
         } else {
@@ -69,8 +83,6 @@ struct HomeView: View {
             Button(action: {
                 withAnimation {
                     showMenu.toggle()
-                    // Log the event in AWS Pinpoint
-                    logEvent(eventName: "main_menu_pressed", attributes: ["action": "toggle"])
                 }
             }) {
                 Image(systemName: "line.horizontal.3")
@@ -84,7 +96,7 @@ struct HomeView: View {
     private var childInfo: some View {
         HStack {
             SimpleCustomText(title: "Child: ")
-            SimpleCustomText(title: currentChildName)
+            SimpleCustomText(title: "\(currentChildName)")
         }
         .padding(.top, 25)
         .padding(.bottom, 35)
@@ -98,9 +110,10 @@ struct HomeView: View {
         }
     }
     
-    private func tabButton(title: String, index: Int) -> some View {
+    private func tabButton(title: LocalizedStringKey, index: Int) -> some View {
         Button(action: {
             selectedTab = index
+            print("Tab changed: \(title), selectedTab: \(selectedTab)")
         }) {
             Text(title)
                 .font(Font.custom("Inter", size: 15))
@@ -133,27 +146,48 @@ struct HomeView: View {
             HStack {
                 Spacer()
                 Menu {
-                    NavigationLink(destination: GroupView(currentPage: .constant("group"))) {
-                        Label("Switch account", systemImage: "arrow.left.arrow.right")
-                    }
-                    NavigationLink(destination: RequestGroupAccessView()) {
-                        Label("Link group", systemImage: "figure.2.arms.open")
-                    }
-                    NavigationLink(destination: RequestChildAccessView()) {
-                        Label("Link child", systemImage: "figure")
-                    }
-                    NavigationLink(destination: AddChildStepOneView()) {
-                        Label("Add new child", systemImage: "plus")
-                    }
+                    NavigationLink(destination: GroupView(currentPage: .constant("group"))
+                        .onAppear {
+                            Mixpanel.mainInstance().track(event: "MIX Bottom Menu Switch Accounts Tapped", properties: [
+                                "menuItem": "Switch account"
+                            ])
+                        }) {
+                            Label("Switch account", systemImage: "arrow.left.arrow.right")
+                        }
+
+                    NavigationLink(destination: RequestGroupAccessView()
+                        .onAppear {
+                            Mixpanel.mainInstance().track(event: "MIX Bottom Menu Request Group Access Tapped", properties: [
+                                    "menuItem": "Link group"
+                                ])
+                            }) {
+                                Label("Link group", systemImage: "figure.2.arms.open")
+                            }
+
+                    NavigationLink(destination: RequestChildAccessView()
+                        .onAppear {
+                            Mixpanel.mainInstance().track(event: "MIX Bottom Menu Request Child Access Tapped", properties: [
+                                "menuItem": "Link child"
+                            ])
+                        }) {
+                            Label("Link child", systemImage: "figure")
+                        }
+
+                    NavigationLink(destination: AddChildStepOneView()
+                        .onAppear {
+                            Mixpanel.mainInstance().track(event: "MIX Bottom Menu Add Nex Child Tapped", properties: [
+                                "menuItem": "Add new child"
+                            ])
+                        }) {
+                            Label("Add new child", systemImage: "plus")
+                        }
+
                 } label: {
                     Image(systemName: currentChildGender == "Male" ? "figure.stand" : "figure.stand.dress")
                         .font(.system(size: 45))
                         .foregroundColor(.buttonTurquoiseDark)
                         .padding()
                         .shadow(color: Color.buttonTurquoiseDark.opacity(0.25), radius: 10)
-                }.onTapGesture {
-                    // Log the event in AWS Pinpoint
-                    logEvent(eventName: "bottom_menu_button_pressed", attributes: ["action": "open_menu"])
                 }
             }
             .padding(.horizontal)
@@ -161,7 +195,13 @@ struct HomeView: View {
         }
     }
     
-    private func fetchUserDetails() {
+    // Mixpanel
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Home View Time", properties: ["time_spent": timeSpent])
+    }
+    
+    private func fetchUserDetails() async {
         Task {
             if let (firstName, lastName, currentChildId) = await amplifyService.fetchUserAttributes() {
                 userName = firstName
@@ -180,20 +220,8 @@ struct HomeView: View {
             print("Could not find child")
         }
     }
-    
-    // ANALYTICS
-    private func logEvent(eventName: String, attributes: [String: String]) {
-        // Use Amplify's Analytics to record the event
-        let event = BasicAnalyticsEvent(name: eventName, properties: attributes)
-        
-        // Record the event using Amplify's Analytics
-        Amplify.Analytics.record(event: event)
-        
-        // Print out the event for debugging
-        print("Tracked Event: \(eventName) with attributes: \(attributes)")
-    }
-
 }
+
 
 #Preview {
     HomeView(currentPage: .constant("home"))

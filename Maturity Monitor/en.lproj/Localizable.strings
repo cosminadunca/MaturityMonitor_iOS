@@ -1,0 +1,10 @@
+"loginTitle" = "Login";
+
+// Home View:
+"hiMessageTopLeft" = "Hi";
+"child" = "Child";
+"newTab" = "New";
+"previousTab" = "Previous";
+
+// LanguageView:
+"changeLanguageMessage" = "Change language of entire app below:";

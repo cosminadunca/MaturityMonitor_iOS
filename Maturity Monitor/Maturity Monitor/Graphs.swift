@@ -1,4 +1,5 @@
 import SwiftUI
+import Mixpanel
 
 struct Graphs: View {
     
@@ -42,22 +43,28 @@ struct Graphs: View {
 
     @State private var childParentsMeasurements: String = ""
     
+    // Mixpanel variables
+    @State private var viewStartTime: Date = Date()
+    @State private var currentTabIndex: Int = 0
+    @State private var previousTabIndex: Int = 0
+    @State private var tabSwitchCount: Int = 0
+    
     var body: some View {
         ScrollView{
             VStack {
                 // Loading indicator
-                //                if isLoading {
-                //                    ProgressView("Loading...")
-                //                        .progressViewStyle(CircularProgressViewStyle())
-                //                        .padding()
-                //                }
-                //                        
-                //                // Show message if there are no entries
-                //                if entries.isEmpty {
-                //                    Text("Please add an entry first!")
-                //                        .foregroundColor(.red)
-                //                        .padding()
-                //                } else {
+                                if isLoading {
+                                    ProgressView("Loading...")
+                                        .progressViewStyle(CircularProgressViewStyle())
+                                        .padding()
+                                }
+                                        
+                                // Show message if there are no entries
+                                if entries.isEmpty {
+                                    Text("Please add an entry first!")
+                                        .foregroundColor(.red)
+                                        .padding()
+                                } else {
                 
                 Spacer()
                 Spacer()
@@ -111,8 +118,10 @@ struct Graphs: View {
                             childId: $childId,
                             childName: $childName,
                             childSurname: $childSurname,
+                            childDateOfBirth: $childDateOfBirth,
                             predictedAdultHeightTwoDigits: $predictedAdultHeightTwoDigits,
-                            entries: $entries
+                            entries: $entries,
+                            selectedEntry: $selectedUnit // <-- Add this line
                         )
                             .tag(1)
                     }
@@ -128,14 +137,25 @@ struct Graphs: View {
                             Spacer()
                         }
                     )
+                    .onChange(of: currentTabIndex) { newValue in
+                        if newValue != previousTabIndex {
+                            tabSwitchCount += 1
+                            previousTabIndex = newValue
+                        }
+                    }
                     .onAppear {
                         // Customize the dots
                         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.darkGray // Softer active dot color
                         UIPageControl.appearance().pageIndicatorTintColor = UIColor.lightGray.withAlphaComponent(0.5) // Lighter inactive dots
+                        viewStartTime = Date()
+                    }
+                    .onDisappear {
+                        trackCarouselSwitches()
+                        trackViewTime()
                     }
                 }
 
-                //} Uncomment for loading
+                }
             }
             .onAppear {
                 isLoading = true
@@ -145,6 +165,18 @@ struct Graphs: View {
                 dataLoaded = true
             }
         }
+    }
+    
+    // Mixpanel
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Graphs View Time", properties: ["time_spent": timeSpent])
+    }
+    
+    private func trackCarouselSwitches() {
+        Mixpanel.mainInstance().track(event: "MIX Carousel Tab Switches in Group View", properties: [
+            "switch_count": tabSwitchCount
+        ])
     }
     
     func loadChildIdAndFetchEntries() async {
@@ -201,26 +233,6 @@ struct Graphs: View {
                             childMotherHH = childMotherH
                             childFatherHH = childFatherH
                         }
-//                        if lastTwoLetters == "cm" {
-//                            childMotherHH = childMotherH
-//                            childFatherHH = childFatherH
-//                            if let convertedMotherHeight = findClosestInchesForCm(cmValue: childMotherH),
-//                               let convertedFatherHeight = findClosestInchesForCm(cmValue: childFatherH) {
-//                                
-//                                childMotherH = convertedMotherHeight
-//                                childFatherH = convertedFatherHeight
-//                                
-//                                print("Mother's Height in Inches: \(childMotherH)")
-//                                print("Father's Height in Inches: \(childFatherH)")
-//                            } else {
-//                                if findClosestInchesForCm(cmValue: childMotherH) == nil {
-//                                    print("No matching inch value found for Mother's Height: \(childMotherH) cm")
-//                                }
-//                                if findClosestInchesForCm(cmValue: childFatherH) == nil {
-//                                    print("No matching inch value found for Father's Height: \(childFatherH) cm")
-//                                }
-//                            }
-//                        }
                         
                         // Check for "Estimated" parents' heights and adjust
                         if childParentsMeasurements == "Estimated" {
@@ -241,21 +253,6 @@ struct Graphs: View {
                         // Calculate the mid-parent stature
                         midParentStature = (childMotherH + childFatherH) / 2
                         print("Mid Parent Stature: \(midParentStature)")
-                        
-//                        var motherHeightString = String(format: "%.1f", childMotherH)
-//                        var fatherHeightString = String(format: "%.1f", childFatherH)
-//                        var midParentStatureString = String(format: "%.1f", midParentStature)
-//                        
-//                        // Convert back to Double
-//                        var motherHeightDouble = Double(motherHeightString) ?? 0.0
-//                        var fatherHeightDouble = Double(fatherHeightString) ?? 0.0
-//                        childMotherHeightDouble = motherHeightDouble
-//                        childFatherHeightDouble = fatherHeightDouble
-//                        midParentStature = Double(midParentStatureString) ?? 0.0
-//
-//                        print("Mother's Height Double: \(motherHeightDouble)")
-//                        print("Father's Height Double: \(fatherHeightDouble)")
-//                        print("Mid Parent Stature Double: \(midParentStature)")
                     }
                 }
                 

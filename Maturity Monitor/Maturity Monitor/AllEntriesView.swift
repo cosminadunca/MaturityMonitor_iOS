@@ -3,6 +3,7 @@
 
 import SwiftUI
 import Amplify
+import Mixpanel
 
 struct AllEntriesView: View {
     
@@ -14,6 +15,9 @@ struct AllEntriesView: View {
     @State private var showDeleteConfirmation: Bool = false
     @State private var entryIdToDelete: String? = nil
     @State private var currentUserId: String? = nil
+    
+    // Mixpanel variables
+    @State private var viewStartTime: Date = Date()
     
     //  for changing the list
 //    @State private var childEx = Child(
@@ -145,7 +149,11 @@ struct AllEntriesView: View {
         .onAppear {
             Task {
                 await loadEntries()
+                viewStartTime = Date()
             }
+        }
+        .onDisappear {
+            trackViewTime()
         }
         .alert(isPresented: $showDeleteConfirmation) {
             Alert(
@@ -161,6 +169,12 @@ struct AllEntriesView: View {
                 secondaryButton: .cancel(Text("Cancel").foregroundColor(.black))
             )
         }
+    }
+    
+    // Mixpanel
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX All Entry View Time", properties: ["time_spent": timeSpent])
     }
 
     private func loadEntries() async {

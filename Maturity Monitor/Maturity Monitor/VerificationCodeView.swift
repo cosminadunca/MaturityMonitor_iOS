@@ -1,7 +1,6 @@
-// Verification Code View comments and messages done - needs testing
-
 import SwiftUI
 import Amplify
+import Mixpanel
 
 struct VerificationCodeView: View {
     
@@ -15,6 +14,10 @@ struct VerificationCodeView: View {
     @State private var isVerificationSuccessful: Bool = false
     @State private var errorMessage: String? = nil
     @State private var successMessage: String? = nil
+    
+    // Mixpanel variables
+    @State private var viewStartTime: Date = Date()
+    @State private var resendCount: Int = 0
     
     var body: some View {
         if #available(iOS 16.0, *) {
@@ -43,13 +46,14 @@ struct VerificationCodeView: View {
                                     
                                     CustomTextField(
                                         iconName: "checkmark.circle.badge.questionmark",
-                                        placeholder: "Enter verification code",
+                                        placeholder: "Verification Code",
                                         text: $verificationCode,
+                                        viewName: "Verification Code",
                                         keyboardType: .numberPad
                                     )
-                                    .onChange(of: verificationCode) { newValue in
+                                    .onSubmit {
                                         // Filter out non-digit characters
-                                        let filtered = newValue.filter { $0.isNumber }
+                                        let filtered = verificationCode.filter { $0.isNumber }
                                         
                                         // Limit the code to 6 digits
                                         if filtered.count <= 6 {
@@ -57,15 +61,14 @@ struct VerificationCodeView: View {
                                         } else {
                                             verificationCode = String(filtered.prefix(6))
                                         }
-                                        // Track the interaction with the verification code field
-                                        trackFieldInteraction(fieldName: "Verification Code")
                                     }
+
                                     Text("Re-enter your email address:")
                                         .font(Font.custom("Inter", size: 15))
                                         .foregroundColor(.black)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .padding(.horizontal, 30)
-                                    CustomTextField(iconName: "envelope", placeholder: "Enter your email", text: $email, keyboardType: .emailAddress)
+                                    CustomTextField(iconName: "envelope", placeholder: "Email", text: $email, viewName: "Verification Code", keyboardType: .emailAddress)
                                     Spacer()
                                     
                                     if let errorMessage = errorMessage {
@@ -77,9 +80,9 @@ struct VerificationCodeView: View {
                                     }
                                     HStack(spacing: 15) {
                                         Button(action: {
+                                            resendCount += 1
                                             Task {
                                                 await resendConfirmationCode(for: email)
-                                                trackButtonClick(actionName: "Resend")
                                             }
                                         }) {
                                             CustomButton(
@@ -91,7 +94,6 @@ struct VerificationCodeView: View {
                                         Button(action: {
                                             Task {
                                                 await confirmSignUp(for: email, with: verificationCode)
-                                                trackButtonClick(actionName: "Verify")
                                             }
                                         }) {
                                             CustomButton(
@@ -101,14 +103,6 @@ struct VerificationCodeView: View {
                                             )
                                         }
                                     }.padding(.bottom, 10)
-                                    Button(action:{
-                                        isVerificationSuccessful = true
-                                        trackButtonClick(actionName: "Move On")
-                                    }) {
-                                        Text("Can't confirm email address? Move on ->")
-                                            .foregroundColor(.buttonPurpleLight)
-                                            .font(Font.custom("Inter", size: 15))
-                                    }
                                     Spacer()
                                 })
                     }
@@ -137,6 +131,14 @@ struct VerificationCodeView: View {
                 .onTapGesture {
                     hideKeyboard() // Hide keyboard when tapping outside
                 }
+                .onAppear {
+                    // Set the start time when the view appears
+                    viewStartTime = Date()
+                }
+                .onDisappear {
+                    // Track the time spent on this view when it disappears
+                    trackViewTime()
+                }
                 .toolbar {
                     ToolbarItem(placement: .keyboard) {
                         HStack {
@@ -149,10 +151,6 @@ struct VerificationCodeView: View {
                     }
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                .edgesIgnoringSafeArea(.top)
-                .navigationBarBackButtonHidden(true) // Hide back button
-                .interactiveDismissDisabled(true)   // Disable swipe-to-go-back gesture
-                .navigationBarHidden(true)
                 .shadow(color: Color.black.opacity(0.25), radius: 10, x: 0, y: 10)
                 
                 // NavigationLink to RegistrationHomeView
@@ -163,46 +161,52 @@ struct VerificationCodeView: View {
                     EmptyView()
                 }
             }
+            .edgesIgnoringSafeArea(.top)
+            .navigationBarBackButtonHidden(true)
         } else {
             // Fallback on earlier versions
         }
     }
     
-    // Helper function to track field interactions
-    private func trackFieldInteraction(fieldName: String) {
-        let event = BasicAnalyticsEvent(name: "VerificationFieldInteraction", properties: ["Field": fieldName])
-        Amplify.Analytics.record(event: event)
-        print("Tracked: User interacted with \(fieldName) field")
+    // Mixpanel tracking
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Verification View Time", properties: ["time_spent": timeSpent])
     }
-
-    // Helper function to track button clicks
-    private func trackButtonClick(actionName: String) {
-        let event = BasicAnalyticsEvent(name: "VerificationButtonClick", properties: ["Action": actionName])
-        Amplify.Analytics.record(event: event)
-        print("Tracked: \(actionName) button clicked")
-    }
-    
-    // Function to confirm the sign-up
+        
     func confirmSignUp(for email: String, with confirmationCode: String) async {
         do {
             let isSignUpComplete = try await amplifyService.confirmSignUp(email: email, confirmationCode: confirmationCode)
             if isSignUpComplete {
                 await signIn(username: email, password: password)
+                // Track successful sign-up confirmation with Mixpanel
+                Mixpanel.mainInstance().track(event: "MIX SignUp Confirmation Success", properties: [
+                    "email": email
+                ])
             }
         } catch let error as AuthError {
             DispatchQueue.main.async {
                 self.errorMessage = amplifyService.handleAuthError(error)
                 self.successMessage = nil  // Clear success message if error occurs
             }
+            // Track sign-up confirmation failure with Mixpanel
+            Mixpanel.mainInstance().track(event: "MIX SignUp Confirmation Failed", properties: [
+                "email": email,
+                "error": error.localizedDescription
+            ])
         } catch {
             DispatchQueue.main.async {
                 self.errorMessage = "An unexpected error occurred."
                 self.successMessage = nil  // Clear success message if error occurs
             }
+            // Track unexpected error with Mixpanel
+            Mixpanel.mainInstance().track(event: "MIX SignUp Confirmation Failed", properties: [
+                "email": email,
+                "error": "An unexpected error occurred."
+            ])
         }
     }
         
-    // Function to sign in the user
     func signIn(username: String, password: String) async {
         do {
             let isSignedIn = try await amplifyService.signIn(username: username, password: password)
@@ -210,17 +214,31 @@ struct VerificationCodeView: View {
                 DispatchQueue.main.async {
                     self.isVerificationSuccessful = true
                 }
+                // Track successful sign-in with Mixpanel
+                Mixpanel.mainInstance().track(event: "MIX SignIn Success", properties: [
+                    "username": username
+                ])
             }
         } catch let error as AuthError {
             DispatchQueue.main.async {
                 self.errorMessage = amplifyService.handleAuthError(error)
                 self.successMessage = nil
             }
+            // Track sign-in failure with Mixpanel
+            Mixpanel.mainInstance().track(event: "MIX SignIn Failed", properties: [
+                "username": username,
+                "error": error.localizedDescription
+            ])
         } catch {
             DispatchQueue.main.async {
                 self.errorMessage = "An unexpected error occurred."
                 self.successMessage = nil
             }
+            // Track unexpected error with Mixpanel
+            Mixpanel.mainInstance().track(event: "MIX SignIn Failed", properties: [
+                "username": username,
+                "error": "An unexpected error occurred."
+            ])
         }
     }
         
@@ -229,19 +247,33 @@ struct VerificationCodeView: View {
         do {
             try await amplifyService.resendConfirmationCode(email: email)
             DispatchQueue.main.async {
-                self.successMessage = "A new confirmation code has been sent to your email!"
+                self.successMessage = "A new confirmation code has been sent to your email! Please be patient with receiving the code as somethimes it takes a bit longer. Thanks!"
                 self.errorMessage = nil  // Clear error message if resend is successful
             }
+            // Track resend success with Mixpanel
+            Mixpanel.mainInstance().track(event: "MIX Confirmation Code Resent", properties: [
+                "email": email
+            ])
         } catch let error as AuthError {
             DispatchQueue.main.async {
                 self.errorMessage = amplifyService.handleAuthError(error)
                 self.successMessage = nil
             }
+            // Track resend failure with Mixpanel
+            Mixpanel.mainInstance().track(event: "MIX Resend Confirmation Failed", properties: [
+                "email": email,
+                "error": error.localizedDescription
+            ])
         } catch {
             DispatchQueue.main.async {
                 self.errorMessage = "An unexpected error occurred."
                 self.successMessage = nil
             }
+            // Track unexpected error with Mixpanel
+            Mixpanel.mainInstance().track(event: "MIX Resend Confirmation Failed", properties: [
+                "email": email,
+                "error": "An unexpected error occurred."
+            ])
         }
     }
 }

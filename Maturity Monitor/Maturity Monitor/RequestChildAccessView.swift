@@ -27,6 +27,9 @@ struct RequestChildAccessView: View {
     
     // State variable to control navigation to HomeView
     @State private var navigationToHome: Bool = false
+    
+    // Mixpanel
+    @State private var calendarTapCount = 0
 
     var body: some View {
         if #available(iOS 16.0, *) {
@@ -42,12 +45,17 @@ struct RequestChildAccessView: View {
                         .multilineTextAlignment(.center)
                         .lineSpacing(5)
                         .padding()
-                    SimpleCustomTextField(placeholder: "Enter child's surname", text: $childSurname)
+                    SimpleCustomTextField(placeholder: "Enter child's surname", text: $childSurname, viewName: "Request Child Access")
                     Spacer()
                     Text("Please enter their date of birth below")
                         .font(Font.custom("Inter", size: 15))
                         .foregroundColor(.black)
-                    CustomDateTextField(dateText: $dateOfBirth)
+                    CustomDateTextField(
+                        placeholder: "DD/MM/YYYY",
+                        dateText: $dateOfBirth,
+                        viewName: "Request Child Access",
+                        calendarTapCount: $calendarTapCount
+                    )
                     Spacer()
                     
                     HStack(spacing: 20) {
@@ -204,7 +212,12 @@ struct RequestChildAccessView: View {
                     Spacer()
                     Spacer()
                     
-                    NavigationLink(destination: HomeView(currentPage: .constant("home")), isActive: $navigationToHome) {
+                    NavigationLink(
+                        destination: HomeView(
+                            currentPage: .constant("home")
+                        ),
+                        isActive: $navigationToHome
+                    ) {
                         EmptyView()
                     }
                     

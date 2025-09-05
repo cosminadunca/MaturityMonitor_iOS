@@ -1,24 +1,24 @@
-// Improvements:
-// 1. Allow uploading pictures to account so that other people know how added entries or modified things, etc
-// Registration View comments and messages done - needs testing
-
 import SwiftUI
 import Amplify
+import Mixpanel
 
 struct RegistrationView: View {
-    
     // Access to Amplify functions
     let amplifyService = AmplifyService()
-    
+
     @State private var name = ""
     @State private var surname = ""
     @State private var email = ""
     @State private var reEmail = ""
     @State private var password = ""
-    
+
     @State private var isLoading = false
     @State private var errorMessage: String?
     @State private var showConfirmationView = false
+    
+    // Mixpanel variables
+    @State private var viewStartTime: Date = Date()
+    @State private var passwordToggleCount = 0 
 
     var body: some View {
         NavigationView {
@@ -28,35 +28,48 @@ struct RegistrationView: View {
                     CustomTextTitle(title: "Registration")
                     Spacer()
                     VStack(spacing: 20) {
-                        CustomTextField(iconName: "person.fill", placeholder: "Name", text: $name)
-                            .onChange(of: name) { _ in
-                                        trackFieldInteraction(fieldName: "Name")
-                                    }
-                        CustomTextField(iconName: "person.fill", placeholder: "Surname", text: $surname)
-                            .onChange(of: surname) { _ in
-                                        trackFieldInteraction(fieldName: "Surname")
-                                    }
-                        CustomTextField(iconName: "envelope", placeholder: "Email", text: $email, keyboardType: .emailAddress)
-                            .onChange(of: email) { _ in
-                                        trackFieldInteraction(fieldName: "Email")
-                                    }
-                        CustomTextField(iconName: "envelope", placeholder: "Re-enter Email", text: $reEmail, keyboardType: .emailAddress)
-                            .onChange(of: reEmail) { _ in
-                                        trackFieldInteraction(fieldName: "Re-enter Email")
-                                    }
-                        CustomPasswordField(placeholder: "Password", text: $password)
-                            .onChange(of: password) { _ in
-                                        trackFieldInteraction(fieldName: "Password")
-                                    }
+                        CustomTextField(
+                            iconName: "person.fill",
+                            placeholder: "Name",
+                            text: $name,
+                            viewName: "Registration",
+                            keyboardType: .default
+                        )
+                        CustomTextField(
+                            iconName: "person.fill",
+                            placeholder: "Surname",
+                            text: $surname,
+                            viewName: "Registration",
+                            keyboardType: .default
+                        )
+                        CustomTextField(
+                            iconName: "envelope",
+                            placeholder: "Email",
+                            text: $email,
+                            viewName: "Registration",
+                            keyboardType: .emailAddress
+                        )
+                        CustomTextField(
+                            iconName: "envelope",
+                            placeholder: "Re-enter Email",
+                            text: $reEmail,
+                            viewName: "Registration",
+                            keyboardType: .emailAddress
+                        )
+                        CustomPasswordField(
+                            placeholder: "Password",
+                            text: $password,
+                            viewName: "Registration",
+                            passwordToggleCount: $passwordToggleCount
+                        )
                     }
-                    
                     Spacer()
                     Spacer()
-                    
+
                     if let errorMessage = errorMessage {
                         ErrorCustomText(title: errorMessage)
                     }
-                    
+
                     VStack(spacing: 20) {
                         Button(action: {
                             validateAndSignUp()
@@ -67,13 +80,19 @@ struct RegistrationView: View {
                                 textColor: .white
                             )
                         }.disabled(isLoading)
-                        
+
                         NavigationLink(destination: LoginView()) {
                             Text("Already have an account?")
                                 .font(Font.custom("Inter", size: 15))
                                 .foregroundColor(.black)
                         }
-                        
+                        .simultaneousGesture(
+                            TapGesture().onEnded {
+                                Mixpanel.mainInstance().track(event: "MIX Login Link Tapped", properties: [
+                                    "email": email
+                                ])
+                            }
+                        )
                         NavigationLink(
                             destination: VerificationCodeView(email: $email, password: $password),
                             isActive: $showConfirmationView
@@ -81,6 +100,16 @@ struct RegistrationView: View {
                             EmptyView()
                         }
                     }
+                }
+                .onAppear {
+                    viewStartTime = Date()
+                }
+                .onDisappear {
+                    // Track Mixpanel event for password toggle count when view disappears
+                    Mixpanel.mainInstance().track(event: "MIX Password Visibility Toggle Count in Registration View", properties: [
+                        "toggle_count": passwordToggleCount
+                    ])
+                    trackViewTime()
                 }
                 .onTapGesture {
                     hideKeyboard() // Hide keyboard when tapping outside
@@ -106,54 +135,45 @@ struct RegistrationView: View {
         .navigationBarHidden(true)
     }
     
-    // Helper function for tracking field interactions
-    private func trackFieldInteraction(fieldName: String) {
-        let event = BasicAnalyticsEvent(name: "SignUpFieldInteraction",
-                                        properties: ["Field": fieldName])
-        Amplify.Analytics.record(event: event)
-        print("Tracked: User interacted with \(fieldName) field")
+    // Mixpanel tracking
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Registration View Time", properties: ["time_spent": timeSpent])
     }
-    
+
     private func validateAndSignUp() {
         // Check if any of the fields are empty
         guard !name.isEmpty, !surname.isEmpty, !email.isEmpty, !reEmail.isEmpty, !password.isEmpty else {
             errorMessage = "Please fill all fields!"
-
-            // Track Failed Sign-up: Missing Fields
-            let failedSignUpEvent = BasicAnalyticsEvent(name: "SignUp",
-                                                        properties: ["Status": "Failed",
-                                                                     "Reason": "Missing Fields"])
-            Amplify.Analytics.record(event: failedSignUpEvent)
-            print("Tracked: Failed Sign-up (Missing Fields)")
-
+            // Track failure event for empty fields
+            Mixpanel.mainInstance().track(event: "MIX Sign Up Failed - Empty Fields", properties: [
+                "name_empty": name.isEmpty,
+                "surname_empty": surname.isEmpty,
+                "email_empty": email.isEmpty,
+                "reEmail_empty": reEmail.isEmpty,
+                "password_empty": password.isEmpty
+            ])
             return
         }
 
         // Check if the email addresses match
         guard email.trimmingCharacters(in: .whitespaces) == reEmail.trimmingCharacters(in: .whitespaces) else {
             errorMessage = "Email addresses do not match!"
-
-            // Track Failed Sign-up: Email Mismatch
-            let failedSignUpEvent = BasicAnalyticsEvent(name: "SignUp",
-                                                        properties: ["Status": "Failed",
-                                                                     "Reason": "Email Mismatch"])
-            Amplify.Analytics.record(event: failedSignUpEvent)
-            print("Tracked: Failed Sign-up (Email Mismatch)")
-
+            // Track failure event for email mismatch
+            Mixpanel.mainInstance().track(event: "MIX Sign Up Failed - Email Mismatch", properties: [
+                "email": email,
+                "reEmail": reEmail
+            ])
             return
         }
 
         // Validate email format
         guard isValidEmail(email) else {
             errorMessage = "Please enter a valid email address!"
-
-            // Track Failed Sign-up: Invalid Email
-            let failedSignUpEvent = BasicAnalyticsEvent(name: "SignUp",
-                                                        properties: ["Status": "Failed",
-                                                                     "Reason": "Invalid Email Format"])
-            Amplify.Analytics.record(event: failedSignUpEvent)
-            print("Tracked: Failed Sign-up (Invalid Email Format)")
-
+            // Track failure event for invalid email
+            Mixpanel.mainInstance().track(event: "MIX Sign Up Failed - Invalid Email", properties: [
+                "email": email
+            ])
             return
         }
 
@@ -164,30 +184,24 @@ struct RegistrationView: View {
             let signUpResult = await amplifyService.signUp(username: email, password: password, userAttributes: createUserAttributes())
             switch signUpResult {
             case .success:
-                // Track Successful Sign-up
-                let successEvent = BasicAnalyticsEvent(name: "SignUp",
-                                                       properties: ["Status": "Success",
-                                                                    "Email": email])
-                Amplify.Analytics.record(event: successEvent)
-                print("Tracked: Successful Sign-up")
-
-                showConfirmationView = true // Show the confirmation view after successful signup
-
+                // Track success event when sign-up is successful
+                Mixpanel.mainInstance().track(event: "MIX Sign Up Successful", properties: [
+                    "email": email,
+                    "name": name,
+                    "surname": surname
+                ])
+                showConfirmationView = true
             case .failure(let error):
                 errorMessage = amplifyService.handleAuthError(error as! AuthError)
-
-                // Track Failed Sign-up with Error Details
-                let failedSignUpEvent = BasicAnalyticsEvent(name: "SignUp",
-                                                            properties: ["Status": "Failed",
-                                                                         "ErrorMessage": error.localizedDescription,
-                                                                         "Email": email])
-                Amplify.Analytics.record(event: failedSignUpEvent)
-                print("Tracked: Failed Sign-up (Error)")
+                // Track failure event for sign-up failure
+                Mixpanel.mainInstance().track(event: "MIX Sign Up Failed", properties: [
+                    "error_message": errorMessage,
+                    "email": email
+                ])
             }
         }
     }
 
-    // Create user attributes for sign up
     private func createUserAttributes() -> [AuthUserAttribute] {
         return [
             AuthUserAttribute(.email, value: email.trimmingCharacters(in: .whitespaces)),
@@ -197,7 +211,6 @@ struct RegistrationView: View {
         ]
     }
 
-    // Email validation function using a regular expression
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)

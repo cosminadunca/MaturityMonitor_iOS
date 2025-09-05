@@ -1,7 +1,6 @@
-// Login View comments and messages done - needs testing
-
 import SwiftUI
-import Amplify // Needed for AuthError
+import Amplify
+import Mixpanel
 
 struct LoginView: View {
     
@@ -14,10 +13,16 @@ struct LoginView: View {
     @State private var errorMessage: String?
     @State private var showForgotPasswordSheet = false
     
-    // States for different content view redirection
     @State private var isSignedInForDefaultUser = false
     @State private var isSignedInForAdmin = false
-
+    
+    // State for email verification sheet
+    @State private var showVerificationSheet = false
+    
+    // Mixpanel variables
+    @State private var viewStartTime = Date()
+    @State private var passwordToggleCount = 0
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -26,15 +31,26 @@ struct LoginView: View {
                     CustomTextTitle(title: "Login")
                     Spacer()
                     VStack(spacing: 20) {
-                        CustomTextField(iconName: "envelope", placeholder: "Email", text: $email, keyboardType: .emailAddress)
+                        CustomTextField(
+                            iconName: "envelope",
+                            placeholder: "Email",
+                            text: $email,
+                            viewName: "Login",
+                            keyboardType: .emailAddress
+                        )
                         
-                        CustomPasswordField(placeholder: "Password", text: $password)
+                        CustomPasswordField(
+                            placeholder: "Password",
+                            text: $password,
+                            viewName: "Login",
+                            passwordToggleCount: $passwordToggleCount
+                        )
                     }
-                    
                     HStack {
                         Spacer()
                         Button(action: {
                             showForgotPasswordSheet.toggle()
+                            trackForgotPasswordSheetOpened()
                         }) {
                             Text("Forgot password?")
                                 .font(Font.custom("Inter", size: 12))
@@ -44,7 +60,12 @@ struct LoginView: View {
                         }
                     }
                     .fullScreenCover(isPresented: $showForgotPasswordSheet) {
-                        ForgotPasswordView(isPresented: $showForgotPasswordSheet)
+                        let isPresented = $showForgotPasswordSheet
+                        ForgotPasswordView(isPresented: isPresented)
+                    }
+                    .fullScreenCover(isPresented: $showVerificationSheet) {
+                        let isPresented = $showVerificationSheet
+                        EmailVerificationSheet(isPresented: isPresented, email: email)
                     }
                     
                     Spacer()
@@ -73,12 +94,47 @@ struct LoginView: View {
                                 .font(Font.custom("Inter", size: 15))
                                 .foregroundColor(.black)
                         }
+                        .simultaneousGesture(
+                            TapGesture().onEnded {
+                                // Track event for Registration link tap with sessionId and distinctId (email)
+                                Mixpanel.mainInstance().track(event: "MIX Registration Link Tapped", properties: [
+                                    "email": email
+                                ])
+                            }
+                        )
                     }
                     .padding(.bottom, 40)
+                    
+                    // If user already has a currentChild attached to account go to HomeView
+                    NavigationLink(
+                        destination: HomeView(
+                            currentPage: .constant("home")
+                        ),
+                        isActive: $isSignedInForDefaultUser
+                    ) {
+                        EmptyView()
+                    }
+                    
+                    // If user doesn't have a currentChild attached to account go to RegistrationHomeView
+                    NavigationLink(destination: RegistrationHomeView(), isActive: $isSignedInForAdmin) {
+                        EmptyView()
+                    }
                 }
                 .background(.white)
                 .onTapGesture {
                     hideKeyboard() // Hide keyboard when tapping outside
+                }
+                .onAppear {
+                    // Set the start time when the view appears
+                    viewStartTime = Date()
+                }
+                .onDisappear {
+                    // Track Mixpanel event for password toggle count when view disappears
+                    Mixpanel.mainInstance().track(event: "MIX Password Visibility Toggle Count in Login View", properties: [
+                        "toggle_count": passwordToggleCount
+                    ])
+                    // Track the time spent on this view when it disappears
+                    trackViewTime()
                 }
                 .toolbar {
                     ToolbarItem(placement: .keyboard) {
@@ -91,20 +147,9 @@ struct LoginView: View {
                         }
                     }
                 }
-                
                 if isLoading {
                     ProgressView("Signing In...")
                         .progressViewStyle(CircularProgressViewStyle())
-                }
-                
-                // If user already has a currentChild attached to account go to HomeView
-                NavigationLink(destination: HomeView(currentPage: .constant("home")), isActive: $isSignedInForDefaultUser) {
-                    EmptyView()
-                }
-
-                // If user doesn't have a currentChild attached to account go to RegistrationHomeView
-                NavigationLink(destination: RegistrationHomeView(), isActive: $isSignedInForAdmin) {
-                    EmptyView()
                 }
             }
         }
@@ -113,62 +158,85 @@ struct LoginView: View {
         .navigationBarBackButtonHidden(true)
     }
     
-    // Sign in function
+    // Mixpanel functions
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Login View Time", properties: [
+            "time_spent": timeSpent
+        ])
+    }
+    
+    private func trackForgotPasswordSheetOpened() {
+        // Track the event when the forgot password sheet is opened
+        Mixpanel.mainInstance().track(event: "MIX Forgot Password Sheet Opened")
+    }
+    
     private func signIn() async {
         isLoading = true
         errorMessage = nil
 
         do {
-            // Attempt to sign in
-            let isSignedIn = try await amplifyService.signIn(username: email, password: password)
-            if isSignedIn {
-                // Track User Type
-                await amplifyService.trackUserType()
+            let userResult = try await Amplify.Auth.signIn(username: email, password: password)
 
-                // Track Successful Sign-in
-                let signInEvent = BasicAnalyticsEvent(name: "SignIn",
-                                                      properties: ["Status": "Success",
-                                                                   "Email": email])
-                Amplify.Analytics.record(event: signInEvent)
-                print("Tracked: Successful Sign-in")
-
-                // Fetch currentChild after successful sign-in
-                if let currentChild = try await amplifyService.getCurrentChild(), currentChild == "-" {
-                    isSignedInForAdmin = true
+            if userResult.isSignedIn {
+                // Check if email is verified
+                let userAttributes = try await Amplify.Auth.fetchUserAttributes()
+                if let emailVerified = userAttributes.first(where: { $0.key == .emailVerified })?.value,
+                   emailVerified == "true" {
+                    
+                    Mixpanel.mainInstance().track(event: "MIX Sign In Success", properties: [
+                        "email": email,
+                        "view": "Login View"
+                    ])
+                    
+                    // Navigate based on child status
+                    if let currentChild = try await amplifyService.getCurrentChild(), currentChild == "-" {
+                        isSignedInForAdmin = true
+                    } else {
+                        isSignedInForDefaultUser = true
+                    }
+                    
                 } else {
-                    isSignedInForDefaultUser = true
+                    // Email not verified, open sheet
+                    showVerificationSheet = true
+                    Mixpanel.mainInstance().track(event: "MIX Email Not Verified", properties: [
+                        "email": email
+                    ])
                 }
+
             } else {
-                errorMessage = "Sign in failed. Please check your credentials."
-                
-                // Track Failed Sign-in
-                let failedSignInEvent = BasicAnalyticsEvent(name: "SignIn",
-                                                            properties: ["Status": "Failed",
-                                                                         "Reason": "Invalid credentials",
-                                                                         "Email": email])
-                Amplify.Analytics.record(event: failedSignInEvent)
-                print("Tracked: Failed Sign-in")
+                switch userResult.nextStep {
+                case .confirmSignUp:
+                    showVerificationSheet = true
+                    Mixpanel.mainInstance().track(event: "MIX Email Not Verified", properties: [
+                        "email": email
+                    ])
+                default:
+                    errorMessage = "Sign in failed. Please verify your password is correct, or change it if you forgot it."
+                }
             }
+
         } catch let error as AuthError {
-            errorMessage = "Sign in failed: \(error.errorDescription)"
-            
-            // Track Error during Sign-in
-            let errorEvent = BasicAnalyticsEvent(name: "SignIn",
-                                                 properties: ["Status": "Error",
-                                                              "ErrorMessage": error.errorDescription,
-                                                              "Email": email])
-            Amplify.Analytics.record(event: errorEvent)
-            print("Tracked: Sign-in Error")
+            if error.errorDescription.contains("not confirmed") {
+                showVerificationSheet = true
+                Mixpanel.mainInstance().track(event: "MIX Email Not Verified", properties: [
+                    "email": email
+                ])
+            } else if error.errorDescription.contains("User does not exist") {
+                errorMessage = "Account does not exist. Please register first."
+            } else {
+                Mixpanel.mainInstance().track(event: "MIX Sign In Failure", properties: [
+                    "email": email,
+                    "reason": error.errorDescription
+                ])
+                errorMessage = "Sign in failed: \(error.errorDescription)"
+            }
         } catch {
+            Mixpanel.mainInstance().track(event: "MIX Sign In Failure", properties: [
+                "email": email,
+                "reason": error.localizedDescription
+            ])
             errorMessage = "Unexpected error: \(error.localizedDescription)"
-            
-            // Track Unexpected Error
-            let errorEvent = BasicAnalyticsEvent(name: "SignIn",
-                                                 properties: ["Status": "Error",
-                                                              "ErrorMessage": error.localizedDescription,
-                                                              "Email": email])
-            Amplify.Analytics.record(event: errorEvent)
-            print("Tracked: Sign-in Error")
         }
 
         isLoading = false

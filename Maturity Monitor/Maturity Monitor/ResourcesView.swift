@@ -1,6 +1,7 @@
 // Resources View comments and messages done - needs testing
 
 import SwiftUI
+import Mixpanel
 
 struct ResourcesView: View {
     
@@ -12,6 +13,11 @@ struct ResourcesView: View {
         case resources
         case home
     }
+    
+    // Mixpanel variables
+    @State private var viewStartTime: Date = Date()
+    @State private var tabSwitchCount: Int = 0
+    @State private var previousTab: Tab = .resources
 
     var body: some View {
         if #available(iOS 16.0, *) {
@@ -55,6 +61,12 @@ struct ResourcesView: View {
                             }
                             .tag(Tab.home)
                     }
+                    .onChange(of: selectedTab) { newTab in
+                        if newTab != previousTab {
+                            tabSwitchCount += 1
+                            previousTab = newTab
+                        }
+                    }
                     .accentColor(.buttonPurpleLight)
                     .frame(height: UIScreen.main.bounds.height * 0.85)
                 }
@@ -63,11 +75,31 @@ struct ResourcesView: View {
                 .fullScreenCover(isPresented: $showMenu) {
                     FullScreenMenuView(currentPage: $currentPage)
                 }.navigationBarBackButtonHidden(true)
+                .onAppear {
+                    viewStartTime = Date()
+                }
+                .onDisappear {
+                    trackTabSwitches()
+                    trackViewTime()
+                }
             }
         } else {
             // Fallback on earlier versions
         }
     }
+    
+    // Mixpanel
+    private func trackViewTime() {
+        let timeSpent = Date().timeIntervalSince(viewStartTime)
+        Mixpanel.mainInstance().track(event: "MIX Resources View Time", properties: ["time_spent": timeSpent])
+    }
+    
+    private func trackTabSwitches() {
+        Mixpanel.mainInstance().track(event: "MIX Tab Switches in Resources View", properties: [
+            "switch_count": tabSwitchCount
+        ])
+    }
+
 }
 
 #Preview {

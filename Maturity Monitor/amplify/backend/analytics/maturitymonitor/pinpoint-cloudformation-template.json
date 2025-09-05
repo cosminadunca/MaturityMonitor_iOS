@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.14.4\",\"stackType\":\"analytics-Pinpoint\",\"metadata\":{\"whyContinueWithGen1\":\"\"}}",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"13.0.0\",\"stackType\":\"analytics-Pinpoint\",\"metadata\":{\"whyContinueWithGen1\":\"\"}}",
   "Parameters": {
     "appName": {
       "Type": "String"
@@ -275,7 +275,7 @@
           }
         },
         "Handler": "index.handler",
-        "Runtime": "nodejs18.x",
+        "Runtime": "nodejs22.x",
         "Timeout": 300,
         "Role": {
           "Fn::GetAtt": [
