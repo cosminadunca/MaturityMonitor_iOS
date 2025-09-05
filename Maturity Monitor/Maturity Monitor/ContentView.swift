@@ -30,6 +30,10 @@ struct ContentView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                         )
+                    Text("© York St John University 2025")
+                        .font(Font.custom("Inter-Regular", size: 12))
+                        .foregroundColor(.black)
+
                 }
                 .onAppear {
                     startTime = Date()
