@@ -48,8 +48,18 @@ class AmplifyService {
     
     // Sign out function returning success status - ASYNC
     func signOut() async -> Bool {
-        await Amplify.Auth.signOut()
-        return true // Sign-out is complete; returning true to indicate success
+        do {
+            await Amplify.Auth.signOut()
+            
+            // Clear DataStore to remove cached data
+            try await Amplify.DataStore.clear()
+            
+            print("User signed out and data cleared")
+            return true
+        } catch {
+            print("Error during sign out: \(error)")
+            return false
+        }
     }
     
     // Function to confirm sign-up - ASYNC
@@ -62,9 +72,21 @@ class AmplifyService {
     func isUserSignedIn() async -> Bool {
         do {
             let session = try await Amplify.Auth.fetchAuthSession()
-            return session.isSignedIn
+            
+            if session.isSignedIn {
+                // Double-check by trying to get current user - this validates tokens
+                _ = try await Amplify.Auth.getCurrentUser()
+                return true
+            } else {
+                return false
+            }
         } catch {
             print("Failed to fetch session: \(error)")
+            
+            // If auth fails, sign out to clear invalid state
+            print("Signing out due to auth failure...")
+            _ = await signOut()
+            
             return false
         }
     }
